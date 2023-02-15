@@ -4,11 +4,11 @@
 %%
 %% The original source files were:
 %%
-%% merlin.mbs  (with options: `head,ay,ast,pres,seq-yrr,vonx,nm-init,ed-au,nmlm,x3,m3,keyxyr,blkyear,dt-beg,yr-blk,yrp-col,note-yr,tit-qq,bt-qq,atit-u,trnum-it,vol-bf,vnum-x,volp-com,jpg-1,num-xser,add-pub,pub-date,pre-pub,edpar,blk-com,in-it,fin-bare,pp,ed,abr,xedn,jabr,jaa,amper,and-xcom,etal-xc,nfss,,{}')
-%% physjour.mbs  (with options: `ay,ast,pres,seq-yrr,vonx,nm-init,ed-au,nmlm,x3,m3,keyxyr,blkyear,dt-beg,yr-blk,yrp-col,note-yr,tit-qq,bt-qq,atit-u,trnum-it,vol-bf,vnum-x,volp-com,jpg-1,num-xser,add-pub,pub-date,pre-pub,edpar,blk-com,in-it,fin-bare,pp,ed,abr,xedn,jabr,jaa,amper,and-xcom,etal-xc,nfss,,{}')
-%% geojour.mbs  (with options: `ay,ast,pres,seq-yrr,vonx,nm-init,ed-au,nmlm,x3,m3,keyxyr,blkyear,dt-beg,yr-blk,yrp-col,note-yr,tit-qq,bt-qq,atit-u,trnum-it,vol-bf,vnum-x,volp-com,jpg-1,num-xser,add-pub,pub-date,pre-pub,edpar,blk-com,in-it,fin-bare,pp,ed,abr,xedn,jabr,jaa,amper,and-xcom,etal-xc,nfss,,{}')
-%% photjour.mbs  (with options: `ay,ast,pres,seq-yrr,vonx,nm-init,ed-au,nmlm,x3,m3,keyxyr,blkyear,dt-beg,yr-blk,yrp-col,note-yr,tit-qq,bt-qq,atit-u,trnum-it,vol-bf,vnum-x,volp-com,jpg-1,num-xser,add-pub,pub-date,pre-pub,edpar,blk-com,in-it,fin-bare,pp,ed,abr,xedn,jabr,jaa,amper,and-xcom,etal-xc,nfss,,{}')
-%% merlin.mbs  (with options: `tail,ay,ast,pres,seq-yrr,vonx,nm-init,ed-au,nmlm,x3,m3,keyxyr,blkyear,dt-beg,yr-blk,yrp-col,note-yr,tit-qq,bt-qq,atit-u,trnum-it,vol-bf,vnum-x,volp-com,jpg-1,num-xser,add-pub,pub-date,pre-pub,edpar,blk-com,in-it,fin-bare,pp,ed,abr,xedn,jabr,jaa,amper,and-xcom,etal-xc,nfss,,{}')
+%% merlin.mbs  (with options: `head,ay,ast,annote,pres,seq-yrr,vonx,nm-init,ed-au,nmlm,x3,m3,keyxyr,blkyear,dt-beg,yr-blk,yrp-col,note-yr,tit-qq,bt-qq,atit-u,trnum-it,vol-bf,vnum-x,volp-com,jpg-1,num-xser,add-pub,pub-date,pre-pub,edpar,blk-com,in-it,fin-bare,pp,ed,abr,xedn,jabr,jaa,amper,and-xcom,etal-xc,nfss,,{}')
+%% physjour.mbs  (with options: `ay,ast,annote,pres,seq-yrr,vonx,nm-init,ed-au,nmlm,x3,m3,keyxyr,blkyear,dt-beg,yr-blk,yrp-col,note-yr,tit-qq,bt-qq,atit-u,trnum-it,vol-bf,vnum-x,volp-com,jpg-1,num-xser,add-pub,pub-date,pre-pub,edpar,blk-com,in-it,fin-bare,pp,ed,abr,xedn,jabr,jaa,amper,and-xcom,etal-xc,nfss,,{}')
+%% geojour.mbs  (with options: `ay,ast,annote,pres,seq-yrr,vonx,nm-init,ed-au,nmlm,x3,m3,keyxyr,blkyear,dt-beg,yr-blk,yrp-col,note-yr,tit-qq,bt-qq,atit-u,trnum-it,vol-bf,vnum-x,volp-com,jpg-1,num-xser,add-pub,pub-date,pre-pub,edpar,blk-com,in-it,fin-bare,pp,ed,abr,xedn,jabr,jaa,amper,and-xcom,etal-xc,nfss,,{}')
+%% photjour.mbs  (with options: `ay,ast,annote,pres,seq-yrr,vonx,nm-init,ed-au,nmlm,x3,m3,keyxyr,blkyear,dt-beg,yr-blk,yrp-col,note-yr,tit-qq,bt-qq,atit-u,trnum-it,vol-bf,vnum-x,volp-com,jpg-1,num-xser,add-pub,pub-date,pre-pub,edpar,blk-com,in-it,fin-bare,pp,ed,abr,xedn,jabr,jaa,amper,and-xcom,etal-xc,nfss,,{}')
+%% merlin.mbs  (with options: `tail,ay,ast,annote,pres,seq-yrr,vonx,nm-init,ed-au,nmlm,x3,m3,keyxyr,blkyear,dt-beg,yr-blk,yrp-col,note-yr,tit-qq,bt-qq,atit-u,trnum-it,vol-bf,vnum-x,volp-com,jpg-1,num-xser,add-pub,pub-date,pre-pub,edpar,blk-com,in-it,fin-bare,pp,ed,abr,xedn,jabr,jaa,amper,and-xcom,etal-xc,nfss,,{}')
 %% ----------------------------------------
 %% *** Michael's Super Awesome Style Sheet (MSASS) version 4.2 ***
 %% 
@@ -38,6 +38,7 @@
 
 ENTRY
   { address
+    annote
     author
     booktitle
     chapter
@@ -110,6 +111,11 @@ FUNCTION {fin.entry}
     'write$
   if$
   newline$
+  annote missing$
+    { "\bibAnnoteFile{" cite$ * "}" * write$ newline$ }
+    { "\bibAnnote{" cite$ * "}{" * annote * "}" * write$ newline$
+    }
+  if$
 }
 
 FUNCTION {new.block}
@@ -1626,6 +1632,18 @@ FUNCTION {begin.bib}
   "\newcommand{\enquote}[1]{``#1''}"
   write$ newline$
   "\providecommand{\natexlab}[1]{#1}"
+  write$ newline$
+  "\providecommand{\bibAnnoteFile}[1]{%"
+  write$ newline$
+  "  \IfFileExists{#1}{\begin{quotation}\noindent\textsc{Key:} #1\\"
+  write$ newline$
+  "  \textsc{Annotation:}\ \input{#1}\end{quotation}}{}}"
+  write$ newline$
+  "\providecommand{\bibAnnote}[2]{%"
+  write$ newline$
+  "  \begin{quotation}\noindent\textsc{Key:} #1\\"
+  write$ newline$
+  "  \textsc{Annotation:}\ #2\end{quotation}}"
   write$ newline$
 }
 EXECUTE {begin.bib}

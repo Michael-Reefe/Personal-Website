@@ -4,11 +4,11 @@
 %%
 %% The original source files were:
 %%
-%% merlin.mbs  (with options: `head,ay,ast,pres,seq-yrr,vonx,nm-rvv,nmlm,x3,m3,keyxyr,blkyear,dt-beg,yr-blk,yrp-col,note-yr,tit-qq,bt-qq,atit-u,trnum-it,vol-bf,vnum-x,volp-com,jpg-1,num-xser,add-pub,pub-date,pre-pub,edpar,blk-com,in-it,fin-bare,pp,ed,abr,xedn,jabr,jaa,amper,and-xcom,etal-xc,nfss,,{}')
-%% physjour.mbs  (with options: `ay,ast,pres,seq-yrr,vonx,nm-rvv,nmlm,x3,m3,keyxyr,blkyear,dt-beg,yr-blk,yrp-col,note-yr,tit-qq,bt-qq,atit-u,trnum-it,vol-bf,vnum-x,volp-com,jpg-1,num-xser,add-pub,pub-date,pre-pub,edpar,blk-com,in-it,fin-bare,pp,ed,abr,xedn,jabr,jaa,amper,and-xcom,etal-xc,nfss,,{}')
-%% geojour.mbs  (with options: `ay,ast,pres,seq-yrr,vonx,nm-rvv,nmlm,x3,m3,keyxyr,blkyear,dt-beg,yr-blk,yrp-col,note-yr,tit-qq,bt-qq,atit-u,trnum-it,vol-bf,vnum-x,volp-com,jpg-1,num-xser,add-pub,pub-date,pre-pub,edpar,blk-com,in-it,fin-bare,pp,ed,abr,xedn,jabr,jaa,amper,and-xcom,etal-xc,nfss,,{}')
-%% photjour.mbs  (with options: `ay,ast,pres,seq-yrr,vonx,nm-rvv,nmlm,x3,m3,keyxyr,blkyear,dt-beg,yr-blk,yrp-col,note-yr,tit-qq,bt-qq,atit-u,trnum-it,vol-bf,vnum-x,volp-com,jpg-1,num-xser,add-pub,pub-date,pre-pub,edpar,blk-com,in-it,fin-bare,pp,ed,abr,xedn,jabr,jaa,amper,and-xcom,etal-xc,nfss,,{}')
-%% merlin.mbs  (with options: `tail,ay,ast,pres,seq-yrr,vonx,nm-rvv,nmlm,x3,m3,keyxyr,blkyear,dt-beg,yr-blk,yrp-col,note-yr,tit-qq,bt-qq,atit-u,trnum-it,vol-bf,vnum-x,volp-com,jpg-1,num-xser,add-pub,pub-date,pre-pub,edpar,blk-com,in-it,fin-bare,pp,ed,abr,xedn,jabr,jaa,amper,and-xcom,etal-xc,nfss,,{}')
+%% merlin.mbs  (with options: `head,ay,ast,pres,seq-yrr,vonx,nm-init,ed-au,nmlm,x3,m3,keyxyr,blkyear,dt-beg,yr-blk,yrp-col,note-yr,tit-qq,bt-qq,atit-u,trnum-it,vol-bf,vnum-x,volp-com,jpg-1,num-xser,add-pub,pub-date,pre-pub,edpar,blk-com,in-it,fin-bare,pp,ed,abr,xedn,jabr,jaa,amper,and-xcom,etal-xc,nfss,,{}')
+%% physjour.mbs  (with options: `ay,ast,pres,seq-yrr,vonx,nm-init,ed-au,nmlm,x3,m3,keyxyr,blkyear,dt-beg,yr-blk,yrp-col,note-yr,tit-qq,bt-qq,atit-u,trnum-it,vol-bf,vnum-x,volp-com,jpg-1,num-xser,add-pub,pub-date,pre-pub,edpar,blk-com,in-it,fin-bare,pp,ed,abr,xedn,jabr,jaa,amper,and-xcom,etal-xc,nfss,,{}')
+%% geojour.mbs  (with options: `ay,ast,pres,seq-yrr,vonx,nm-init,ed-au,nmlm,x3,m3,keyxyr,blkyear,dt-beg,yr-blk,yrp-col,note-yr,tit-qq,bt-qq,atit-u,trnum-it,vol-bf,vnum-x,volp-com,jpg-1,num-xser,add-pub,pub-date,pre-pub,edpar,blk-com,in-it,fin-bare,pp,ed,abr,xedn,jabr,jaa,amper,and-xcom,etal-xc,nfss,,{}')
+%% photjour.mbs  (with options: `ay,ast,pres,seq-yrr,vonx,nm-init,ed-au,nmlm,x3,m3,keyxyr,blkyear,dt-beg,yr-blk,yrp-col,note-yr,tit-qq,bt-qq,atit-u,trnum-it,vol-bf,vnum-x,volp-com,jpg-1,num-xser,add-pub,pub-date,pre-pub,edpar,blk-com,in-it,fin-bare,pp,ed,abr,xedn,jabr,jaa,amper,and-xcom,etal-xc,nfss,,{}')
+%% merlin.mbs  (with options: `tail,ay,ast,pres,seq-yrr,vonx,nm-init,ed-au,nmlm,x3,m3,keyxyr,blkyear,dt-beg,yr-blk,yrp-col,note-yr,tit-qq,bt-qq,atit-u,trnum-it,vol-bf,vnum-x,volp-com,jpg-1,num-xser,add-pub,pub-date,pre-pub,edpar,blk-com,in-it,fin-bare,pp,ed,abr,xedn,jabr,jaa,amper,and-xcom,etal-xc,nfss,,{}')
 %% ----------------------------------------
 %% *** Michael's Super Awesome Style Sheet (MSASS) version 4.2 ***
 %% 
@@ -615,7 +615,7 @@ FUNCTION {format.names}
   numnames 'namesleft :=
     { namesleft #0 > }
     { s nameptr
-      "{vv~}{ll}{ jj}{ f{.}.}"
+      "{f.~}{vv~}{ll}{, jj}"
       format.name$
       bibinfo bibinfo.check
       't :=
@@ -658,48 +658,7 @@ FUNCTION {format.names}
 }
 FUNCTION {format.names.ed}
 {
-  'bibinfo :=
-  duplicate$ empty$ 'skip$ {
-  's :=
-  "" 't :=
-  #1 'nameptr :=
-  s num.names$ 'numnames :=
-  numnames 'namesleft :=
-    { namesleft #0 > }
-    { s nameptr
-      "{f{.}.~}{vv~}{ll}{ jj}"
-      format.name$
-      bibinfo bibinfo.check
-      't :=
-      nameptr #1 >
-        {
-          namesleft #1 >
-            { ", " * t * }
-            {
-              s nameptr "{ll}" format.name$ duplicate$ "others" =
-                { 't := }
-                { pop$ }
-              if$
-              t "others" =
-                {
-
-                  " " * bbl.etal *
-                }
-                {
-                  "\&"
-                  space.word * t *
-                }
-              if$
-            }
-          if$
-        }
-        't
-      if$
-      nameptr #1 + 'nameptr :=
-      namesleft #1 - 'namesleft :=
-    }
-  while$
-  } if$
+  format.names
 }
 FUNCTION {format.key}
 { empty$

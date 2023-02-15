@@ -51,6 +51,8 @@
 \usepackage{inputenc}
 \usepackage[hidelinks]{hyperref}
 \usepackage{csquotes}
+\usepackage{orcidlink}
+\usepackage{fontawesome}
 \usepackage{multibib}
 \usepackage[numbers]{natbib}
 \usepackage[english]{babel}
@@ -133,6 +135,8 @@
 % Remove natbib titles that cause problems with asterisks on the left margin
 \renewcommand{\bibsection}{}
 
+\definecolor{orcidlogocol}{HTML}{A6CE39}
+
 \begin{document}
 
 %-------------------------------------------------------------------------------
@@ -145,18 +149,19 @@
 % -email addresses
 % -linked-in profile
 
-\address{MIT Department of Physics
+\address{  MIT Department of Physics
 \\77 Massachusetts Avenue
 \\Cambridge, MA 02139-4307}
 % \address{George Mason University
 % \\4400 University Dr
 % \\Fairfax, VA 22030}
-\address{{\it Cell Phone}: +1 (540) 848-4434
-\\{\it E-mail}: \hspace{0.5cm} \href{mailto:mreefe@mit.edu}{\color{dkbu} mreefe@mit.edu}
-\\{\it Website}: \hspace{0.36cm} \href{https://www.mit.edu/~mreefe/}{\color{dkbu}www.mit.edu/$\sim$mreefe/}}
-\address{{\it GitHub}: \hspace{0.1cm} \href{https://github.com/Michael-Reefe}{\color{dkbu} Michael-Reefe}
-\\{\it LinkedIn}: \href{https://www.linkedin.com/in/michael-reefe/}{\color{dkbu} Michael Reefe}
-\\}
+\address{ \faMobile \hspace{0.2cm} +1 (540) 848-4434
+\\ \faEnvelope \hspace{0.1cm} \href{mailto:mreefe@mit.edu}{\color{dkbu} mreefe@mit.edu}
+\\ \faGlobe \hspace{0.15cm} \href{https://www.mit.edu/~mreefe/}{\color{dkbu}www.mit.edu/$\sim$mreefe/}}
+\address{ \faGithub \hspace{0.1cm} \href{https://github.com/Michael-Reefe}{\color{dkbu} Michael-Reefe}
+\\ \faLinkedinSquare \hspace{0.1cm} \href{https://www.linkedin.com/in/michael-reefe/}{\color{dkbu} Michael Reefe}
+\\ \orcidlink{0000-0003-4701-8497} \hspace{0.1cm} \href{https://orcid.org/0000-0003-4701-8497}{\color{dkbu} 0000-0003-4701-8497}
+}
 
 \begin{resume}
 

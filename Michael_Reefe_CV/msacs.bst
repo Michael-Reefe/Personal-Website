@@ -1,16 +1,16 @@
 %%
-%% This is file `msass.bst',
+%% This is file `msacs.bst',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
 %%
-%% merlin.mbs  (with options: `head,ay,ast,annote,pres,seq-yrr,vonx,nm-init,ed-au,nmlm,x3,m3,keyxyr,blkyear,dt-beg,yr-blk,yrp-col,note-yr,tit-qq,bt-qq,atit-u,trnum-it,vol-bf,vnum-x,volp-com,jpg-1,num-xser,add-pub,pub-date,pre-pub,edpar,blk-com,in-it,fin-bare,pp,ed,abr,xedn,jabr,jaa,amper,and-xcom,etal-xc,nfss,,{}')
-%% physjour.mbs  (with options: `ay,ast,annote,pres,seq-yrr,vonx,nm-init,ed-au,nmlm,x3,m3,keyxyr,blkyear,dt-beg,yr-blk,yrp-col,note-yr,tit-qq,bt-qq,atit-u,trnum-it,vol-bf,vnum-x,volp-com,jpg-1,num-xser,add-pub,pub-date,pre-pub,edpar,blk-com,in-it,fin-bare,pp,ed,abr,xedn,jabr,jaa,amper,and-xcom,etal-xc,nfss,,{}')
-%% geojour.mbs  (with options: `ay,ast,annote,pres,seq-yrr,vonx,nm-init,ed-au,nmlm,x3,m3,keyxyr,blkyear,dt-beg,yr-blk,yrp-col,note-yr,tit-qq,bt-qq,atit-u,trnum-it,vol-bf,vnum-x,volp-com,jpg-1,num-xser,add-pub,pub-date,pre-pub,edpar,blk-com,in-it,fin-bare,pp,ed,abr,xedn,jabr,jaa,amper,and-xcom,etal-xc,nfss,,{}')
-%% photjour.mbs  (with options: `ay,ast,annote,pres,seq-yrr,vonx,nm-init,ed-au,nmlm,x3,m3,keyxyr,blkyear,dt-beg,yr-blk,yrp-col,note-yr,tit-qq,bt-qq,atit-u,trnum-it,vol-bf,vnum-x,volp-com,jpg-1,num-xser,add-pub,pub-date,pre-pub,edpar,blk-com,in-it,fin-bare,pp,ed,abr,xedn,jabr,jaa,amper,and-xcom,etal-xc,nfss,,{}')
-%% merlin.mbs  (with options: `tail,ay,ast,annote,pres,seq-yrr,vonx,nm-init,ed-au,nmlm,x3,m3,keyxyr,blkyear,dt-beg,yr-blk,yrp-col,note-yr,tit-qq,bt-qq,atit-u,trnum-it,vol-bf,vnum-x,volp-com,jpg-1,num-xser,add-pub,pub-date,pre-pub,edpar,blk-com,in-it,fin-bare,pp,ed,abr,xedn,jabr,jaa,amper,and-xcom,etal-xc,nfss,,{}')
+%% merlin.mbs  (with options: `head,ay,ast,lang,annote,pres,seq-yrr,vonx,nm-init,ed-au,nmlm,x3,m3,keyxyr,blkyear,yr-par,note-yr,tit-qq,bt-qq,atit-u,trnum-it,vol-bf,vnum-x,volp-com,num-xser,jnm-x,add-pub,pub-date,pre-pub,edpar,blk-tit,in-it,pp,ed,abr,xedn,jabr,jaa,amper,and-xcom,etal-xc,nfss,,{}')
+%% physjour.mbs  (with options: `ay,ast,lang,annote,pres,seq-yrr,vonx,nm-init,ed-au,nmlm,x3,m3,keyxyr,blkyear,yr-par,note-yr,tit-qq,bt-qq,atit-u,trnum-it,vol-bf,vnum-x,volp-com,num-xser,jnm-x,add-pub,pub-date,pre-pub,edpar,blk-tit,in-it,pp,ed,abr,xedn,jabr,jaa,amper,and-xcom,etal-xc,nfss,,{}')
+%% geojour.mbs  (with options: `ay,ast,lang,annote,pres,seq-yrr,vonx,nm-init,ed-au,nmlm,x3,m3,keyxyr,blkyear,yr-par,note-yr,tit-qq,bt-qq,atit-u,trnum-it,vol-bf,vnum-x,volp-com,num-xser,jnm-x,add-pub,pub-date,pre-pub,edpar,blk-tit,in-it,pp,ed,abr,xedn,jabr,jaa,amper,and-xcom,etal-xc,nfss,,{}')
+%% photjour.mbs  (with options: `ay,ast,lang,annote,pres,seq-yrr,vonx,nm-init,ed-au,nmlm,x3,m3,keyxyr,blkyear,yr-par,note-yr,tit-qq,bt-qq,atit-u,trnum-it,vol-bf,vnum-x,volp-com,num-xser,jnm-x,add-pub,pub-date,pre-pub,edpar,blk-tit,in-it,pp,ed,abr,xedn,jabr,jaa,amper,and-xcom,etal-xc,nfss,,{}')
+%% merlin.mbs  (with options: `tail,ay,ast,lang,annote,pres,seq-yrr,vonx,nm-init,ed-au,nmlm,x3,m3,keyxyr,blkyear,yr-par,note-yr,tit-qq,bt-qq,atit-u,trnum-it,vol-bf,vnum-x,volp-com,num-xser,jnm-x,add-pub,pub-date,pre-pub,edpar,blk-tit,in-it,pp,ed,abr,xedn,jabr,jaa,amper,and-xcom,etal-xc,nfss,,{}')
 %% ----------------------------------------
-%% *** Michael's Super Awesome Style Sheet (MSASS) version 4.2 ***
+%% *** Michael's Super Awesome Citation Style (MSACS) ***
 %% 
 %% Copyright 1994-2011 Patrick W Daly
  % ===============================================================
@@ -49,6 +49,8 @@ ENTRY
     institution
     journal
     key
+    coauthorflag
+    language
     month
     note
     number
@@ -106,10 +108,8 @@ FUNCTION {output.check}
   if$
 }
 FUNCTION {fin.entry}
-{ duplicate$ empty$
-    'pop$
-    'write$
-  if$
+{ add.period$
+  write$
   newline$
   annote missing$
     { "\bibAnnoteFile{" cite$ * "}" * write$ newline$ }
@@ -140,8 +140,7 @@ FUNCTION {add.blank}
 
 FUNCTION {date.block}
 {
-  ":" *
-  add.blank
+  skip$
 }
 
 FUNCTION {not}
@@ -211,7 +210,12 @@ FUNCTION {bbl.and}
 { "and"}
 
 FUNCTION {bbl.etal}
-{ "et~al." }
+{
+ coauthorflag empty$
+  { "et~al." }
+  { "et~al.~incl.~\textbf{M.~Reefe}" }
+ if$
+}
 
 FUNCTION {bbl.editors}
 { "eds." }
@@ -689,6 +693,17 @@ FUNCTION {format.editors}
     }
   if$
 }
+FUNCTION {select.language}
+{ duplicate$ empty$
+    'pop$
+    { language empty$
+        'skip$
+        { "{\selectlanguage{" language * "}" * swap$ * "}" * }
+      if$
+    }
+    if$
+}
+
 FUNCTION {format.note}
 {
  note empty$
@@ -714,17 +729,9 @@ FUNCTION {format.title}
   duplicate$ empty$ 'skip$
     {
       "\enquote{" swap$ *
-      non.stop
-        { ",} " * }
-        { "} " * }
-      if$
+      add.period$ "}" *
+      select.language
     }
-  if$
-}
-FUNCTION {end.quote.title}
-{ title empty$
-    'skip$
-    { before.all 'output.state := }
   if$
 }
 FUNCTION {end.quote.btitle}
@@ -777,7 +784,7 @@ FUNCTION {n.dashify}
 }
 
 FUNCTION {word.in}
-{ bbl.in
+{ bbl.in capitalize
   emphasize
   " " * }
 
@@ -789,13 +796,14 @@ FUNCTION {format.date}
   if$
   extra.label *
   before.all 'output.state :=
-  " " swap$ *
+  " (" swap$ * ")" *
 }
 FUNCTION {format.btitle}
 { title "title" bibinfo.check
   duplicate$ empty$ 'skip$
     {
       emphasize
+      select.language
     }
   if$
 }
@@ -890,16 +898,6 @@ FUNCTION {format.pages}
     }
   if$
 }
-FUNCTION {first.page}
-{ 't :=
-  ""
-    {  t empty$ not t #1 #1 substring$ "-" = not and }
-    { t #1 #1 substring$ *
-      t #2 global.max$ substring$ 't :=
-    }
-  while$
-}
-
 FUNCTION {format.journal.pages}
 { pages duplicate$ empty$ 'pop$
     { swap$ duplicate$ empty$
@@ -907,7 +905,7 @@ FUNCTION {format.journal.pages}
         {
           ", " *
           swap$
-          first.page
+          n.dashify
           "pages" bibinfo.check
           *
         }
@@ -1022,6 +1020,7 @@ FUNCTION {format.book.crossref}
       pop$ word.in
     }
     { bbl.volume
+      capitalize
       swap$ tie.or.space.prefix "volume" bibinfo.check * * bbl.of space.word *
     }
   if$
@@ -1069,17 +1068,17 @@ FUNCTION {article}
 { output.bibitem
   format.authors "author" output.check
   author format.key output
-  format.date "year" output.check
-  date.block
   format.title "title" output.check
-  end.quote.title
+  new.sentence
   crossref missing$
     {
       journal
       "journal" bibinfo.check
       emphasize
       "journal" output.check
+      add.blank
       format.vol.num.pages output
+      format.date "year" output.check
     }
     { format.article.crossref output.nonnull
       format.pages output
@@ -1104,11 +1103,14 @@ FUNCTION {book}
   format.btitle "title" output.check
   crossref missing$
     { format.bvolume output
+  new.sentence
       format.number.series output
       format.publisher.address output
     }
     {
+  new.sentence
       format.book.crossref output.nonnull
+      format.date "year" output.check
     }
   if$
   format.edition output
@@ -1119,12 +1121,11 @@ FUNCTION {booklet}
 { output.bibitem
   format.authors output
   author format.key output
-  format.date "year" output.check
-  date.block
   format.title "title" output.check
-  end.quote.title
+  new.sentence
   howpublished "howpublished" bibinfo.check output
   address "address" bibinfo.check output
+  format.date "year" output.check
   format.note output
   fin.entry
 }
@@ -1148,11 +1149,14 @@ FUNCTION {inbook}
       format.publisher.address output
       format.bvolume output
       format.chapter.pages "chapter and pages" output.check
+  new.sentence
       format.number.series output
     }
     {
       format.chapter.pages "chapter and pages" output.check
+  new.sentence
       format.book.crossref output.nonnull
+      format.date "year" output.check
     }
   if$
   format.edition output
@@ -1165,7 +1169,7 @@ FUNCTION {incollection}
   format.authors "author" output.check
   author format.key output
   format.title "title" output.check
-  end.quote.title
+  new.sentence
   crossref missing$
     { format.in.ed.booktitle "booktitle" output.check
       end.quote.btitle
@@ -1187,7 +1191,7 @@ FUNCTION {inproceedings}
   format.authors "author" output.check
   author format.key output
   format.title "title" output.check
-  end.quote.title
+  new.sentence
   crossref missing$
     { format.in.ed.booktitle "booktitle" output.check
       end.quote.btitle
@@ -1213,12 +1217,12 @@ FUNCTION {manual}
 { output.bibitem
   format.authors output
   author format.key output
-  format.date "year" output.check
-  date.block
   format.btitle "title" output.check
+  new.sentence
   organization "organization" bibinfo.check output
   address "address" bibinfo.check output
   format.edition output
+  format.date "year" output.check
   format.note output
   fin.entry
 }
@@ -1227,13 +1231,13 @@ FUNCTION {mastersthesis}
 { output.bibitem
   format.authors "author" output.check
   author format.key output
-  format.date "year" output.check
-  date.block
   format.btitle
   "title" output.check
+  new.sentence
   bbl.mthesis format.thesis.type output.nonnull
   school "school" bibinfo.warn output
   address "address" bibinfo.check output
+  format.date "year" output.check
   format.note output
   fin.entry
 }
@@ -1242,11 +1246,10 @@ FUNCTION {misc}
 { output.bibitem
   format.authors output
   author format.key output
-  format.date "year" output.check
-  date.block
   format.title output
-  end.quote.title
+  new.sentence
   howpublished "howpublished" bibinfo.check output
+  format.date "year" output.check
   format.note output
   fin.entry
 }
@@ -1254,13 +1257,13 @@ FUNCTION {phdthesis}
 { output.bibitem
   format.authors "author" output.check
   author format.key output
-  format.date "year" output.check
-  date.block
   format.btitle
   "title" output.check
+  new.sentence
   bbl.phdthesis format.thesis.type output.nonnull
   school "school" bibinfo.warn output
   address "address" bibinfo.check output
+  format.date "year" output.check
   format.note output
   fin.entry
 }
@@ -1270,7 +1273,7 @@ FUNCTION {presentation}
   format.authors output
   author format.key output
   format.title output
-  end.quote.title
+  new.sentence
   format.organization.address "organization and address" output.check
   month "month" output.check
   year "year" output.check
@@ -1286,8 +1289,6 @@ FUNCTION {proceedings}
 { output.bibitem
   format.editors output
   editor format.key output
-  format.date "year" output.check
-  date.block
   format.btitle "title" output.check
   format.bvolume output
   format.number.series output
@@ -1305,14 +1306,13 @@ FUNCTION {techreport}
 { output.bibitem
   format.authors "author" output.check
   author format.key output
-  format.date "year" output.check
-  date.block
   format.title
   "title" output.check
-  end.quote.title
+  new.sentence
   format.tr.number emphasize output.nonnull
   institution "institution" bibinfo.warn output
   address "address" bibinfo.check output
+  format.date "year" output.check
   format.note output
   fin.entry
 }
@@ -1321,10 +1321,8 @@ FUNCTION {unpublished}
 { output.bibitem
   format.authors "author" output.check
   author format.key output
-  format.date "year" output.check
-  date.block
   format.title "title" output.check
-  end.quote.title
+  format.date "year" output.check
   format.note "note" output.check
   fin.entry
 }
@@ -1633,6 +1631,8 @@ FUNCTION {begin.bib}
   write$ newline$
   "\providecommand{\natexlab}[1]{#1}"
   write$ newline$
+  "\providecommand{\selectlanguage}[1]{\relax}"
+  write$ newline$
   "\providecommand{\bibAnnoteFile}[1]{%"
   write$ newline$
   "  \IfFileExists{#1}{\begin{quotation}\noindent\textsc{Key:} #1\\"
@@ -1656,4 +1656,4 @@ FUNCTION {end.bib}
 EXECUTE {end.bib}
 %% End of customized bst file
 %%
-%% End of file `msass.bst'.
+%% End of file `msacs.bst'.

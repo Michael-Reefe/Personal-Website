@@ -33,12 +33,13 @@
 							<li><a href="about.html">About</a></li>
 							<li><a href="research.html">Research</a></li>
 							<li><a href="Michael_Reefe_CV.pdf">Curriculum Vitae</a></li>
-							<li><a href="pub.html">Publications</a></li>
+							<li><a href="pub.html">Publications & Conferences</a></li>
 							<!-- <li><a href="https://ui.adsabs.harvard.edu/search/p_=0&q=%20author%3A%22reefe%2C%20michael%22&sort=citation_count%20desc%2C%20bibcode%20desc">NASA/ADS</a></li> -->
 							<!-- <li><a href="https://orcid.org/0000-0003-4701-8497">ORCID</a></li> -->
 							<li><a href="https://space.mit.edu/">MIT</a></li>
-							<li><a href="conf.html">Conferences</a></li>
+							<!-- <li><a href="conf.html">Conferences</a></li> -->
 							<li><a href="groups.html">Research Groups</a></li>
+							<li><a href="resource.html">Resources</a></li>
 						</ul>
 						<!-- <ul class="actions stacked"> -->
 							<!-- <li><a href="#" class="button primary fit">Get Started</a></li> -->
@@ -53,7 +54,7 @@
 					<section id="banner" class="style2">
 						<div class="inner">
 								<span class="image">
-									<img src="images/black-hole-92358_1280.webp" alt="" />
+									<img src="images/webb_deep_field.jpg" alt="" />
 								</span>
 							<header class="major">
 								<h1>Research</h1>
@@ -69,26 +70,69 @@
 
 						<!-- One -->
 							<section id="one">
-								<div class="inner">
-									<header class="major">
-										<h2>Extrasolar and Extragalactic</h2>
-									</header>
-									<p>From planets around other stars (exoplanets) to the most energetic black holes in the universe, my research has focused on observational and numerical methods to finding and better understanding these objects.  Learn more about each project below.</p>
-								</div>
+
 							</section>
 
 						<!-- Two -->
 							<section id="two" class="spotlights">
+
 								<section>
+									<a class="image">
+										<img src="images/phoenix.jpg" alt="" data-position="center center" align="middle" />
+									</a>
+								<div class="content">
+								<div class="inner">
+									<header class="major">
+										<h3>Galaxy Clusters and the Cooling Flow Problem</h3>
+									</header>
+									<p>
+										Galaxy clusters are collections of 100s-1000s of galaxies and are the largest gravitationally bound structures in the universe.
+										But the stars and galaxies in the cluster only contain a small fraction of the cluster's luminous mass---less than 10%. The other 90%
+										is attributed to the gas and dust between the galaxies in the cluster, called the <b>intracluster medium</b> (ICM). In general, the ICM
+										is incredibly hot (10 million Kelvin) and rarefied (less than 1 particle per cubic centimeter), which means it should not be able to cool
+										off efficiently. However, the ICM tends to get cooler and more dense towards the center of the cluster, and in some clusters where this effect 
+										is pronounced, we should expect to see the gas cooling down, condensing, and fueling star formation in the central brightest cluster galaxy
+										within observable timescales. Nevertheless, what we <i>actually</i> observe is that the gas does begin to cool out of the hot X-ray emitting
+										phase, but it never makes it to the cold molecular phase to fuel star formation. Evidently, at some point, the gas either vanishes completely,
+										or is being reheated by some mechanism. This is known as the <b>cooling flow problem</b>.
+									</p>
+								</div>
+								</div>
+								</section>
+
+								<section>
+									<a class="image">
+										<img src="images/eso1407a.jpg" alt="" data-position="center center" align="middle" />
+									</a>
+									<div class="content">
+										<div class="inner">
+											<header class="major">
+												<h3>Coronal Emission Lines and Integral Field Unit Spectroscopy</h3>
+											</header>
+											<p>
+												My current research focuses on studying the ICM with integral field spectroscopy in galaxy clusters, with the aim of better understanding the 
+												cooling flow problem, and how feedback from an active galactic nucleus (AGN) plays a role in reheating the gas. Integral field spectroscopy is 
+												revolutionary in that it enables us to obtain spatial and spectroscopic information simultaneously. We get an entire 3D "cube" of data, where each
+												pixel in a flat 2D image contains an entire spectrum. I have been targeting coronal emission lines, which probe gas at intermediate temperatures 
+												(100,000s of Kelvin), to reveal how the gas cools from the hot X-ray phase to the cold star-forming phase, using world-class instrumentation with 
+												NASA's JWST mission in the infrared, as well as other instruments in the UV and optical.
+											</p>
+										</div>
+									</div>
+								</section>
+
+								<!-- <section>
 									<a class="image">
 										<img src="images/black-hole-6274731_1280.jpg" alt="" data-position="center center" align="middle" />
 									</a>
 									<div class="content">
 										<div class="inner">
 											<header class="major">
-												<h3>Coronal Emission Lines</h3>
+												<h3>Active Galactic Nuclei</h3>
 											</header>
-											<p>The hot, dense regions surrounding the accretion disks of Active Galactic Nuclei (AGNs) can sometimes produce high ionization-potential coronal emission lines (CLs) through collisional excitations, and subsequent radiative de-excitations, which can then be observed assuming the coronal line region is rarefied enough below the critical density of the CL in question.</p>
+											<p>
+												In addition to the ICM, coronal emission lines are also expected to be produced in the regions surrounding the hot accretion disks of AGNs.
+												can sometimes produce high ionization-potential coronal emission lines (CLs) through collisional excitations, and subsequent radiative de-excitations, which can then be observed assuming the coronal line region is rarefied enough below the critical density of the CL in question.</p>
 											<p>I conducted a wide-scale survey of almost 1 million optical SDSS spectra in search of these CLs.  Aside from the obvious conclusion that CL emission is rare, showing up in less than 0.02% of galaxies, we found that CL emission preferrentially shows up in lower mass galaxies compared to those identified with BPT ratios and WISE colors, potentially revealing a whole new population of dwarf galaxy AGNs.</p>
 										</div>
 									</div>
@@ -120,7 +164,7 @@
 											<p>The code is autonomous enough to run for multiple days or even weeks at a time, and is even able to focus and guide on the target and automatically collect calibration images (darks and flats).  But most importantly for a telescope in the humid climate of the East Coast, an automated weather monitor constantly checks the current conditions for high humidity, winds, precipitation, and cloud coverage, and causes the observatory to close up and pause operations during inclement weather.  This allows us to be confident in the safety of the automation code and save some nights of sleep.  As of 3/30/2022, the code has been used on 170 observing nights and counting! Check it out on the GitHub page <a href="https://github.com/Kakon24/OmegaLambda">here</a>!</p>
 										</div>
 									</div>
-								</section>
+								</section> -->
 							</section>
 
 						<!-- Three -->
@@ -139,57 +183,35 @@
 					</div>
 
 				<!-- Contact -->
-					<section id="contact">
-						<div class="inner">
+				<section id="contact">
+					<div class="inner">
+						<section>
 							<section>
-								<form method="post" action="mailto:mreefe@mit.edu" enctype="text/plain">
-									<div class="fields">
-										<div class="field half">
-											<label for="name">Name</label>
-											<input type="text" name="name" id="name" />
-										</div>
-										<div class="field half">
-											<label for="email">Email</label>
-											<input type="text" name="email" id="email" />
-										</div>
-										<div class="field">
-											<label for="message">Message</label>
-											<textarea name="message" id="message" rows="6"></textarea>
-										</div>
-									</div>
-									<ul class="actions">
-										<li><input type="submit" value="Send Message" class="primary" /></li>
-										<li><input type="reset" value="Clear" /></li>
-									</ul>
-								</form>
+								<div class="contact-method">
+									<span class="icon solid alt fa-envelope"></span>
+									<h3>Email</h3>
+									mreefe (at) mit (dot) edu
+								</div>
 							</section>
-							<section class="split">
-								<section>
-									<div class="contact-method">
-										<span class="icon solid alt fa-envelope"></span>
-										<h3>Email</h3>
-										<a href="mailto:mreefe@mit.edu">mreefe@mit.edu</a>
-									</div>
-								</section>
-								<!-- <section>
-									<div class="contact-method">
-										<span class="icon solid alt fa-phone"></span>
-										<h3>Phone</h3>
-										<span>(000) 000-0000 x12387</span>
-									</div>
-								</section> -->
-								<section>
-									<div class="contact-method">
-										<span class="icon solid alt fa-home"></span>
-										<h3>Address</h3>
-										<span>70 Vassar St<br />
-										Cambridge, MA 02139<br />
-										United States of America</span>
-									</div>
-								</section>
+							<!-- <section>
+								<div class="contact-method">
+									<span class="icon solid alt fa-phone"></span>
+									<h3>Phone</h3>
+									<span>(000) 000-0000 x12387</span>
+								</div>
+							</section> -->
+							<section>
+								<div class="contact-method">
+									<span class="icon solid alt fa-home"></span>
+									<h3>Address</h3>
+									<span>70 Vassar St<br />
+									Cambridge, MA 02139<br />
+									United States of America</span>
+								</div>
 							</section>
-						</div>
-					</section>
+						</section>
+					</div>
+				</section>	
 
 				<!-- Footer -->
 					<footer id="footer">

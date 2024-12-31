@@ -13,6 +13,7 @@ $.get('data.yaml')
     console.log(sectionData);
 });
 
+// Mouse trail animation
 document.addEventListener('mousemove', (e) => {
     const { clientX, clientY } = e;
 
@@ -32,6 +33,39 @@ document.addEventListener('mousemove', (e) => {
         document.body.removeChild(trail);
     }, 1000);
 });
+
+// Toggles the visibility of the navigation bar's arrows
+const scrollableElement = document.getElementById('nav-container-nav')
+const scrollArrowContainerRight = document.getElementById('scrollarrow-container-right')
+const scrollArrowContainerLeft = document.getElementById('scrollarrow-container-left')
+const isFull = scrollableElement.scrollWidth === scrollableElement.clientWidth;
+// Start without any arrows
+if (isFull) {
+    scrollArrowContainerRight.innerHTML = ``;
+    scrollArrowContainerRight.classList.add('noback');
+};
+
+scrollableElement.addEventListener("scroll", () => {
+    const isAtRight = scrollableElement.scrollWidth - scrollableElement.scrollLeft === scrollableElement.clientWidth;
+    const isAtLeft = scrollableElement.scrollLeft === 0;
+
+    // Dynamically update the visibility of both arrows
+    if (isAtRight) {
+        scrollArrowContainerRight.innerHTML = ``;
+        scrollArrowContainerRight.classList.add('noback');
+    } else {
+        scrollArrowContainerRight.innerHTML = `&#8250`;
+        scrollArrowContainerRight.classList.remove('noback');
+    };
+    if (isAtLeft) {
+        scrollArrowContainerLeft.innerHTML = ``;
+        scrollArrowContainerLeft.classList.add('noback');
+    } else {
+        scrollArrowContainerLeft.innerHTML = `&#8249`;
+        scrollArrowContainerLeft.classList.remove('noback');
+    };
+});
+
 
 // Add a spinning animation to links on hover
 function addLinkHoverAnimation() {
@@ -137,8 +171,8 @@ function showSection(section) {
                     // If they found the secret, permanently load in the audio file (at least until the page is refreshed)
                     if (newZoomClass == 'zoom-secret') {
                         audioplayer.innerHTML = `
-                            <audio controls autoplay
-                                src="super-secret-folder-wow-what-could-it-be/Concerto_Grosso_12_in_d_minor_La_Follia.mp3">
+                            <audio id="player" controls autoplay>
+                                <source src="super-secret-folder-wow-what-could-it-be/IMSLP323008-PMLP126430-vivaldi_rv63_Gardner.mp3">
                             </audio>
                         `;
                     };

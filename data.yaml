@@ -1,26 +1,35 @@
 about:
   text_left: |
-        <h2>About Me</h2>
-        <p>Hi, I'm Michael! I'm a PhD candidate and NSF GRFP fellow at the Massachusetts Institute of Technology working with 
-        <a href="https://space.mit.edu/~mcdonald/">Professor Michael McDonald</a>. I study the gas and dust in and around galaxy clusters, 
-        the largest gravitationally bound structures in the universe. The gas and dust in these clusters, called the intracluster medium, 
-        is rich with interesting physics and many unsolved mysteries, such as the cooling flow problem, that are ripe for analysis!
-        My research is observationally oriented and data-driven, and I heavily utilize integral field unit spectroscopy in many different 
-        bands of the electromagnetic spectrum to get a detailed picture of the physical processes that govern the
-        dynamics and evolution of galaxy clusters.</p>
-        <p>I earned my Bachelor's of Science in Physics, with a concentration in Astrophysics, from George Mason University in 2022, summa cum laude.
-        I did research on a few different topics during my undergraduate studies. I worked on the validation of exoplanet candidates with the transit and radial
-        velocity techniques, and the discovery of elusive active galactic nuclei (AGNs) in dwarf galaxies that exhibit high ionization potential "coronal"
-        emission lines. Some common threads between these topics and my current research is the usage of medium resolution spectroscopy, integral field 
-        spectroscopy, and coronal emission lines.</p>
-        <p>Luckily for my advisors, I enjoy coding a lot, so much so that I even do it in my free time sometimes. 
-        <a href="https://share.streamlit.io/michael-reefe/verbose-umbrella/ops/verbose_umbrella.py">Here</a> is an example of a fun Python code I made for fun that explores 
-        Hydrogen atom orbitals, Fourier series, Legendre Polynomials, and other things. Some other hobbies of mine include hiking, video games, and 
-        dungeons & dragons.</p>
-  text_right: |
-        <img class="img-centered" src="images/IMG_5832.jpeg" alt="" />
-  class_left: "left-half"
-  class_right: "right-half"
+        <div class="middle-half">
+          <h2>About Me</h2>
+
+          <p>Hi, I'm Michael! I'm a PhD candidate and NSF GRFP fellow at the Massachusetts Institute of Technology working with 
+          <a href="https://space.mit.edu/~mcdonald/">Professor Michael McDonald</a>. I study the gas and dust in and around galaxy clusters, 
+          the largest gravitationally bound structures in the universe. The gas and dust in these clusters, called the intracluster medium, 
+          is rich with interesting physics and many unsolved mysteries, such as the cooling flow problem, that are ripe for analysis!
+          My research is observationally oriented and data-driven, and I heavily utilize integral field unit spectroscopy in many different 
+          bands of the electromagnetic spectrum to get a detailed picture of the physical processes that govern the
+          dynamics and evolution of galaxy clusters.</p>
+
+          <p>I earned my Bachelor's of Science in Physics, with a concentration in Astrophysics, from George Mason University in 2022, summa cum laude.
+          I did research on a few different topics during my undergraduate studies. I worked on the validation of exoplanet candidates with the transit and radial
+          velocity techniques, and the discovery of elusive active galactic nuclei (AGNs) in dwarf galaxies that exhibit high ionization potential "coronal"
+          emission lines. Some common threads between these topics and my current research is the usage of medium resolution spectroscopy, integral field 
+          spectroscopy, and coronal emission lines.</p>
+
+          <p>Luckily for my advisors, I enjoy coding a lot, so much so that I even do it in my free time sometimes. 
+          <a href="https://share.streamlit.io/michael-reefe/verbose-umbrella/ops/verbose_umbrella.py">Here</a> is an example of a fun Python code I made for fun that explores 
+          Hydrogen atom orbitals, Fourier series, Legendre Polynomials, and other things. Some other hobbies of mine include hiking, video games, and 
+          dungeons & dragons.</p>
+
+          <figure>
+            <img src="images/IMG_1973.JPG" alt="" />
+          </figure>
+
+        </div>
+  text_right: null
+  class_left: null
+  class_right: null
 
 cv:
   text_left: |
@@ -72,59 +81,75 @@ groups:
   class_right: null
 
 research:
-  text_right: |
-        <h3>Galaxy Clusters and the Cooling Flow Problem</h3>
-        <p>Galaxy clusters are collections of 100s-1000s of galaxies and are the largest gravitationally bound structures in the universe.
-        Each galaxy cluster hosts a massive galaxy at its gravitational center, simply referred as the central or brightest cluster galaxy. These
-        are some of the most massive galaxies in the known Universe, as they are the result of many generations of smaller galaxies merging and
-        being eaten up by the central galaxy. But the stars and galaxies in the cluster only contain a small fraction of the cluster's luminous mass: 
-        less than 10%. The other 90% is attributed to the gas and dust <i>between</i> the galaxies in the cluster, called the <b>intracluster medium</b>, 
-        or ICM. The ICM is incredibly hot (10 million Kelvin) and diffuse (less than 1 particle per cubic centimeter), both of which make it hard for 
-        it to cool down efficiently. However, the ICM tends to get cooler and more dense towards the center of the cluster, and in some clusters 
-        where this effect is pronounced, we expect to see the gas cooling down, condensing, and falling inwards towards the cluster's central galaxy, 
-        fueling star formation. Nevertheless, what we <i>actually</i> observe is that the gas does begin to cool out of the hot X-ray emitting
-        phase, but it never makes it to the cold molecular phase to fuel star formation. Evidently, at some point, the gas either vanishes completely, 
-        or is being reheated by some mechanism. This is known as the <b>cooling flow problem</b>.</p>
-
-        <p>There are a number of theories that have been proposed to try to explain these counterintuitive results.  Many researchers think that an
-        Active Galactic Nucleus, or AGN, is to blame for reheating and disturbing the ICM, preventing it from forming stars.  An AGN is composed of a
-        supermassive black hole at the center of a galaxy surrounded by a disk of hot gas and dust that is swirling around and feeding into 
-        the black hole.  These are some of the most extreme objects in the Universe, and they can produce strong outbursts, winds, and radio jets (collectively
-        referred to as "feedback") that all may contribute to stirring and heating up the surrounding gas in their host galaxy. This makes them a promising 
-        candidate for resolving the cooling flow problem, but many questions still remain unanswered.  For example, we still don't know how quickly feedback 
-        from an AGN is able to start balancing with the cooling gas, how this feedback can efficiently prevent cooling throughout the entire central volume 
-        of a cluster, and how this balance evolves over time and over cosmic history. There are also alternate theories that propose that there is actually
-        a large amount of gas that is able to cool (at least partially), but we are just unable to see it because the X-ray emission from this cooling gas 
-        gets heavily absorbed by cold clouds of gas and dust before it reaches us.</p>
-
-        <h3>Coronal Emission Lines and Integral Field Spectroscopy</h3>
-        <p>My current research focuses on multiwavelength studies of the intracluster medium to try to better understand the properties of the ICM, the cooling 
-        flow problem, AGN feedback, and galaxy cluster evolution.  A big part of my work uses integral field unit (IFU) spectroscopy, which is a revolutionary
-        technique that enables us to obtain spatial and spectroscopic information simultaneously.  IFU instruments produce 3-dimensional "cubes" of data: You
-        can think of this like a series of 2D images, each measuring slightly different wavelengths of light, all stacked on top of each other.  Or, you can
-        think of it as single image, but each "pixel" in your image is actually an entire spectrum!  This dramatically increases the amount of information we
-        can obtain about a galaxy or cluster of galaxies by allowing us to resolve many spectral features (i.e. continuum luminosities and slopes, gas emission lines,
-        dust absorption and emission features, etc.) and map them out spatially all at the same time.</p>
-        
-        <p>I have been targeting so-called "coronal" emission lines, which are spectral features which require very high energies (ionization potentials above 90 eV) 
-        to produce, to map out the ICM at intermediate temperatures between the hot X-ray phase at 10 million Kelvin and the cold molecular phase at 10 Kelvin.  
-        Coronal lines are most sensitive to cooling gas at temperatures of a few 100,000s of Kelvin, so they are particularly helpful in revealing what happens 
-        to the gas as it is actually in the process of cooling down. I have used world-class instrumentation with NASA's JWST mission in the infrared, HST in the 
-        UV/optical, FUSE in the UV, and more!</p>
-
   text_left: |
-        <figure>
-          <img src="images/phoenix.jpg" alt="" />
-          <figcaption>Pictured: The Phoenix Cluster (SPT-CL J2344-4243) in visible light (yellow), ionized oxygen (blue), radio (red), and X-rays (purple).
-          Credit: NASA/ESA/NRAO.</figcaption>
-        </figure>
-        <figure>
-          <img src="images/eso1407a.jpg" alt="" />
-          <figcaption>Pictured: A schematic of how an integral field spectrograph works.
-          Credit: ESO/MUSE consortium/R. Bacon/L. Calçada</figcaption>
-        </figure>
-  class_left: "left-half"
-  class_right: "right-half"
+        <div class="middle-half">
+
+          <h3>Background: Galaxy Clusters and the Cooling Flow Problem</h3>
+
+          <p>Galaxy clusters are collections of 100s-1000s of galaxies and are the largest gravitationally bound structures in the universe.
+          Each galaxy cluster hosts a massive galaxy at its gravitational center, simply referred as the central or brightest cluster galaxy. These
+          are some of the most massive galaxies in the known Universe, as they are the result of many generations of smaller galaxies merging and
+          being eaten up by the central galaxy. But the stars and galaxies in the cluster only contain a small fraction of the cluster's luminous mass: 
+          less than 10%. The other 90% is attributed to the gas and dust <i>between</i> the galaxies in the cluster, called the <b>intracluster medium</b>, 
+          or ICM. The ICM is incredibly hot (10 million Kelvin) and diffuse (less than 1 particle per cubic centimeter), both of which make it hard for 
+          it to cool down efficiently. However, the ICM tends to get cooler and more dense towards the center of the cluster, and in some clusters 
+          where this effect is pronounced, we expect to see the gas cooling down, condensing, and falling inwards towards the cluster's central galaxy, 
+          fueling star formation. Nevertheless, what we <i>actually</i> observe is that the gas does begin to cool out of the hot X-ray emitting
+          phase, but it never makes it to the cold molecular phase to fuel star formation. Evidently, at some point, the gas either vanishes completely, 
+          or is being reheated by some mechanism. This is known as the <b>cooling flow problem</b>.</p>
+
+          <figure>
+            <img src="images/perseus.jpg" alt="" />
+            <figcaption>Pictured: The hot X-ray-emitting gas in the Perseus Cluster (Abell 426) sloshing around with lots of turbulence. Credit:
+            NASA/CXC/GSFC/S.A.Walker, et al.</figcaption>
+          </figure>
+
+          <p>There are a number of theories that have been proposed to try to explain these counterintuitive results.  Many researchers think that an
+          Active Galactic Nucleus, or AGN, is to blame for reheating and disturbing the ICM, preventing it from forming stars.  An AGN is composed of a
+          supermassive black hole at the center of a galaxy surrounded by a disk of hot gas and dust that is swirling around and feeding into 
+          the black hole.  These are some of the most extreme objects in the Universe, and they can produce strong outbursts, winds, and radio jets (collectively
+          referred to as "feedback") that all may contribute to stirring and heating up the surrounding gas in their host galaxy. This makes them a promising 
+          candidate for resolving the cooling flow problem, but many questions still remain unanswered.  For example, we still don't know how quickly feedback 
+          from an AGN is able to start balancing with the cooling gas, how this feedback can efficiently prevent cooling throughout the entire central volume 
+          of a cluster, and how this balance evolves over time and over cosmic history. There are also alternate theories that propose that there is actually
+          a large amount of gas that is able to cool (at least partially), but we are just unable to see it because the X-ray emission from this cooling gas 
+          gets heavily absorbed by cold clouds of gas and dust before it reaches us.</p>
+
+          <h3>My Research: The Cooling Rainbow</h3>
+
+          <p>My current research focuses on multiwavelength studies of the intracluster medium to try to better understand the properties of the ICM, the cooling 
+          flow problem, AGN feedback, and galaxy cluster evolution.  A big part of my work uses integral field unit (IFU) spectroscopy, which is a revolutionary
+          technique that enables us to obtain spatial and spectroscopic information simultaneously.  IFU instruments produce 3-dimensional "cubes" of data: You
+          can think of this like a series of 2D images, each measuring slightly different wavelengths of light, all stacked on top of each other.  Or, you can
+          think of it as single image, but each "pixel" in your image is actually an entire spectrum!  This dramatically increases the amount of information we
+          can obtain about a galaxy or cluster of galaxies by allowing us to resolve many spectral features (i.e. continuum luminosities and slopes, gas emission lines,
+          dust absorption and emission features, etc.) and map them out spatially all at the same time.</p>
+
+          <figure>
+            <img src="images/eso1407a.jpg" alt="" />
+            <figcaption>Pictured: A schematic of how an integral field spectrograph works.
+            Credit: ESO/MUSE consortium/R. Bacon/L. Calçada</figcaption>
+          </figure>
+          
+          <p>I have been targeting so-called "coronal" emission lines, which are spectral features which require very high energies (ionization potentials above 90 eV) 
+          to produce. These lines are most sensitive to cooling gas at temperatures of 100,000s of Kelvin, so they are particularly helpful in mapping out the ICM at 
+          intermediate temperatures between the hot X-ray phase at 10 million Kelvin and the cold molecular phase at 10 Kelvin, revealing what happens to the gas as it
+          is actually in the process of cooling down.  This is essentially the "smoking gun" of cooling gas in galaxy clusters!</p>
+
+          <figure>
+            <img src="images/phoenix.jpg" alt="" />
+            <figcaption>Pictured: The Phoenix Cluster (SPT-CL J2344-4243), the most rapidly cooling cluster in the known universe (classical cooling rate of 3,800
+            M<sub>&#8857</sub> yr<sup>-1</sup>), in visible light (yellow), ionized oxygen (blue), radio (red), and X-rays (purple). Credit: NASA/ESA/NRAO.</figcaption>
+          </figure>
+
+          <p>I have used world-class instrumentation with NASA's JWST mission in the infrared, HST in the UV/optical, and FUSE in the UV, to measure these coronal lines
+          and map out cooling gas in galaxy clusters.  To learn more, check out my publications <a href="#publications" onclick="showSection('publications')">here</a>.</p>
+
+        </div>
+
+  text_right: null
+  class_left: null
+  class_right: null
 
 publications:
   text_left: |
@@ -250,6 +275,14 @@ resources:
             The Astrogazers are an outreach group based out of the MIT Kavli Institute for Astrophysics and Space Research (MKI). We are passioante
             about sharing the wonders of the universe with the public in the greater Cambridge/Boston area and host many observing events whenever the 
             weather is favorable. Check out our website for more information about the team members and our event schedule.
+          </p>
+
+          <h3><u><a href="https://sites.mit.edu/physgaap/">PhysGAAP</a></u></h3>
+          <p>
+            The MIT Physics Graduate Application Assistance Program (PhysGAAP) is a program built to assist prospective MIT Physics PhD students in the
+            application process. The program offers webinars, office hours, and one-on-one mentorship sessions with current MIT Physics graduate students.
+            The goal of the program is to increase equity in the admissions process and ensure that talented students from all backgrounds are considered.
+            If you're a prospective graduate student interested in applying to MIT, consider signing up for the PhysGAAP program!
           </p>
 
           <h3><u><a href="https://physics-gsc.scripts.mit.edu/home/">PGSC</a></u></h3>

@@ -54,6 +54,7 @@
 \usepackage{orcidlink}
 \usepackage{fontawesome}
 \usepackage{multibib}
+\usepackage{enumitem}
 \usepackage[numbers]{natbib}
 \usepackage[english]{babel}
 \usepackage{etaremune,etoolbox}
@@ -93,6 +94,10 @@
 \newcommand{\apjl}{ApJL}
 \newcommand{\pasp}{PASP}
 \newcommand{\jatis}{JATIS}
+
+% custom list
+\newlist{talks}{itemize}{1}
+\setlist[talks]{label=\textbf{?}}
 
 % Increase text height
 \textheight=700pt
@@ -297,51 +302,48 @@ Advisor: \textit{Prof. Peter Plavchan} \\
 \body
 \end{format}
 
-\section{{\scshape \bfseries Colloquia \& Seminars \\(Invited)}}
+\section{{\scshape \bfseries Invited \& Contributed \\Talks}}
 
-\begin{etaremune}[itemindent=0pt, leftmargin=19pt]
+\textbf{{[\texttt{I}]} $=$ Invited Talk, {[\texttt{C}]} $=$ Contributed Talk, {[\texttt{P}]} $=$ Poster}
+
+\textbf{Colloquia \& Seminars}
+
+\begin{talks}[itemindent=0pt, leftmargin=19pt]
     
-\item MIT Kavli Institute for Astrophysics and Space Research $|$ Journal Club \hfill \textbf{Mar. 2023} \\
+\item[{[\texttt{I}]}] MIT Kavli Institute for Astrophysics and Space Research $|$ Journal Club \hfill \textbf{Mar. 2023} \\
 \textit{``On: AGN feedback in an infant galaxy cluster: the LOFAR-Chandra view of the giant FRII radio galaxy J103025$+$052430 at z$=$1.7''}
 
-\item GMU College of Science $|$ Graduation Ceremony \hfill \textbf{May 2022} \\
-{**Invited to be the student speaker for the College of Science's \href{https://www.youtube.com/watch?v=xsyi9sqYH4o}{\color{dkbu} Spring 2022 graduation}.}
+\item[{[\href{https://www.youtube.com/watch?v=xsyi9sqYH4o}{\color{dkbu} \texttt{I}]}}] GMU College of Science $|$ Graduation Ceremony \hfill \textbf{May 2022} \\
+**Invited to be the student speaker for the College of Science's graduation.
 
-\end{etaremune}
+\end{talks}
 
-\section{{\scshape \bfseries Conference Presentations \\(Invited \& Contributed)}}
+\textbf{Conferences}
 
-{[I]} $=$ Invited Talk, {[C]} $=$ Contributed Talk, {[P]} $=$ Poster
-\vspace{0.2cm}
+\begin{talks}[itemindent=0pt, leftmargin=19pt]
 
-\begin{etaremune}[itemindent=0pt, leftmargin=19pt]
-
-\item 25 Years of Science with Chandra $|$ Boston, MA \hfill \textbf{Dec. 2024} \\
-{\sc [\href{https://cxc.cfa.harvard.edu/cdo/symposium_2024/schedule.html#talk}{\color{dkbu} C}]}
+\item[{\sc [\href{https://cxc.cfa.harvard.edu/cdo/symposium_2024/schedule.html#talk}{\color{dkbu} \texttt{C}}]}] 25 Years of Science with Chandra $|$ Boston, MA \hfill \textbf{Dec. 2024} \\
 \textit{``Mapping the Cooling Flow in the Phoenix Cluster with JWST and Chandra''} 
 
-\item 243\textsuperscript{rd} Meeting of the American Astronomical Society $|$ New Orleans, LA \hfill \textbf{Jan. 2024} \\
-{\sc [\href{https://ui.adsabs.harvard.edu/abs/2024AAS...24344204R/abstract}{\color{dkbu} C}]} 
+\item[{\sc [\href{https://ui.adsabs.harvard.edu/abs/2024AAS...24344204R/abstract}{\color{dkbu} \texttt{C}}]}] 243\textsuperscript{rd} Meeting of the American Astronomical Society $|$ New Orleans, LA \hfill \textbf{Jan. 2024} \\
 \textit{``Shaken or stirred? Dynamics of the coronal temperature gas in the Phoenix Cluster''} 
     
-\item 240\textsuperscript{th} Meeting of the American Astronomical Society $|$ Pasadena, CA \hfill \textbf{June 2022} \\
-{\sc [\href{https://ui.adsabs.harvard.edu/abs/2022AAS...24010113R/abstract}{\color{dkbu} P}]} 
+\item[{\sc [\href{https://ui.adsabs.harvard.edu/abs/2022AAS...24010113R/abstract}{\color{dkbu} \texttt{P}}]}] 240\textsuperscript{th} Meeting of the American Astronomical Society $|$ Pasadena, CA \hfill \textbf{June 2022} \\
 \textit{``A Large Scale Survey of Galaxies with Coronal Line Emission Selected from the Sloan Digital Sky Survey''}
 
-\item TESS Science Conference II $|$ Virtual \hfill \textbf{Aug. 2021}\\
-{\sc [\href{https://zenodo.org/records/5114171}{\color{dkbu} P}]} 
+\item[{\sc [\href{https://zenodo.org/records/5114171}{\color{dkbu} \texttt{P}}]} ] TESS Science Conference II $|$ Virtual \hfill \textbf{Aug. 2021}\\
 \textit{``A Flexible Python Observatory Automation Framework for the George Mason University Campus Telescope''}
 
-\item GMU College of Science Undergraduate Research Colloquium $|$ Virtual \hfill \textbf{Apr. 2021}\\
-{\sc [P]} \textit{``Automation of TESS Follow-up Observations with the GMU Campus Telescope''}
+\item[{\sc [\texttt{P}]}] GMU College of Science Undergraduate Research Colloquium $|$ Virtual \hfill \textbf{Apr. 2021}\\
+\textit{``Automation of TESS Follow-up Observations with the GMU Campus Telescope''}
 
-\item 237\textsuperscript{th} Meeting of the American Astronomical Society $|$ Virtual \hfill \textbf{Jan. 2021}\\
-{\sc [\href{https://ui.adsabs.harvard.edu/abs/2021AAS...23734407R/abstract}{\color{dkbu} P}]} \textit{``An Asynchronous Object-Oriented Approach to Automation of the 0.8-meter George Mason University Campus Telescope in Python''}
+\item[{\sc [\href{https://ui.adsabs.harvard.edu/abs/2021AAS...23734407R/abstract}{\color{dkbu} \texttt{P}}]}] 237\textsuperscript{th} Meeting of the American Astronomical Society $|$ Virtual \hfill \textbf{Jan. 2021}\\
+\textit{``An Asynchronous Object-Oriented Approach to Automation of the 0.8-meter George Mason University Campus Telescope in Python''}
 
-\end{etaremune}
+\end{talks}
 
 
-\section{{\scshape \bfseries Observing Proposals}}
+\section{{\scshape \bfseries Accepted Observing Proposals}}
 \textbf{Co-I} \\
 HST/COS Cycle 32 $|$ 24 orbits $|$ ID: 17716 \hfill \textbf{2024} \\
 \textit{``Probing Multiphase Cooling Via OVI Emission in the Cores of the Most Extreme Cooling Flows''}
@@ -363,46 +365,55 @@ HST/COS Cycle 32 $|$ 24 orbits $|$ ID: 17716 \hfill \textbf{2024} \\
 {\small Served as the MIT Physics Graduate Student Council (PGSC)'s primary advocate for the students to the physics department leadership, holding regular meetings on how aspects of the PhD program and the department can be improved, i.e. more explicitly defined guidelines for academic advisors and academic advising meetings, uniform sets of expectations for the oral qualifying exam across the different physics divisions, implementing professional development requirements, etc.}
 \end{position}
 
+\vspace{-0.2cm}
 \title{\textbf{Member}, \href{https://physics-gsc.scripts.mit.edu/home/gaga/}{\color{dkbu} MIT Physics Admissions Advisory Council} \hfill \textbf{2024 -- Present}}
 \begin{position}
 {\small Served on the Admissions Advisory Council, AKA Graduates Advising Graduate Admissions (GAGA), which is a subcommittee of the Physics Graduate Student Council that advises the MIT Chair of Graduate Admissions from the graduate student perspective and organizes the PhysGAAP program (see below).}
 \end{position}
 
+\vspace{-0.2cm}
 \title{\textbf{Webmaster}, \href{https://physics-gsc.scripts.mit.edu/home/}{\color{dkbu} MIT Physics Graduate Student Council} \hfill \textbf{2023 -- Present}}
 \begin{position}
 {\small Served as the MIT PGSC's webmaster, maintaining the website, mailing lists, and calendar, and keeping them all up-to-date.}
 \end{position}
 
+\vspace{-0.2cm}
 \title{\textbf{Mentor}, \href{https://sites.mit.edu/physgaap/}{\color{dkbu} MIT Physics Graduate Application Assistance Program} \hfill \textbf{Fall 2024}}
 \begin{position}
 {\small Served as a mentor in MIT's PhysGAAP Program, aiding prospective PhD students (primarily from under-represented groups) with the MIT Physics application, providing guidance on how to navigate the application and how best to present themselves.  I have mentored 3 prospective students through this program.}
 \end{position}
 
+\vspace{-0.2cm}
 \title{\textbf{Organizer}, MKI Graduate Student Lunch \hfill \textbf{2023 -- 2024}}
 \begin{position}
 {\small Organized a weekly lunch and a talk series for the graduate students in the MIT Kavli Institute (MKI).}
 \end{position}
 
+\vspace{-0.2cm}
 \title{\textbf{Faculty Search Undergraduate Liaison}, GMU Dept. of Physics \& Astronomy \hfill \textbf{Winter 2022}}
 \begin{position}
 {\small Worked as the undergraduate representative during a faculty search for a new astrophysics professor at GMU. Attended a mock lecture and research colloquium presented by each candidate, as well as interviews, and provided feedback to the faculty hiring committee from the undergraduate student perspective.}
 \end{position}
 
+\vspace{-0.2cm}
 \title{\textbf{President}, GMU \href{https://gmuspectrum.squarespace.com/}{\color{dkbu} Spectrum} \hfill \textbf{2021 -- 2022}}
 \begin{position}
 {\small Planned talks, discussions, fundraisers, and other events, as well as managing website and budgetary concerns and working with the College of Science Faculty to improve diversity at GMU for student-led group Spectrum, which promotes the enhancement of under-represented groups in STEM.}
 \end{position}
 
+\vspace{-0.2cm}
 \title{\textbf{Mentor}, GMU \href{https://gmuspectrum.squarespace.com/}{\color{dkbu} Spectrum} \hfill \textbf{2020 -- 2022}}
 \begin{position}
 {\small Provided academic and professional development tutoring for students in physics and astronomy at GMU through the student-led group Spectrum.}
 \end{position}
 
+\vspace{-0.2cm}
 \title{\textbf{Panelist}, GMU Office of Fellowships NSF GRFP Cohort Workshop \hfill \textbf{July 2022}}
 \begin{position}
 {\small Served on a panel of NSF GRFP recipients and reviewers to answer students' questions about the application and review process.}
 \end{position}
 
+\vspace{-0.2cm}
 \title{\textbf{Mentor}, \href{https://science.gmu.edu/assip}{\color{dkbu} Aspiring Scientists' Summer Internship Program} \hfill \textbf{Summer 2020, 2021}}
 \begin{position}
 {\small Taught high school interns about the research done in Prof. Peter Plavchan's group, and tutored them on how to perform it themselves to synthesize a presentable project by the end of the summer.}
@@ -416,16 +427,19 @@ HST/COS Cycle 32 $|$ 24 orbits $|$ ID: 17716 \hfill \textbf{2024} \\
 {\small As a member of the Astrogazers, I have been involved in engaging with the public at a number of sidewalk observing nights, exhibits at the annual Cambridge Science Festival, and other miscellaneous science-themed events in the greater Boston/Cambridge area.}
 \end{position}
 
+\vspace{-0.2cm}
 \title{\textbf{Trivia Cohost}, \href{https://mitmuseum.mit.edu/programs/mit-museum-after-dark}{\color{dkbu} MIT Museum After Dark} \hfill \textbf{Dec. 2024}}
 \begin{position}
 {\small Worked with the Astrogazers to cohost trivia on the \textit{Hubble Space Telescope} at one of the MIT Museum's After Dark events themed around the 90s.}
 \end{position}
 
+\vspace{-0.2cm}
 \title{\textbf{Volunteer}, \href{https://cambridgesciencefestival.org/}{\color{dkbu} Cambridge Science Festival} \hfill \textbf{Sep. 2023, 2024}}
 \begin{position}
 {\small Worked at the Astrogazers booths for the Cambridge Science Festival.}
 \end{position}
 
+\vspace{-0.2cm}
 \title{\textbf{Panelist}, \href{https://science.gmu.edu/assip}{\color{dkbu} ASSIP} Career Day \hfill \textbf{Aug. 2022}}
 \begin{position}
 {\small Served on a panel of graduate students for a Career Day event hosted by GMU's ASSIP program, answering high school students' questions about a career in academia.}

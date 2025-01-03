@@ -432,10 +432,64 @@ img {
     /* transform: translate(-50%, -50%); */
 }
 
-figure {
+/* figure {
     position: relative;
     left: 15%;
     width: 60%;
+} */
+
+.figcontainer {
+    display: flex;
+    font-family: Arial, sans-serif;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+figure {
+    border: 3px solid #4e8cff; /* Neon blue border */
+    padding: 10px;
+    border-radius: 10px;
+    background: linear-gradient(145deg, #1a1d48, #2e3360); /* Gradient background */
+    box-shadow: 0 0 20px rgba(78, 140, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.3); /* Glow effect */
+    width: max-content;
+    position: relative;
+    width: 60%;
+    min-width: 275px;
+    max-width: 500px;
+    margin: 0;
+}
+
+figure img {
+    justify-content: center;
+    border-radius: 5px;
+    display: block;
+    min-width: 225px;
+    max-width: 500px;
+    width: 100%;
+}
+
+figcaption {
+    background-color: #141742;
+    color: #d4d4ff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #4e8cff;
+    font-size: 0.9em;
+    margin-top: 10px;
+    text-align: left;
+    box-shadow: 0 0 15px rgba(78, 140, 255, 0.6);
+}
+
+.starfield {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    z-index: -1;
+    background: radial-gradient(circle, transparent, rgba(255, 255, 255, 0.1), transparent),
+                repeating-linear-gradient(transparent, transparent 15px, rgba(255, 255, 255, 0.1) 16px, transparent 17px);
 }
 
 .img-centered {
@@ -447,6 +501,16 @@ figure {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.img-small {
+    display: block;
+    width: 15%;
+    min-width: 200px;
+    max-width: 300px;
+    position: relative;
+    left: 0%;
+    top: 0%;
 }
 
 .spacey-border {

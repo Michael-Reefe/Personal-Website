@@ -1,6 +1,13 @@
 about:
   text_left: |
         <div class="middle-half">
+          <div class="figcontainer">
+            <figure>
+              <div class="starfield"></div>
+              <img src="images/IMG_1973.JPG" alt="" />
+            </figure>
+          </div>
+
           <h2>About Me</h2>
 
           <p>Hi, I'm Michael! I'm a PhD candidate and NSF GRFP fellow at the Massachusetts Institute of Technology working with 
@@ -22,10 +29,6 @@ about:
           Hydrogen atom orbitals, Fourier series, Legendre Polynomials, and other things. Some other hobbies of mine include hiking, video games, and 
           dungeons & dragons.</p>
 
-          <figure>
-            <img src="images/IMG_1973.JPG" alt="" />
-          </figure>
-
         </div>
   text_right: null
   class_left: null
@@ -43,14 +46,10 @@ cv:
 groups:
   text_left: |
         <div class="middle-half">
-          <h2>Research Groups</h2>
-
-          <br>
-
-          <h3>Massachusetts Institute of Technology</h3>
+          <h2>MIT Research Groups</h2>
 
           <!-- <h4><u><a href="https://space.mit.edu/research-groups/mcdonald-group-extragalactic-astrophysics-at-all-wavelengths/">The McDonald Group</a></u></h4> -->
-          <h4><u><a href="https://space.mit.edu/~mcdonald/">The McDonald Group</a></u></h4>
+          <h3><u><a href="https://space.mit.edu/~mcdonald/">The McDonald Group</a></u></h3>
           <p>
             A research group led by MIT professor Mike McDonald that explores galaxy clusters, galaxy formation, the intracluster medium, and AGN feedback.
           </p>
@@ -59,19 +58,19 @@ groups:
           <br>
           <br>
 
-          <h3>George Mason University</h3>
+          <h2>GMU Research Groups</h2>
           
-          <h4><u><a href="https://bgc.physics.gmu.edu/">The Black Hole-Galaxy Connection (BGC) Group</a></u></h4>
+          <h3><u><a href="https://bgc.physics.gmu.edu/">The Black Hole-Galaxy Connection (BGC) Group</a></u></h3>
           <p>
             A research group led by GMU professor Shobita Satyapal that investigates the interactions between AGNs and their host galaxies.
           </p>
 
-          <h4><u><a href="http://exo.gmu.edu/">The Exoplaneteers</a></u></h4>
+          <h3><u><a href="http://exo.gmu.edu/">The Exoplaneteers</a></u></h3>
           <p>
             A research group led by GMU associate professor Peter Plavchan that focuses on exoplanet follow-up validation and characterization efforts.
           </p>
 
-          <h4><u><a href="https://sites.google.com/view/georgemasonobservatory/home?authuser=0">GMU Observatory</a></u></h4>
+          <h3><u><a href="https://sites.google.com/view/georgemasonobservatory/home?authuser=0">GMU Observatory</a></u></h3>
           <p>
             The observatory that hosts the 0.8-meter telescope at GMU's main Fairfax campus.
           </p>
@@ -98,11 +97,14 @@ research:
           phase, but it never makes it to the cold molecular phase to fuel star formation. Evidently, at some point, the gas either vanishes completely, 
           or is being reheated by some mechanism. This is known as the <b>cooling flow problem</b>.</p>
 
-          <figure>
-            <img src="images/perseus.jpg" alt="" />
-            <figcaption>Pictured: The hot X-ray-emitting gas in the Perseus Cluster (Abell 426) sloshing around with lots of turbulence. Credit:
-            NASA/CXC/GSFC/S.A.Walker, et al.</figcaption>
-          </figure>
+          <div class="figcontainer">
+            <figure>
+              <div class="starfield"></div>
+              <img src="images/perseus.jpg" alt="" />
+              <figcaption>Pictured: The hot X-ray-emitting gas in the Perseus Cluster (Abell 426) sloshing around due to turbulence. Credit:
+              NASA/CXC/GSFC/S.A.Walker, et al.</figcaption>
+            </figure>
+          </div>
 
           <p>There are a number of theories that have been proposed to try to explain these counterintuitive results.  Many researchers think that an
           Active Galactic Nucleus, or AGN, is to blame for reheating and disturbing the ICM, preventing it from forming stars.  An AGN is composed of a
@@ -125,22 +127,28 @@ research:
           can obtain about a galaxy or cluster of galaxies by allowing us to resolve many spectral features (i.e. continuum luminosities and slopes, gas emission lines,
           dust absorption and emission features, etc.) and map them out spatially all at the same time.</p>
 
-          <figure>
-            <img src="images/eso1407a.jpg" alt="" />
-            <figcaption>Pictured: A schematic of how an integral field spectrograph works.
-            Credit: ESO/MUSE consortium/R. Bacon/L. Calçada</figcaption>
-          </figure>
-          
+          <div class="figcontainer">
+            <figure>
+              <div class="starfield"></div>
+              <img src="images/eso1407a.jpg" alt="" />
+              <figcaption>Pictured: A schematic of how an integral field spectrograph works.
+              Credit: ESO/MUSE consortium/R. Bacon/L. Calçada</figcaption>
+            </figure>
+          </div>
+            
           <p>I have been targeting so-called "coronal" emission lines, which are spectral features which require very high energies (ionization potentials above 90 eV) 
           to produce. These lines are most sensitive to cooling gas at temperatures of 100,000s of Kelvin, so they are particularly helpful in mapping out the ICM at 
           intermediate temperatures between the hot X-ray phase at 10 million Kelvin and the cold molecular phase at 10 Kelvin, revealing what happens to the gas as it
           is actually in the process of cooling down.  This is essentially the "smoking gun" of cooling gas in galaxy clusters!</p>
 
-          <figure>
-            <img src="images/phoenix.jpg" alt="" />
-            <figcaption>Pictured: The Phoenix Cluster (SPT-CL J2344-4243), the most rapidly cooling cluster in the known universe (classical cooling rate of 3,800
-            M<sub>&#8857</sub> yr<sup>-1</sup>), in visible light (yellow), ionized oxygen (blue), radio (red), and X-rays (purple). Credit: NASA/ESA/NRAO.</figcaption>
-          </figure>
+          <div class="figcontainer">
+            <figure>
+              <div class="starfield"></div>
+              <img src="images/phoenix.jpg" alt="" />
+              <figcaption>Pictured: The Phoenix Cluster (SPT-CL J2344-4243), the most rapidly cooling cluster in the known universe (classical cooling rate of 3,800
+              M<sub>&#8857</sub> yr<sup>-1</sup>), in visible light (yellow), ionized oxygen (blue), radio (red), and X-rays (purple). Credit: NASA/ESA/NRAO.</figcaption>
+            </figure>
+          </div>
 
           <p>I have used world-class instrumentation with NASA's JWST mission in the infrared, HST in the UV/optical, and FUSE in the UV, to measure these coronal lines
           and map out cooling gas in galaxy clusters.  To learn more, check out my publications <a href="#publications" onclick="showSection('publications')">here</a>.</p>
@@ -254,6 +262,7 @@ resources:
   text_left: |
         <div class="middle-half">
           <h2>Resources</h2>
+
           <h3><u><a href="MIT_Astro_168_MAR_meme_edition.pdf">The MIT Astro 168 Study Guide</a></u></h3>
           <p>
             The MIT physics department has an oral qualifying exam requirement that all PhD students must pass on their journey
@@ -270,36 +279,60 @@ resources:
             in the past).
           </p>
 
-          <h3><u><a href="https://astrogazers.mit.edu/">MIT Astrogazers</a></u></h3>
+          <hr>
+          <h2>MIT Organizations</h2>
+
+          <a href="https://astrogazers.mit.edu/"><img class="img-small" src="images/moon_logo_small_0.png" /></a>
           <p>
             The Astrogazers are an outreach group based out of the MIT Kavli Institute for Astrophysics and Space Research (MKI). We are passioante
             about sharing the wonders of the universe with the public in the greater Cambridge/Boston area and host many observing events whenever the 
             weather is favorable. Check out our website for more information about the team members and our event schedule.
           </p>
 
+          <h3><u><a href="https://physics-gsc.scripts.mit.edu/home/">PGSC</a></u></h3>
+          <p>
+            The Physics Graduate Student Council (PGSC) works with the department to improve the physics curriculum and 
+            degree requirements at MIT, advises MIT graduate admissions, and organizes community events such as open houses for prospective 
+            students, pizza and cookie socials, and end-of-year events. Learn more on the PGSC website!
+          </p>
+
+          <h3><u><a href="https://physics-gsc.scripts.mit.edu/home/gaga/">GAGA</a></u></h3>
+          <p>
+            The Physics Admissions Advisory Council, AKA Graduates Advising Graduate Admissions (GAGA), is a subcommittee of the PGSC
+            that advises the MIT Chair of Admissions from the perspective of the graduate students to improve the admissions process,
+            particularly relating to diversity, equity, and inclusion efforts.  They also organize a mentorship program for prospective 
+            applicants to the MIT Physics PhD program called PhysGAAP (see below).
+          </p>
+
           <h3><u><a href="https://sites.mit.edu/physgaap/">PhysGAAP</a></u></h3>
           <p>
-            The MIT Physics Graduate Application Assistance Program (PhysGAAP) is a program built to assist prospective MIT Physics PhD students in the
+            The Physics Graduate Application Assistance Program (PhysGAAP) is a program built to assist prospective MIT Physics PhD students in the
             application process. The program offers webinars, office hours, and one-on-one mentorship sessions with current MIT Physics graduate students.
             The goal of the program is to increase equity in the admissions process and ensure that talented students from all backgrounds are considered.
             If you're a prospective graduate student interested in applying to MIT, consider signing up for the PhysGAAP program!
           </p>
 
-          <h3><u><a href="https://physics-gsc.scripts.mit.edu/home/">PGSC</a></u></h3>
-          <p>
-            The MIT Physics Graduate Student Council (PGSC) works with the department to improve the physics curriculum and 
-            degree requirements at MIT, advises MIT graduate admissions, and organizes community events such as open houses for prospective 
-            students, pizza and cookie socials, and end-of-year events. Learn more on the PGSC website!
-          </p>
+          <p style="color: gray"><em>Disclaimer: I am not involved in the remaining organizations in this section; I provide their information here solely to make this
+          site a hub for those who may find this information useful.</em></p>
 
           <h3><u><a href="https://physrefs.mit.edu/">PhysREFS</a></u></h3>
           <p>
-            The MIT Physics Resources for Easing Friction and Stress (PhysREFS) program organizes a mentorship program from senior graduate students 
+            The Physics Resources for Easing Friction and Stress (PhysREFS) program organizes a mentorship program from senior graduate students 
             to provide students with the proper guidance and resources they need to get through their academic pursuits. They also provide study resources 
             to aid students in studying for the written qualifying exams. Check out the PhysREFS website for more details.
           </p>
 
-          <h3><u><a href="https://gmuspectrum.squarespace.com">Spectrum</a></u></h3>
+          <a href="https://physvals.mit.edu/pvs"><img class="img-small" src="images/pvc.png" /></a>
+          <p>
+            The Physics Values Committee (PVC) writes and upholds the Physics Values Statement for the MIT Physics Department, ensuring that members
+            of the community treat each other with respect and decency. They also make recommendations to the department to make sure that these values
+            are upheld and that the department continues to be a welcoming environment.
+          </p>
+
+          <hr>
+          <h2>GMU Organizations</h2>
+
+          <a href="https://gmuspectrum.squarespace.com"><img class="img-small" src="images/Spectrum+Email+Logo.png" /></a>
           <p>
             Spectrum is a student-led organization founded at George Mason University that is dedicated to Diversity, Equity, and Inclusion (DEI) 
             initiatives. Spectrum runs a student peer mentorship program, works with the GMU physics department to improve department policy, hiring,

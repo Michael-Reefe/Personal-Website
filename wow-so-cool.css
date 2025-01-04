@@ -656,6 +656,18 @@ figcaption {
         font-size: 18px;
     }
 
+    /* justify doesnt work so well on small screens */
+    .right-half {
+        text-align: left;
+    }
+    .left-half {
+        text-align: left;
+    }
+    .middle-half {
+        text-align: left;
+    }
+
+    /* smaller button list */
     .button-list {
         grid-template-columns: repeat(2, 1fr);
         margin: 10px 5px;
@@ -668,6 +680,7 @@ figcaption {
         margin-right: 5px;
     }
 
+    /* logos and text now single-column */
     .logo-text-container {
         flex-direction: column;
     }

@@ -645,8 +645,27 @@ figcaption {
 }
 
 @media (max-width: 768px) {
+
+    h1 {
+        font-size: 40px;
+    }
+    h2 {
+        font-size: 25px;
+    }
+    h3 {
+        font-size: 18px;
+    }
+
     .button-list {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        margin: 10px 5px;
+    }
+    .button-list a {
+        font-size: 12px;
+    }
+    .button-list a span {
+        font-size: 15px;
+        margin-right: 5px;
     }
 
     .logo-text-container {

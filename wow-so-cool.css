@@ -2,7 +2,8 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    font-family: Arial, sans-serif;
+    /* font-family: Arial, sans-serif; */
+    font-family: Georgia, 'Times New Roman', Times, serif;
     cursor: none;
 }
 
@@ -330,12 +331,18 @@ nav a:hover {
     animation: color-cycle-text 10s infinite ease-in-out;
 }
 
+nav a:hover img {
+    opacity: 0.7;
+    transform: scale(1.1);
+    filter: grayscale(100%);
+}
+
 /* Zoom-in animations */
 .zoom-about {
     transform: scale(2.5) translate(-3%, 5%);
 }
 
-.zoom-research {
+.zoom-links {
     transform: scale(5) translate(6%, 20%);
 }
 
@@ -355,7 +362,7 @@ nav a:hover {
     transform: scale(4) translate(-8%, 25%);
 }
 
-.zoom-contact {
+.zoom-research {
     transform: scale(5) translate(29%, 40%);
 }
 
@@ -420,6 +427,13 @@ a:hover {
     animation: color-cycle-text 10s infinite ease-in-out;
 }
 
+a:hover img {
+    opacity: 0.7;
+    transform: scale(1.1);
+    filter: grayscale(100%);
+}
+
+
 img {
     display: block;
     width: 100%;
@@ -440,18 +454,17 @@ img {
 
 .figcontainer {
     display: flex;
-    font-family: Arial, sans-serif;
     justify-content: center;
     align-items: center;
     margin: 0;
 }
 
 figure {
-    border: 3px solid #4e8cff; /* Neon blue border */
+    border: 3px solid #a44eff; 
     padding: 10px;
     border-radius: 10px;
-    background: linear-gradient(145deg, #1a1d48, #2e3360); /* Gradient background */
-    box-shadow: 0 0 20px rgba(78, 140, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.3); /* Glow effect */
+    background: linear-gradient(145deg, rebeccapurple, rgb(132, 97, 166)); /* Gradient background */
+    box-shadow: 0 0 20px rgba(178, 78, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.3); /* Glow effect */
     width: max-content;
     position: relative;
     width: 60%;
@@ -470,15 +483,16 @@ figure img {
 }
 
 figcaption {
-    background-color: #141742;
+    background-color: rebeccapurple;
     color: #d4d4ff;
     padding: 5px 10px;
     border-radius: 5px;
-    border: 1px solid #4e8cff;
+    border: 1px solid #a44eff;
     font-size: 0.9em;
     margin-top: 10px;
     text-align: left;
-    box-shadow: 0 0 15px rgba(78, 140, 255, 0.6);
+    box-shadow: 0 0 15px rgba(178, 78, 255, 0.8);
+    text-shadow: none;
 }
 
 .starfield {
@@ -513,6 +527,60 @@ figcaption {
     top: 0%;
 }
 
+.logo-text-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.logo-container {
+    flex: 1;
+    min-width: 200px;
+    max-width: 15%;
+    box-sizing: border-box;
+    padding: 10px;
+    align-self: center;
+}
+
+.logo-container-big {
+    flex: 1;
+    min-width: 200px;
+    max-width: 30%;
+    box-sizing: border-box;
+    margin-right: 70px;
+    margin-left: 30px;
+    align-self: center;
+}
+
+.logo-container-big figure {
+    margin-bottom: 30px;
+}
+
+.text-container {
+    flex: 3;
+    max-width: 80%;
+    box-sizing: border-box;
+    padding: 30px;
+}
+
+.text-container-big {
+    flex: 3;
+    max-width: 65%;
+    box-sizing: border-box;
+    padding: 0px;
+}
+
+
+@media (max-width: 768px) {
+    .logo-text-container {
+        flex-direction: column;
+    }
+
+    .logo-container, .text-container .logo-container-big .text-container-big {
+        max-width: 100%;
+    }
+}
+
 .spacey-border {
     width: 80%;
     height: 70%;
@@ -534,4 +602,56 @@ figcaption {
                 0 0 60px rgba(143, 45, 253, 0.8), 
                 0 0 90px rgba(0, 153, 255, 0.7); /* Enhanced glow on hover */
     transition: box-shadow 0.4s ease-in-out;
+}
+
+.button-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 20px 10px;
+}
+
+.button-list a {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-decoration: none;
+    background-color: rgb(89, 59, 210); 
+    border: 1px solid rgb(64, 28, 207);
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    color: #fff; /* White text */
+    transition: background-color 0.3s, border-color 0.3s;
+    width: 100%;
+    box-sizing: border-box;
+    text-shadow: none;
+    box-shadow: 2px 2px 5px black;
+}
+
+.button-list a:hover {
+    background-color: #e84790;
+    border-color: #ca2e74;
+    color: #fff;
+    animation: none;
+}
+
+.button-list a span {
+    font-size: 20px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 1024px) {
+    .button-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .button-list {
+        grid-template-columns: 1fr;
+    }
 }

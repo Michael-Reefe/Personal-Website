@@ -1,34 +1,40 @@
 about:
   text_left: |
         <div class="middle-half">
-          <div class="figcontainer">
-            <figure>
-              <div class="starfield"></div>
-              <img src="images/IMG_1973.JPG" alt="" />
-            </figure>
+          <div class="logo-text-container">
+
+            <div class="logo-container-big">
+              <div class="figcontainer">
+                <figure>
+                  <div class="starfield"></div>
+                  <img src="images/IMG_5548.heif" alt="" />
+                </figure>
+              </div>
+            </div>
+
+            <div class="text-container-big">
+              <h2>About Me</h2>
+
+              <p>Hi, I'm Michael! I'm a PhD candidate and NSF GRFP fellow at the Massachusetts Institute of Technology working with 
+              <a href="https://space.mit.edu/~mcdonald/" target="_blank">Professor Michael McDonald</a>. I study the gas and dust in and around galaxy clusters, 
+              the largest gravitationally bound structures in the universe. The gas and dust in these clusters, called the intracluster medium, 
+              is rich with interesting physics and many unsolved mysteries, such as the cooling flow problem, that are ripe for analysis!
+              My research is observationally oriented and data-driven, and I heavily utilize integral field unit spectroscopy in many different 
+              bands of the electromagnetic spectrum to get a detailed picture of the physical processes that govern the
+              dynamics and evolution of galaxy clusters.</p>
+
+              <p>I earned my Bachelor's of Science in Physics, with a concentration in Astrophysics, from George Mason University in 2022, summa cum laude.
+              I did research on a few different topics during my undergraduate studies. I worked on the validation of exoplanet candidates with the transit and radial
+              velocity techniques, and the discovery of elusive active galactic nuclei (AGNs) in dwarf galaxies that exhibit high ionization potential "coronal"
+              emission lines. Some common threads between these topics and my current research is the usage of medium resolution spectroscopy, integral field 
+              spectroscopy, and coronal emission lines.</p>
+
+              <p>Luckily for my advisors, I enjoy coding a lot, so much so that I even do it in my free time sometimes. 
+              <a href="https://share.streamlit.io/michael-reefe/verbose-umbrella/ops/verbose_umbrella.py" target="_blank">Here</a> is an example of a fun Python code I made for fun that explores 
+              Hydrogen atom orbitals, Fourier series, Legendre Polynomials, and other things. Some other hobbies of mine include hiking, video games, and 
+              dungeons & dragons.</p>
+            </div>
           </div>
-
-          <h2>About Me</h2>
-
-          <p>Hi, I'm Michael! I'm a PhD candidate and NSF GRFP fellow at the Massachusetts Institute of Technology working with 
-          <a href="https://space.mit.edu/~mcdonald/">Professor Michael McDonald</a>. I study the gas and dust in and around galaxy clusters, 
-          the largest gravitationally bound structures in the universe. The gas and dust in these clusters, called the intracluster medium, 
-          is rich with interesting physics and many unsolved mysteries, such as the cooling flow problem, that are ripe for analysis!
-          My research is observationally oriented and data-driven, and I heavily utilize integral field unit spectroscopy in many different 
-          bands of the electromagnetic spectrum to get a detailed picture of the physical processes that govern the
-          dynamics and evolution of galaxy clusters.</p>
-
-          <p>I earned my Bachelor's of Science in Physics, with a concentration in Astrophysics, from George Mason University in 2022, summa cum laude.
-          I did research on a few different topics during my undergraduate studies. I worked on the validation of exoplanet candidates with the transit and radial
-          velocity techniques, and the discovery of elusive active galactic nuclei (AGNs) in dwarf galaxies that exhibit high ionization potential "coronal"
-          emission lines. Some common threads between these topics and my current research is the usage of medium resolution spectroscopy, integral field 
-          spectroscopy, and coronal emission lines.</p>
-
-          <p>Luckily for my advisors, I enjoy coding a lot, so much so that I even do it in my free time sometimes. 
-          <a href="https://share.streamlit.io/michael-reefe/verbose-umbrella/ops/verbose_umbrella.py">Here</a> is an example of a fun Python code I made for fun that explores 
-          Hydrogen atom orbitals, Fourier series, Legendre Polynomials, and other things. Some other hobbies of mine include hiking, video games, and 
-          dungeons & dragons.</p>
-
         </div>
   text_right: null
   class_left: null
@@ -38,6 +44,7 @@ cv:
   text_left: |
         <div class="spacey-border">
           <embed src="Michael_Reefe_CV.pdf" width="95%" height="95%" type="application/pdf">
+          <p style="color: gray"><em><a href="Michael_Reefe_CV.pdf" target="_blank">Click here to access the PDF on a separate page</a>.</em></p>
         </div>
   text_right: null
   class_left: null
@@ -48,8 +55,8 @@ groups:
         <div class="middle-half">
           <h2>MIT Research Groups</h2>
 
-          <!-- <h4><u><a href="https://space.mit.edu/research-groups/mcdonald-group-extragalactic-astrophysics-at-all-wavelengths/">The McDonald Group</a></u></h4> -->
-          <h3><u><a href="https://space.mit.edu/~mcdonald/">The McDonald Group</a></u></h3>
+          <!-- <h4><u><a href="https://space.mit.edu/research-groups/mcdonald-group-extragalactic-astrophysics-at-all-wavelengths/" target="_blank">The McDonald Group</a></u></h4> -->
+          <h3><u><a href="https://space.mit.edu/~mcdonald/" target="_blank">The McDonald Group</a></u></h3>
           <p>
             A research group led by MIT professor Mike McDonald that explores galaxy clusters, galaxy formation, the intracluster medium, and AGN feedback.
           </p>
@@ -60,17 +67,17 @@ groups:
 
           <h2>GMU Research Groups</h2>
           
-          <h3><u><a href="https://bgc.physics.gmu.edu/">The Black Hole-Galaxy Connection (BGC) Group</a></u></h3>
+          <h3><u><a href="https://bgc.physics.gmu.edu/" target="_blank">The Black Hole-Galaxy Connection (BGC) Group</a></u></h3>
           <p>
             A research group led by GMU professor Shobita Satyapal that investigates the interactions between AGNs and their host galaxies.
           </p>
 
-          <h3><u><a href="http://exo.gmu.edu/">The Exoplaneteers</a></u></h3>
+          <h3><u><a href="http://exo.gmu.edu/" target="_blank">The Exoplaneteers</a></u></h3>
           <p>
             A research group led by GMU associate professor Peter Plavchan that focuses on exoplanet follow-up validation and characterization efforts.
           </p>
 
-          <h3><u><a href="https://sites.google.com/view/georgemasonobservatory/home?authuser=0">GMU Observatory</a></u></h3>
+          <h3><u><a href="https://sites.google.com/view/georgemasonobservatory/home?authuser=0" target="_blank">GMU Observatory</a></u></h3>
           <p>
             The observatory that hosts the 0.8-meter telescope at GMU's main Fairfax campus.
           </p>
@@ -83,75 +90,84 @@ research:
   text_left: |
         <div class="middle-half">
 
-          <h3>Background: Galaxy Clusters and the Cooling Flow Problem</h3>
+          <div class="logo-text-container">
 
-          <p>Galaxy clusters are collections of 100s-1000s of galaxies and are the largest gravitationally bound structures in the universe.
-          Each galaxy cluster hosts a massive galaxy at its gravitational center, simply referred as the central or brightest cluster galaxy. These
-          are some of the most massive galaxies in the known Universe, as they are the result of many generations of smaller galaxies merging and
-          being eaten up by the central galaxy. But the stars and galaxies in the cluster only contain a small fraction of the cluster's luminous mass: 
-          less than 10%. The other 90% is attributed to the gas and dust <i>between</i> the galaxies in the cluster, called the <b>intracluster medium</b>, 
-          or ICM. The ICM is incredibly hot (10 million Kelvin) and diffuse (less than 1 particle per cubic centimeter), both of which make it hard for 
-          it to cool down efficiently. However, the ICM tends to get cooler and more dense towards the center of the cluster, and in some clusters 
-          where this effect is pronounced, we expect to see the gas cooling down, condensing, and falling inwards towards the cluster's central galaxy, 
-          fueling star formation. Nevertheless, what we <i>actually</i> observe is that the gas does begin to cool out of the hot X-ray emitting
-          phase, but it never makes it to the cold molecular phase to fuel star formation. Evidently, at some point, the gas either vanishes completely, 
-          or is being reheated by some mechanism. This is known as the <b>cooling flow problem</b>.</p>
+            <div class="logo-container-big">
 
-          <div class="figcontainer">
-            <figure>
-              <div class="starfield"></div>
-              <img src="images/perseus.jpg" alt="" />
-              <figcaption>Pictured: The hot X-ray-emitting gas in the Perseus Cluster (Abell 426) sloshing around due to turbulence. Credit:
-              NASA/CXC/GSFC/S.A.Walker, et al.</figcaption>
-            </figure>
+              <div class="figcontainer">
+                <figure>
+                  <div class="starfield"></div>
+                  <img src="images/perseus.jpg" alt="" />
+                  <figcaption>Pictured: The hot X-ray-emitting gas in the Perseus Cluster (Abell 426) sloshing around due to turbulence. Credit:
+                  NASA/CXC/GSFC/S.A.Walker, et al.</figcaption>
+                </figure>
+              </div>
+
+              <div class="figcontainer">
+                <figure>
+                  <div class="starfield"></div>
+                  <img src="images/eso1407a.jpg" alt="" />
+                  <figcaption>Pictured: A schematic of how an integral field spectrograph works.
+                  Credit: ESO/MUSE consortium/R. Bacon/L. Calçada</figcaption>
+                </figure>
+              </div>
+
+              <div class="figcontainer">
+                <figure>
+                  <div class="starfield"></div>
+                  <img src="images/phoenix.jpg" alt="" />
+                  <figcaption>Pictured: The Phoenix Cluster (SPT-CL J2344-4243), the most rapidly cooling cluster in the known universe (classical cooling rate of 3,800
+                  M<sub>&#8857</sub> yr<sup>-1</sup>), in visible light (yellow), ionized oxygen (blue), radio (red), and X-rays (purple). Credit: NASA/ESA/NRAO.</figcaption>
+                </figure>
+              </div>
+            </div>
+
+            <div class="text-container-big">
+              <h3>Background: Galaxy Clusters and the Cooling Flow Problem</h3>
+
+              <p>Galaxy clusters are collections of 100s-1000s of galaxies and are the largest gravitationally bound structures in the universe.
+              Each galaxy cluster hosts a massive galaxy at its gravitational center, simply referred as the central or brightest cluster galaxy. These
+              are some of the most massive galaxies in the known Universe, as they are the result of many generations of smaller galaxies merging and
+              being eaten up by the central galaxy. But the stars and galaxies in the cluster only contain a small fraction of the cluster's luminous mass: 
+              less than 10%. The other 90% is attributed to the gas and dust <i>between</i> the galaxies in the cluster, called the <b>intracluster medium</b>, 
+              or ICM. The ICM is incredibly hot (10 million Kelvin) and diffuse (less than 1 particle per cubic centimeter), both of which make it hard for 
+              it to cool down efficiently. However, the ICM tends to get cooler and more dense towards the center of the cluster, and in some clusters 
+              where this effect is pronounced, we expect to see the gas cooling down, condensing, and falling inwards towards the cluster's central galaxy, 
+              fueling star formation. Nevertheless, what we <i>actually</i> observe is that the gas does begin to cool out of the hot X-ray emitting
+              phase, but it never makes it to the cold molecular phase to fuel star formation. Evidently, at some point, the gas either vanishes completely, 
+              or is being reheated by some mechanism. This is known as the <b>cooling flow problem</b>.</p>
+
+              <p>There are a number of theories that have been proposed to try to explain these counterintuitive results.  Many researchers think that an
+              Active Galactic Nucleus, or AGN, is to blame for reheating and disturbing the ICM, preventing it from forming stars.  An AGN is composed of a
+              supermassive black hole at the center of a galaxy surrounded by a disk of hot gas and dust that is swirling around and feeding into 
+              the black hole.  These are some of the most extreme objects in the Universe, and they can produce strong outbursts, winds, and radio jets (collectively
+              referred to as "feedback") that all may contribute to stirring and heating up the surrounding gas in their host galaxy. This makes them a promising 
+              candidate for resolving the cooling flow problem, but many questions still remain unanswered.  For example, we still don't know how quickly feedback 
+              from an AGN is able to start balancing with the cooling gas, how this feedback can efficiently prevent cooling throughout the entire central volume 
+              of a cluster, and how this balance evolves over time and over cosmic history. There are also alternate theories that propose that there is actually
+              a large amount of gas that is able to cool (at least partially), but we are just unable to see it because the X-ray emission from this cooling gas 
+              gets heavily absorbed by cold clouds of gas and dust before it reaches us.</p>
+
+              <h3>My Research: The Cooling Rainbow</h3>
+
+              <p>My current research focuses on multiwavelength studies of the intracluster medium to try to better understand the properties of the ICM, the cooling 
+              flow problem, AGN feedback, and galaxy cluster evolution.  A big part of my work uses integral field unit (IFU) spectroscopy, which is a revolutionary
+              technique that enables us to obtain spatial and spectroscopic information simultaneously.  IFU instruments produce 3-dimensional "cubes" of data: You
+              can think of this like a series of 2D images, each measuring slightly different wavelengths of light, all stacked on top of each other.  Or, you can
+              think of it as single image, but each "pixel" in your image is actually an entire spectrum!  This dramatically increases the amount of information we
+              can obtain about a galaxy or cluster of galaxies by allowing us to resolve many spectral features (i.e. continuum luminosities and slopes, gas emission lines,
+              dust absorption and emission features, etc.) and map them out spatially all at the same time.</p>
+
+              <p>I have been targeting so-called "coronal" emission lines, which are spectral features which require very high energies (ionization potentials above 90 eV) 
+              to produce. These lines are most sensitive to cooling gas at temperatures of 100,000s of Kelvin, so they are particularly helpful in mapping out the ICM at 
+              intermediate temperatures between the hot X-ray phase at 10 million Kelvin and the cold molecular phase at 10 Kelvin, revealing what happens to the gas as it
+              is actually in the process of cooling down.  This is essentially the "smoking gun" of cooling gas in galaxy clusters!</p>
+
+              <p>I have used world-class instrumentation with NASA's JWST mission in the infrared, HST in the UV/optical, and FUSE in the UV, to measure these coronal lines
+              and map out cooling gas in galaxy clusters.  To learn more, check out my publications <a href="#publications" onclick="showSection('publications')">here</a>.</p>
+
+            </div>
           </div>
-
-          <p>There are a number of theories that have been proposed to try to explain these counterintuitive results.  Many researchers think that an
-          Active Galactic Nucleus, or AGN, is to blame for reheating and disturbing the ICM, preventing it from forming stars.  An AGN is composed of a
-          supermassive black hole at the center of a galaxy surrounded by a disk of hot gas and dust that is swirling around and feeding into 
-          the black hole.  These are some of the most extreme objects in the Universe, and they can produce strong outbursts, winds, and radio jets (collectively
-          referred to as "feedback") that all may contribute to stirring and heating up the surrounding gas in their host galaxy. This makes them a promising 
-          candidate for resolving the cooling flow problem, but many questions still remain unanswered.  For example, we still don't know how quickly feedback 
-          from an AGN is able to start balancing with the cooling gas, how this feedback can efficiently prevent cooling throughout the entire central volume 
-          of a cluster, and how this balance evolves over time and over cosmic history. There are also alternate theories that propose that there is actually
-          a large amount of gas that is able to cool (at least partially), but we are just unable to see it because the X-ray emission from this cooling gas 
-          gets heavily absorbed by cold clouds of gas and dust before it reaches us.</p>
-
-          <h3>My Research: The Cooling Rainbow</h3>
-
-          <p>My current research focuses on multiwavelength studies of the intracluster medium to try to better understand the properties of the ICM, the cooling 
-          flow problem, AGN feedback, and galaxy cluster evolution.  A big part of my work uses integral field unit (IFU) spectroscopy, which is a revolutionary
-          technique that enables us to obtain spatial and spectroscopic information simultaneously.  IFU instruments produce 3-dimensional "cubes" of data: You
-          can think of this like a series of 2D images, each measuring slightly different wavelengths of light, all stacked on top of each other.  Or, you can
-          think of it as single image, but each "pixel" in your image is actually an entire spectrum!  This dramatically increases the amount of information we
-          can obtain about a galaxy or cluster of galaxies by allowing us to resolve many spectral features (i.e. continuum luminosities and slopes, gas emission lines,
-          dust absorption and emission features, etc.) and map them out spatially all at the same time.</p>
-
-          <div class="figcontainer">
-            <figure>
-              <div class="starfield"></div>
-              <img src="images/eso1407a.jpg" alt="" />
-              <figcaption>Pictured: A schematic of how an integral field spectrograph works.
-              Credit: ESO/MUSE consortium/R. Bacon/L. Calçada</figcaption>
-            </figure>
-          </div>
-            
-          <p>I have been targeting so-called "coronal" emission lines, which are spectral features which require very high energies (ionization potentials above 90 eV) 
-          to produce. These lines are most sensitive to cooling gas at temperatures of 100,000s of Kelvin, so they are particularly helpful in mapping out the ICM at 
-          intermediate temperatures between the hot X-ray phase at 10 million Kelvin and the cold molecular phase at 10 Kelvin, revealing what happens to the gas as it
-          is actually in the process of cooling down.  This is essentially the "smoking gun" of cooling gas in galaxy clusters!</p>
-
-          <div class="figcontainer">
-            <figure>
-              <div class="starfield"></div>
-              <img src="images/phoenix.jpg" alt="" />
-              <figcaption>Pictured: The Phoenix Cluster (SPT-CL J2344-4243), the most rapidly cooling cluster in the known universe (classical cooling rate of 3,800
-              M<sub>&#8857</sub> yr<sup>-1</sup>), in visible light (yellow), ionized oxygen (blue), radio (red), and X-rays (purple). Credit: NASA/ESA/NRAO.</figcaption>
-            </figure>
-          </div>
-
-          <p>I have used world-class instrumentation with NASA's JWST mission in the infrared, HST in the UV/optical, and FUSE in the UV, to measure these coronal lines
-          and map out cooling gas in galaxy clusters.  To learn more, check out my publications <a href="#publications" onclick="showSection('publications')">here</a>.</p>
 
         </div>
 
@@ -167,26 +183,32 @@ publications:
           Reefe, M., McDonald, M., Chatzikos, M., Seebeck, J., et al., Directly imaging the cooling flow in the Phoenix Cluster. <em>Nature</em> (2025). In press.
           <br>
           <br>
-          Reefe, M., Sexton, R., Doan, S., Satyapal, S., Secrest, N., & Cann, J. CLASS Survey Description: Coronal Line Needles in the SDSS Haystack. <em>ApJS</em>, <b>265</b>, 21. doi:<a href="https://doi.org/10.3847/1538-4365/acb0d2">10.3847/1538-4365/acb0d2</a> (2023).
+          Reefe, M., Sexton, R., Doan, S., Satyapal, S., Secrest, N., & Cann, J. CLASS Survey Description: Coronal Line Needles in the SDSS Haystack. <em>ApJS</em>, <b>265</b>, 21. doi:<a href="https://doi.org/10.3847/1538-4365/acb0d2" target="_blank">10.3847/1538-4365/acb0d2</a> (2023).
           <br>
           <br>
-          Reefe, M., Satyapal, S., Sexton, R., Doan, S., Secrest, N., & Cann, J. CLASS: Coronal Line Activity Spectroscopic Survey. <em>ApJ</em>, <b>936</b>, 140, doi:<a href="https://doi.org/10.3847/1538-4357/ac8981">10.3847/1538-4357/ac8981</a>. (2022).
+          Reefe, M., Satyapal, S., Sexton, R., Doan, S., Secrest, N., & Cann, J. CLASS: Coronal Line Activity Spectroscopic Survey. <em>ApJ</em>, <b>936</b>, 140, doi:<a href="https://doi.org/10.3847/1538-4357/ac8981" target="_blank">10.3847/1538-4357/ac8981</a>. (2022).
           <br>
           <br>
           Reefe, M., Alfaro, O., Foster, S., Plavchan, P., et al. An asynchronous object-oriented approach to the
-          automation of the 0.8-meter George Mason University campus telescope in Python. <em>JATIS</em> <b>8</b>, 027002, doi:<a href="https://dx.doi.org/10.1117/1.JATIS.8.2.027002">10.1117/1.JATIS.8.2.027002</a> (2022).
+          automation of the 0.8-meter George Mason University campus telescope in Python. <em>JATIS</em> <b>8</b>, 027002, doi:<a href="https://dx.doi.org/10.1117/1.JATIS.8.2.027002" target="_blank">10.1117/1.JATIS.8.2.027002</a> (2022).
           <br>
           <br>
-          Reefe, M., Luque, R., Gaidos, E., Beard, C., et al. A close-in puffy Neptune with hidden friends: The enigma of TOI 620. <em>AJ</em> <b>163</b>, 269, doi:<a href="https://dx.doi.org/10.3847/1538-3881/ac658b">10.3847/1538-3881/ac658b</a> (2022).
+          Reefe, M., Luque, R., Gaidos, E., Beard, C., et al. A close-in puffy Neptune with hidden friends: The enigma of TOI 620. <em>AJ</em> <b>163</b>, 269, doi:<a href="https://dx.doi.org/10.3847/1538-3881/ac658b" target="_blank">10.3847/1538-3881/ac658b</a> (2022).
           <br>
           <!-- <br> -->
-          <!-- Cale, B. L., Reefe, M., Plavchan, P., Tanner, A., et al. Diving Beneath the Sea of Stellar Activity: Chromatic Radial Velocities of the Young AU Mic Planetary System. <em>AJ</em> <b>162</b>, 295, doi:<a href="https://dx.doi.org/10.3847/1538-3881/ac2c80">10.3847/1538-3881/ac2c80</a> (2021). -->
+          <!-- Cale, B. L., Reefe, M., Plavchan, P., Tanner, A., et al. Diving Beneath the Sea of Stellar Activity: Chromatic Radial Velocities of the Young AU Mic Planetary System. <em>AJ</em> <b>162</b>, 295, doi:<a href="https://dx.doi.org/10.3847/1538-3881/ac2c80" target="_blank">10.3847/1538-3881/ac2c80</a> (2021). -->
           <!-- <br> -->
           <br>
           </p>
-          <p>[<a href="https://ui.adsabs.harvard.edu/search/p_=0&q=%20author%3A%22reefe%2C%20michael%22&sort=citation_count%20desc%2C%20bibcode%20desc">NASA/ADS</a>]</p>
-          <p>[<a href="https://orcid.org/0000-0003-4701-8497">ORCID</a>]</p>
-          <p></p>
+
+          <p>Total first-author refereed publications: 5 + 1 in press [<a href="https://ui.adsabs.harvard.edu/search/filter_property_fq_property=AND&filter_property_fq_property=property%3A%22refereed%22&fq=%7B!type%3Daqp%20v%3D%24fq_database%7D&fq=%7B!type%3Daqp%20v%3D%24fq_property%7D&fq_database=(database%3Aastronomy%20OR%20database%3Aphysics)&fq_property=(property%3A%22refereed%22)&q=%20%20first_author%3A%22reefe%2C%20michael%22&sort=citation_count%20desc%2C%20bibcode%20desc&p_=0" target="_blank">NASA/ADS</a>]</p>
+          <p>Total refereed publications: 19 [<a href="https://ui.adsabs.harvard.edu/search/filter_property_fq_property=AND&filter_property_fq_property=property%3A%22refereed%22&fq=%7B!type%3Daqp%20v%3D%24fq_database%7D&fq=%7B!type%3Daqp%20v%3D%24fq_property%7D&fq_database=(database%3Aastronomy%20OR%20database%3Aphysics)&fq_property=(property%3A%22refereed%22)&q=%20author%3A%22reefe%2C%20michael%22&sort=date%20desc%2C%20bibcode%20desc&p_=0" target="_blank">NASA/ADS</a>]</p>
+          <p>First-author paper citations: 39 (as of Jan 2024) </p>
+          <p>Total citations: 342 (as of Jan 2024) </p>
+          <p>[<a href="https://orcid.org/0000-0003-4701-8497" target="_blank">ORCID</a>]</p>
+          <br>
+
+          <hr>
 
           <h2>Conferences & Presentations</h2>
 
@@ -196,7 +218,7 @@ publications:
           <br>
           <b>Boston, Massachusetts, USA</b>
           <br>
-          Mapping the Cooling Flow in the Phoenix Cluster with JWST and Chandra (Talk) [<a href="https://cxc.cfa.harvard.edu/cdo/symposium_2024/schedule.html#talk">Conference Website</a>]
+          "Mapping the Cooling Flow in the Phoenix Cluster with JWST and Chandra" (Talk) [<a href="https://cxc.cfa.harvard.edu/cdo/symposium_2024/schedule.html#talk" target="_blank">Conference Website</a>]
           <br>
           <br>
           
@@ -206,7 +228,7 @@ publications:
           <br>
           <b>New Orleans, Louisiana, USA</b>
           <br>
-          Shaken or Stirred? Dynamics of the coronal temperature gas in the Phoenix Cluster (Talk) [<a href="https://ui.adsabs.harvard.edu/abs/2024AAS...24344204R/abstract">ADS</a>]
+          "Shaken or Stirred? Dynamics of the coronal temperature gas in the Phoenix Cluster" (Talk) [<a href="https://ui.adsabs.harvard.edu/abs/2024AAS...24344204R/abstract" target="_blank">ADS</a>]
           <br>
           <br>
 
@@ -216,7 +238,7 @@ publications:
           <br>
           <b>Pasadena, California, USA</b>
           <br>
-          A Large Scale Survey of Galaxies with Coronal Line Emission Selected from the Sloan Digital Sky Survey (iPoster) [<a href="https://ui.adsabs.harvard.edu/abs/2022AAS...24010113R/abstract">ADS</a>]
+          "A Large Scale Survey of Galaxies with Coronal Line Emission Selected from the Sloan Digital Sky Survey" (Poster) [<a href="https://ui.adsabs.harvard.edu/abs/2022AAS...24010113R/abstract" target="_blank">ADS</a>]
           <!-- <span class="image main"><img src="images/pic11.jpg" alt="" /></span> -->
           <br>
           <br>
@@ -227,8 +249,8 @@ publications:
           <br>
           <b>Virtual</b>
           <br>
-          A Flexible Python Observatory Automation Framework for the George Mason
-          University Campus Telescope (Poster), doi: <a href="https://dx.doi.org/10.5281/zenodo.5114171">10.5281/zenodo.5114171</a>
+          "A Flexible Python Observatory Automation Framework for the George Mason
+          University Campus Telescope" (Poster), doi: <a href="https://dx.doi.org/10.5281/zenodo.5114171" target="_blank">10.5281/zenodo.5114171</a>
           <br>
           <br>
 
@@ -238,7 +260,7 @@ publications:
           <br>
           <b>Virtual</b>
           <br>
-          Automation of TESS Follow-up Observations with the GMU Campus Telescope (Poster)
+          "Automation of TESS Follow-up Observations with the GMU Campus Telescope" (Poster)
           <br>
           <br>
 
@@ -248,8 +270,8 @@ publications:
           <br>
           <b>Virtual</b>
           <br>
-          An Asynchronous Object-Oriented Approach to Automation of the 0.8-meter
-          George Mason University Campus Telescope in Python (Poster), [<a href="https://ui.adsabs.harvard.edu/abs/2021AAS...23734407R/abstract">ADS</a>]
+          "An Asynchronous Object-Oriented Approach to Automation of the 0.8-meter
+          George Mason University Campus Telescope in Python" (Poster), [<a href="https://ui.adsabs.harvard.edu/abs/2021AAS...23734407R/abstract" target="_blank">ADS</a>]
           <br>
           <br>
         </div>
@@ -263,7 +285,7 @@ resources:
         <div class="middle-half">
           <h2>Resources</h2>
 
-          <h3><u><a href="MIT_Astro_168_MAR_meme_edition.pdf">The MIT Astro 168 Study Guide</a></u></h3>
+          <h3><u><a href="MIT_Astro_168_MAR_meme_edition.pdf" target="_blank">The MIT Astro 168 Study Guide</a></u></h3>
           <p>
             The MIT physics department has an oral qualifying exam requirement that all PhD students must pass on their journey
             to becoming doctors. Each division of the physics department handles this exam differently. The astrophysics division 
@@ -279,65 +301,115 @@ resources:
             in the past).
           </p>
 
+          <br>
           <hr>
           <h2>MIT Organizations</h2>
 
-          <a href="https://astrogazers.mit.edu/"><img class="img-small" src="images/moon_logo_small_0.png" /></a>
-          <p>
-            The Astrogazers are an outreach group based out of the MIT Kavli Institute for Astrophysics and Space Research (MKI). We are passioante
-            about sharing the wonders of the universe with the public in the greater Cambridge/Boston area and host many observing events whenever the 
-            weather is favorable. Check out our website for more information about the team members and our event schedule.
-          </p>
+          <div class="logo-text-container">
+            <div class="logo-container">
+              <a href="https://astrogazers.mit.edu/" target="_blank"><img class="img-small" src="images/moon_logo_small_0.png" /></a>
+            </div>
+            <div class="text-container">
+              <h3>Astrogazers</h3>
+              <p>
+                The Astrogazers are an outreach group based out of the MIT Kavli Institute for Astrophysics and Space Research (MKI). We are passioante
+                about sharing the wonders of the universe with the public in the greater Cambridge/Boston area and host many observing events whenever the 
+                weather is favorable. Check out our website for more information about the team members and our event schedule.
+              </p>
+            </div>
+          </div>
 
-          <h3><u><a href="https://physics-gsc.scripts.mit.edu/home/">PGSC</a></u></h3>
-          <p>
-            The Physics Graduate Student Council (PGSC) works with the department to improve the physics curriculum and 
-            degree requirements at MIT, advises MIT graduate admissions, and organizes community events such as open houses for prospective 
-            students, pizza and cookie socials, and end-of-year events. Learn more on the PGSC website!
-          </p>
+          <div class="logo-text-container">
+            <div class="logo-container">
+              <a href="https://physics-gsc.scripts.mit.edu/home/" target="_blank"><img class="img-small" src="images/pgsc.png"/></a>
+            </div>
+            <div class="text-container">
+              <h3>PGSC</h3>
+              <p>
+                The Physics Graduate Student Council (PGSC) works with the department to improve the physics curriculum and 
+                degree requirements at MIT, advises MIT graduate admissions, and organizes community events such as open houses for prospective 
+                students, pizza and cookie socials, and end-of-year events. Learn more on the PGSC website!
+              </p>
+            </div>
+          </div>
 
-          <h3><u><a href="https://physics-gsc.scripts.mit.edu/home/gaga/">GAGA</a></u></h3>
-          <p>
-            The Physics Admissions Advisory Council, AKA Graduates Advising Graduate Admissions (GAGA), is a subcommittee of the PGSC
-            that advises the MIT Chair of Admissions from the perspective of the graduate students to improve the admissions process,
-            particularly relating to diversity, equity, and inclusion efforts.  They also organize a mentorship program for prospective 
-            applicants to the MIT Physics PhD program called PhysGAAP (see below).
-          </p>
+          <div class="logo-text-container">
+            <div class="logo-container">
+              <a href="https://physics-gsc.scripts.mit.edu/home/gaga/" target="_blank"><img class="img-small" src="images/gaga.png"/></a>
+            </div>
+            <div class="text-container">
+              <h3>GAGA</h3>
+              <p>
+                The Physics Admissions Advisory Council, AKA Graduates Advising Graduate Admissions (GAGA), is a subcommittee of the PGSC
+                that advises the MIT Chair of Admissions from the perspective of the graduate students to improve the admissions process,
+                particularly relating to diversity, equity, and inclusion efforts.  They also organize a mentorship program for prospective 
+                applicants to the MIT Physics PhD program called PhysGAAP (see below).
+              </p>
+            </div>
+          </div>
 
-          <h3><u><a href="https://sites.mit.edu/physgaap/">PhysGAAP</a></u></h3>
-          <p>
-            The Physics Graduate Application Assistance Program (PhysGAAP) is a program built to assist prospective MIT Physics PhD students in the
-            application process. The program offers webinars, office hours, and one-on-one mentorship sessions with current MIT Physics graduate students.
-            The goal of the program is to increase equity in the admissions process and ensure that talented students from all backgrounds are considered.
-            If you're a prospective graduate student interested in applying to MIT, consider signing up for the PhysGAAP program!
-          </p>
+          <div class="logo-text-container">
+            <div class="logo-container">
+              <a href="https://sites.mit.edu/physgaap/" target="_blank"><img class="img-small" src="images/physGAAP.png"/></a>
+            </div>
+            <div class="text-container">
+              <h3>PhysGAAP</h3>
+              <p>
+                The Physics Graduate Application Assistance Program (PhysGAAP) is a program built to assist prospective MIT Physics PhD students in the
+                application process. The program offers webinars, office hours, and one-on-one mentorship sessions with current MIT Physics graduate students.
+                The goal of the program is to increase equity in the admissions process and ensure that talented students from all backgrounds are considered.
+                If you're a prospective graduate student interested in applying to MIT, consider signing up for the PhysGAAP program!
+              </p>
+            </div>
+          </div>
 
           <p style="color: gray"><em>Disclaimer: I am not involved in the remaining organizations in this section; I provide their information here solely to make this
           site a hub for those who may find this information useful.</em></p>
 
-          <h3><u><a href="https://physrefs.mit.edu/">PhysREFS</a></u></h3>
-          <p>
-            The Physics Resources for Easing Friction and Stress (PhysREFS) program organizes a mentorship program from senior graduate students 
-            to provide students with the proper guidance and resources they need to get through their academic pursuits. They also provide study resources 
-            to aid students in studying for the written qualifying exams. Check out the PhysREFS website for more details.
-          </p>
+          <div class="logo-text-container">
+            <div class="logo-container">
+              <a href="https://physrefs.mit.edu/" target="_blank"><img class="img-small" src="images/physREFS.png"/></a>
+            </div>
+            <div class="text-container">
+              <h3>PhysREFS</h3>
+              <p>
+                The Physics Resources for Easing Friction and Stress (PhysREFS) program organizes a mentorship program from senior graduate students 
+                to provide students with the proper guidance and resources they need to get through their academic pursuits. They also provide study resources 
+                to aid students in studying for the written qualifying exams. Check out the PhysREFS website for more details.
+              </p>
+            </div>
+          </div>
 
-          <a href="https://physvals.mit.edu/pvs"><img class="img-small" src="images/pvc.png" /></a>
-          <p>
-            The Physics Values Committee (PVC) writes and upholds the Physics Values Statement for the MIT Physics Department, ensuring that members
-            of the community treat each other with respect and decency. They also make recommendations to the department to make sure that these values
-            are upheld and that the department continues to be a welcoming environment.
-          </p>
+          <div class="logo-text-container">
+            <div class="logo-container">
+              <a href="https://physvals.mit.edu/pvs" target="_blank"><img class="img-small" src="images/pvc.png" /></a>
+            </div>
+            <div class="text-container">
+              <h3>PVC</h3>
+              <p>
+                The Physics Values Committee (PVC) writes and upholds the Physics Values Statement for the MIT Physics Department, ensuring that members
+                of the community treat each other with respect and decency. They also make recommendations to the department to make sure that these values
+                are upheld and that the department continues to be a welcoming environment.
+              </p>
+            </div>
+          </div>
 
           <hr>
           <h2>GMU Organizations</h2>
 
-          <a href="https://gmuspectrum.squarespace.com"><img class="img-small" src="images/Spectrum+Email+Logo.png" /></a>
-          <p>
-            Spectrum is a student-led organization founded at George Mason University that is dedicated to Diversity, Equity, and Inclusion (DEI) 
-            initiatives. Spectrum runs a student peer mentorship program, works with the GMU physics department to improve department policy, hiring,
-            and admission processes to be more diverse and inclusive, and hosts social events with the department.
-          </p>
+          <div class="logo-text-container">
+            <div class="logo-container">
+              <a href="https://gmuspectrum.squarespace.com" target="_blank"><img class="img-small" src="images/Spectrum+Email+Logo.png" /></a>
+            </div>
+            <div class="text-container">
+              <h3>Spectrum</h3>
+              <p>
+                Spectrum is a student-led organization founded at George Mason University that is dedicated to Diversity, Equity, and Inclusion (DEI) 
+                initiatives. Spectrum runs a student peer mentorship program, works with the GMU physics department to improve department policy, hiring,
+                and admission processes to be more diverse and inclusive, and hosts social events with the department.
+              </p>
+            </div>
+          </div>
         </div>
 
   text_right: null
@@ -348,20 +420,37 @@ home:
   text_left: |
     <h1>Michael Anthony Reefe</h1>
     <p>PhD candidate and NSF fellow at MIT</p>
+
+    <div class="button-list">
+        <a href="https://github.com/Michael-Reefe" target="_blank">
+            <span>&#x1F408;</span>
+            GitHub
+        </a>
+        <a href="https://linkedin.com/in/michael-reefe/" target="_blank">
+            <span>&#x1F4F1;</span>
+            LinkedIn
+        </a>
+        <a href="https://orcid.org/0000-0003-4701-8497" target="_blank">
+            <span>&#x1F4D6;</span>
+            ORCID
+        </a>
+        <a href="https://ui.adsabs.harvard.edu/search/fq=%7B!type%3Daqp%20v%3D%24fq_database%7D&fq_database=(database%3Aastronomy%20OR%20database%3Aphysics)&q=%20author%3A%22reefe%2C%20michael%22&sort=date%20desc%2C%20bibcode%20desc&p_=0" target="_blank">
+            <span>&#x1F50E;</span>
+            NASA/ADS
+        </a>
+        <a href="https://arxiv.org/search/?query=michael+reefe&searchtype=author&abstracts=show&order=-announced_date_first&size=50" target="_blank">
+            <span>&#x1F517;</span>
+            arXiv
+        </a>
+        <a href="https://scholar.google.com/citations?hl=en&view_op=list_works&gmla=AFix5MbY7SoMDky2pdfs9ZfeY_kWOEcHEsk0tB7buif1zc5dTqOyuTx6Kq1-t-icjx5mw67KgPjQvYPND-qwlA&user=gURoOcQAAAAJ" target="_blank">
+            <span>&#x1F393;</span>
+            Google Scholar
+        </a>
+      </div>
+
     <div class="secret">
       <a href="#secret" onclick="showSection('secret')">hi</a>
     </div>
-  text_right: null
-  class_left: null
-  class_right: null
-
-contact:
-  text_left: |
-    <h2>Contact Me</h2>
-    <p>Email: mreefe (at) mit (dot) edu</p>
-    <p>Github: <a href="https://github.com/Michael-Reefe">Michael-Reefe</a></p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/michael-reefe/">Michael Reefe</a></p>
-    <p>ORCID: <a href="https://orcid.org/0000-0003-4701-8497">0000-0003-4701-8497</a></p>
   text_right: null
   class_left: null
   class_right: null

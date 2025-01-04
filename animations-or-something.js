@@ -112,7 +112,6 @@ function showSection(section) {
         publications: 'zoom-publications',
         groups: 'zoom-groups',
         resources: 'zoom-resources',
-        contact: 'zoom-contact',
         home: 'zoom-out',
         secret: 'zoom-secret',
     };

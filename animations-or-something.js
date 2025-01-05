@@ -120,7 +120,7 @@ function showSection(section) {
         research: 'zoom-research',
         cv: 'zoom-cv',
         publications: 'zoom-publications',
-        groups: 'zoom-groups',
+        affiliations: 'zoom-affils',
         resources: 'zoom-resources',
         home: 'zoom-out',
         secret: 'zoom-secret',

@@ -50,37 +50,56 @@ cv:
   class_left: null
   class_right: null
 
-groups:
+affiliations:
   text_left: |
         <div class="middle-half">
-          <h2>MIT Research Groups</h2>
+          <h2><a href="https://physics.mit.edu/" target="_blank">
+            MIT Department of Physics
+          </a></h2>
+          <h2><a href="https://www.space.mit.edu/" target="_blank">
+            MIT Kavli Institute for Astrophysics and Space Research
+          </a></h2>
 
+          <ul>
           <!-- <h4><u><a href="https://space.mit.edu/research-groups/mcdonald-group-extragalactic-astrophysics-at-all-wavelengths/" target="_blank">The McDonald Group</a></u></h4> -->
-          <h3><u><a href="https://space.mit.edu/~mcdonald/" target="_blank">The McDonald Group</a></u></h3>
-          <p>
-            A research group led by MIT professor Mike McDonald that explores galaxy clusters, galaxy formation, the intracluster medium, and AGN feedback.
-          </p>
+            <li>
+              <h3><u><a href="https://space.mit.edu/~mcdonald/" target="_blank">The McDonald Group</a></u></h3>
+              <p>
+                A research group led by MIT professor Mike McDonald that explores galaxy clusters, galaxy formation, the intracluster medium, and AGN feedback.
+              </p>
+            </li>
+          </ul>
 
           <br>
           <br>
           <br>
 
-          <h2>GMU Research Groups</h2>
+          <h2><a href="https://science.gmu.edu/academics/departments-units/physics-and-astronomy-department" target="_blank">
+            GMU Department of Physics & Astronomy
+          </a></h2>
           
-          <h3><u><a href="https://bgc.physics.gmu.edu/" target="_blank">The Black Hole-Galaxy Connection (BGC) Group</a></u></h3>
-          <p>
-            A research group led by GMU professor Shobita Satyapal that investigates the interactions between AGNs and their host galaxies.
-          </p>
+          <ul>
+            <li>
+              <h3><u><a href="https://bgc.physics.gmu.edu/" target="_blank">The Black Hole-Galaxy Connection (BGC) Group</a></u></h3>
+              <p>
+                A research group led by GMU professor Shobita Satyapal that investigates the interactions between AGNs and their host galaxies.
+              </p>
+            </li>
 
-          <h3><u><a href="http://exo.gmu.edu/" target="_blank">The Exoplaneteers</a></u></h3>
-          <p>
-            A research group led by GMU associate professor Peter Plavchan that focuses on exoplanet follow-up validation and characterization efforts.
-          </p>
+            <li>
+              <h3><u><a href="http://exo.gmu.edu/" target="_blank">The Exoplaneteers</a></u></h3>
+              <p>
+                A research group led by GMU associate professor Peter Plavchan that focuses on exoplanet follow-up validation and characterization efforts.
+              </p>
+            </li>
 
-          <h3><u><a href="https://sites.google.com/view/georgemasonobservatory/home?authuser=0" target="_blank">GMU Observatory</a></u></h3>
-          <p>
-            The observatory that hosts the 0.8-meter telescope at GMU's main Fairfax campus.
-          </p>
+            <li>
+              <h3><u><a href="https://sites.google.com/view/georgemasonobservatory/home?authuser=0" target="_blank">GMU Observatory</a></u></h3>
+              <p>
+                The observatory that hosts the 0.8-meter telescope at GMU's main Fairfax campus.
+              </p>
+            </li>
+          </ul>
         </div>
   text_right: null
   class_left: null
@@ -272,6 +291,19 @@ publications:
           <br>
           "An Asynchronous Object-Oriented Approach to Automation of the 0.8-meter
           George Mason University Campus Telescope in Python" (Poster), [<a href="https://ui.adsabs.harvard.edu/abs/2021AAS...23734407R/abstract" target="_blank">ADS</a>]
+          <br>
+          <br>
+
+          <hr>
+
+          <h2>Media & Press Appearances</h2>
+
+          <b>GMU College of Science Graduation Ceremony (Spring 2022)</b>
+          <br>
+          <iframe width="420" height="315" src="https://www.youtube.com/embed/xsyi9sqYH4o?start=2086" 
+            title="George Mason University | Spring 2022 Graduation | College of Science | May 21, 2022 – 10am ET" 
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           <br>
           <br>
         </div>

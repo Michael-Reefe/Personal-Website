@@ -5,13 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Researcher Personal Website</title>
-	<link rel="stylesheet" type="text/css" href="wow-so-cool.css?v=1.0">
+	<link rel="stylesheet" type="text/css" href="wow-so-cool.css?v=1.1">
 </head>
 <body>
     <div class="background" id="background"></div>
 
     <div class="nav-container" id="nav-container">
-        <div class="scrollarrow-container-left noback" id="scrollarrow-container-left"></div>
+        <!-- <div class="scrollarrow-container-left noback" id="scrollarrow-container-left"></div> -->
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="menu-icon"><a style="color: white">
+            <span></span>  <!-- each span is one horizontal line in the hamburger menu button -->
+            <span></span>
+            <span></span>
+        </a></label>
         <nav id="nav-container-nav">
             <a href="#home" onclick="showSection('home')">🏠 Home</a>
             <a href="#about" onclick="showSection('about')">👤 About</a>
@@ -22,7 +28,7 @@
             <a href="#resources" onclick="showSection('resources')">🛠️ Resources</a>
             <!-- <a href="#links" onclick="showSection('links')">🔗 Links</a> -->
         </nav>
-        <div class="scrollarrow-container-right" id="scrollarrow-container-right">&#8250</div>
+        <!-- <div class="scrollarrow-container-right" id="scrollarrow-container-right">&#8250</div> -->
     </div>
 
     <div class="content" id="content">
@@ -68,7 +74,9 @@
     </div>
 
 	<div class="footer" id="footer">
-        <p>Background Image: The Bullet Cluster (1E 0657-56) in visible light (RGB), X-rays (pink), and dark matter (purple). Credit: NASA/CXC/M. Weiss</p>
+        <p style="margin-right: 10px;">
+            Background Image: The Bullet Cluster (1E 0657-56) in visible light (RGB), X-rays (pink), and dark matter (purple). Credit: NASA/CXC/M. Weiss
+        </p>
     </div>
 
 	<div class="audioplayer" id="audioplayer"></div>

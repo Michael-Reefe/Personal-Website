@@ -1,4 +1,9 @@
 
+// NASA/ADS queries
+const adsSearchFirstURL = 'https://api.michaelreefe.space/ads-search-first';
+const adsSearchAllURL = 'https://api.michaelreefe.space/ads-search-all';
+const adsMetricURL = 'https://api.michaelreefe.space/ads-metrics';
+
 const background = document.getElementById('background');
 const content = document.getElementById('content');
 const cursor = document.getElementById('cursor');
@@ -41,40 +46,6 @@ document.querySelectorAll('.nav-container nav a').forEach(link => {
         menuToggle.checked = false; // Uncheck the menu toggle
     });
 });
-
-// DEPRECATED
-
-// // Toggles the visibility of the navigation bar's arrows
-// const scrollableElement = document.getElementById('nav-container-nav')
-// const scrollArrowContainerRight = document.getElementById('scrollarrow-container-right')
-// const scrollArrowContainerLeft = document.getElementById('scrollarrow-container-left')
-// const isFull = scrollableElement.scrollWidth === scrollableElement.clientWidth;
-// // Start without any arrows
-// if (isFull) {
-//     scrollArrowContainerRight.innerHTML = ``;
-//     scrollArrowContainerRight.classList.add('noback');
-// };
-
-// scrollableElement.addEventListener("scroll", () => {
-//     const isAtRight = scrollableElement.scrollWidth - scrollableElement.scrollLeft === scrollableElement.clientWidth;
-//     const isAtLeft = scrollableElement.scrollLeft === 0;
-
-//     // Dynamically update the visibility of both arrows
-//     if (isAtRight) {
-//         scrollArrowContainerRight.innerHTML = ``;
-//         scrollArrowContainerRight.classList.add('noback');
-//     } else {
-//         scrollArrowContainerRight.innerHTML = `&#8250`;
-//         scrollArrowContainerRight.classList.remove('noback');
-//     };
-//     if (isAtLeft) {
-//         scrollArrowContainerLeft.innerHTML = ``;
-//         scrollArrowContainerLeft.classList.add('noback');
-//     } else {
-//         scrollArrowContainerLeft.innerHTML = `&#8249`;
-//         scrollArrowContainerLeft.classList.remove('noback');
-//     };
-// });
 
 
 // Add a spinning animation to links on hover
@@ -184,6 +155,76 @@ function showSection(section) {
                                 <source src="super-secret-folder-wow-what-could-it-be/IMSLP323008-PMLP126430-vivaldi_rv63_Gardner.mp3">
                             </audio>
                         `;
+                    };
+
+                    if (newZoomClass == 'zoom-publications') {
+
+
+                        // make an API request to NASA/ADS for up-to-date publication information :)
+                        // this uses a backend that I'm hosting on an AWS Lightsail server
+                        try {
+
+                            // First-author refereed publications
+                            data = fetch(adsSearchFirstURL, {})
+                            .then(response => {
+                                if (!response.ok) throw new Error(`NASA/ADS request failed. Status: ${response.status}`);
+                                return response.json();
+                            })
+                            .then(data => {
+                                const firstpubs = data["response"]["numFound"];
+                                const bibcodes = data.response.docs.map(doc => doc.bibcode);
+                                const total_pubs_first = document.getElementById('total-pubs-first');
+                                total_pubs_first.innerHTML = `${firstpubs}`;
+                                // First author citations
+                                fetch(adsMetricURL, {
+                                    method: 'POST',
+                                    headers: {'Content-Type': 'application/json'},
+                                    body: JSON.stringify({bibcodes: bibcodes})
+                                })
+                                .then(response => {
+                                    if (!response.ok) throw new Error(`NASA/ADS request failed. Status: ${response.status}`);
+                                    return response.json();
+                                })
+                                .then(data => {
+                                    const firstcites = data["citation stats"]["total number of citations"];
+                                    const total_cites_first = document.getElementById('total-cites-first');
+                                    total_cites_first.innerHTML = `${firstcites}`
+                                })
+                                return;
+                            })
+
+                            // Nth-author refereed publications
+                            data = fetch(adsSearchAllURL, {})
+                            .then(response => {
+                                if (!response.ok) throw new Error(`NASA/ADS request failed. Status: ${response.status}`);
+                                return response.json();
+                            })
+                            .then(data => {
+                                const allpubs = data["response"]["numFound"];
+                                const bibcodes = data.response.docs.map(doc => doc.bibcode);
+                                const total_pubs_all = document.getElementById('total-pubs-all');
+                                total_pubs_all.innerHTML = `${allpubs}`;
+                                // First author citations
+                                fetch(adsMetricURL, {
+                                    method: 'POST',
+                                    headers: {'Content-Type': 'application/json'},
+                                    body: JSON.stringify({bibcodes: bibcodes})
+                                })
+                                .then(response => {
+                                    if (!response.ok) throw new Error(`NASA/ADS request failed. Status: ${response.status}`);
+                                    return response.json();
+                                })
+                                .then(data => {
+                                    const allcites = data["citation stats"]["total number of citations"];
+                                    const total_cites_all = document.getElementById('total-cites-all');
+                                    total_cites_all.innerHTML = `${allcites}`
+                                })
+                                return;
+                            })
+
+                        } catch (error) {
+                            console.error('Error fetching metrics from ADS:', error);
+                        }
                     };
 
                     content.classList.remove('hidden');

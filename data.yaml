@@ -53,17 +53,20 @@ cv:
 affiliations:
   text_left: |
         <div class="middle-half">
-          <h2><a href="https://physics.mit.edu/" target="_blank">
+
+        <h2>Current Affiliations</h2>
+
+          <h3><a href="https://physics.mit.edu/" target="_blank">
             MIT Department of Physics
-          </a></h2>
-          <h2><a href="https://www.space.mit.edu/" target="_blank">
+          </a></h3>
+          <h3><a href="https://www.space.mit.edu/" target="_blank">
             MIT Kavli Institute for Astrophysics and Space Research
-          </a></h2>
+          </a></h3>
 
           <ul>
           <!-- <h4><u><a href="https://space.mit.edu/research-groups/mcdonald-group-extragalactic-astrophysics-at-all-wavelengths/" target="_blank">The McDonald Group</a></u></h4> -->
             <li>
-              <h3><u><a href="https://space.mit.edu/~mcdonald/" target="_blank">The McDonald Group</a></u></h3>
+              <h4><u><a href="https://space.mit.edu/~mcdonald/" target="_blank">The McDonald Group</a></u></h4>
               <p>
                 A research group led by MIT professor Mike McDonald that explores galaxy clusters, galaxy formation, the intracluster medium, and AGN feedback.
               </p>
@@ -74,27 +77,29 @@ affiliations:
           <br>
           <br>
 
-          <h2><a href="https://science.gmu.edu/academics/departments-units/physics-and-astronomy-department" target="_blank">
+          <h2>Past Affiliations</h2>
+
+          <h3><a href="https://science.gmu.edu/academics/departments-units/physics-and-astronomy-department" target="_blank">
             GMU Department of Physics & Astronomy
-          </a></h2>
+          </a></h3>
           
           <ul>
             <li>
-              <h3><u><a href="https://bgc.physics.gmu.edu/" target="_blank">The Black Hole-Galaxy Connection (BGC) Group</a></u></h3>
+              <h4><u><a href="https://bgc.physics.gmu.edu/" target="_blank">The Black Hole-Galaxy Connection (BGC) Group</a></u></h4>
               <p>
                 A research group led by GMU professor Shobita Satyapal that investigates the interactions between AGNs and their host galaxies.
               </p>
             </li>
 
             <li>
-              <h3><u><a href="http://exo.gmu.edu/" target="_blank">The Exoplaneteers</a></u></h3>
+              <h4><u><a href="http://exo.gmu.edu/" target="_blank">The Exoplaneteers</a></u></h4>
               <p>
                 A research group led by GMU associate professor Peter Plavchan that focuses on exoplanet follow-up validation and characterization efforts.
               </p>
             </li>
 
             <li>
-              <h3><u><a href="https://sites.google.com/view/georgemasonobservatory/home?authuser=0" target="_blank">GMU Observatory</a></u></h3>
+              <h4><u><a href="https://sites.google.com/view/georgemasonobservatory/home?authuser=0" target="_blank">GMU Observatory</a></u></h4>
               <p>
                 The observatory that hosts the 0.8-meter telescope at GMU's main Fairfax campus.
               </p>
@@ -199,6 +204,9 @@ publications:
         <div class="middle-half">
           <h2>Selected Publications</h2>
           <p>
+          Reefe, M., McDonald, M., Chatzikos, M., Seebeck, J., et al., Cold Gas and Star Formation in the Phoenix Cluster with JWST. <em>ApJ</em> (in review), arXiv:<a href="https://arxiv.org/abs/2501.08527">2501.08527</a> (2025).
+          <br>
+          <br>
           Reefe, M., McDonald, M., Chatzikos, M., Seebeck, J., et al., Directly imaging the cooling flow in the Phoenix Cluster. <em>Nature</em>, <b>638</b>(8050), 360-364. doi:<a href="https://doi.org/10.1038/s41586-024-08369-x" target="_blank">10.1038/s41586-024-08369-x</a> (2025).
           <br>
           <br>
@@ -220,11 +228,11 @@ publications:
           <br>
           </p>
 
-          <p>Total first-author refereed publications: 5 + 1 in press [<a href="https://ui.adsabs.harvard.edu/search/filter_property_fq_property=AND&filter_property_fq_property=property%3A%22refereed%22&fq=%7B!type%3Daqp%20v%3D%24fq_database%7D&fq=%7B!type%3Daqp%20v%3D%24fq_property%7D&fq_database=(database%3Aastronomy%20OR%20database%3Aphysics)&fq_property=(property%3A%22refereed%22)&q=%20%20first_author%3A%22reefe%2C%20michael%22&sort=citation_count%20desc%2C%20bibcode%20desc&p_=0" target="_blank">NASA/ADS</a>]</p>
-          <p>Total refereed publications: 19 [<a href="https://ui.adsabs.harvard.edu/search/filter_property_fq_property=AND&filter_property_fq_property=property%3A%22refereed%22&fq=%7B!type%3Daqp%20v%3D%24fq_database%7D&fq=%7B!type%3Daqp%20v%3D%24fq_property%7D&fq_database=(database%3Aastronomy%20OR%20database%3Aphysics)&fq_property=(property%3A%22refereed%22)&q=%20author%3A%22reefe%2C%20michael%22&sort=date%20desc%2C%20bibcode%20desc&p_=0" target="_blank">NASA/ADS</a>]</p>
-          <p>First-author paper citations: 39 (as of Jan 2024) </p>
-          <p>Total citations: 342 (as of Jan 2024) </p>
-          <p>[<a href="https://orcid.org/0000-0003-4701-8497" target="_blank">ORCID</a>]</p>
+          <h3>Total first-author refereed publications [<a href="https://ui.adsabs.harvard.edu/search/filter_property_fq_property=AND&filter_property_fq_property=property%3A%22refereed%22&fq=%7B!type%3Daqp%20v%3D%24fq_database%7D&fq=%7B!type%3Daqp%20v%3D%24fq_property%7D&fq_database=(database%3Aastronomy%20OR%20database%3Aphysics)&fq_property=(property%3A%22refereed%22)&q=%20%20first_author%3A%22reefe%2C%20michael%22&sort=citation_count%20desc%2C%20bibcode%20desc&p_=0" target="_blank">NASA/ADS</a>]: <small id="total-pubs-first">???</small></h3> 
+          <h3>Total refereed publications [<a href="https://ui.adsabs.harvard.edu/search/filter_property_fq_property=AND&filter_property_fq_property=property%3A%22refereed%22&fq=%7B!type%3Daqp%20v%3D%24fq_database%7D&fq=%7B!type%3Daqp%20v%3D%24fq_property%7D&fq_database=(database%3Aastronomy%20OR%20database%3Aphysics)&fq_property=(property%3A%22refereed%22)&q=%20author%3A%22reefe%2C%20michael%22&sort=date%20desc%2C%20bibcode%20desc&p_=0" target="_blank">NASA/ADS</a>]: <small id="total-pubs-all">???</small></h3> 
+          <h3>First-author paper citations: <small id="total-cites-first">???</small></h3>
+          <h3>Total citations: <small id="total-cites-all">???</small></h3>
+          [<a href="https://orcid.org/0000-0003-4701-8497" target="_blank">ORCID</a>]
           <br>
 
           <hr>
@@ -389,9 +397,8 @@ resources:
               <h3>GAGA</h3>
               <p>
                 The Physics Admissions Advisory Council, AKA Graduates Advising Graduate Admissions (GAGA), is a subcommittee of the PGSC
-                that advises the MIT Chair of Admissions from the perspective of the graduate students to improve the admissions process,
-                particularly relating to diversity, equity, and inclusion efforts.  They also organize a mentorship program for prospective 
-                applicants to the MIT Physics PhD program called PhysGAAP (see below).
+                that advises the MIT Chair of Admissions from the perspective of the graduate students to improve the admissions process.  
+                They also organize a mentorship program for prospective applicants to the MIT Physics PhD program called PhysGAAP (see below).
               </p>
             </div>
           </div>
@@ -405,7 +412,7 @@ resources:
               <p>
                 The Physics Graduate Application Assistance Program (PhysGAAP) is a program built to assist prospective MIT Physics PhD students in the
                 application process. The program offers webinars, office hours, and one-on-one mentorship sessions with current MIT Physics graduate students.
-                The goal of the program is to increase equity in the admissions process and ensure that talented students from all backgrounds are considered.
+                The goal of the program is to improve the admissions process and ensure that talented students from all backgrounds are considered.
                 If you're a prospective graduate student interested in applying to MIT, consider signing up for the PhysGAAP program!
               </p>
             </div>

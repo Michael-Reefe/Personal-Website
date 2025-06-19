@@ -224,6 +224,14 @@ function showSection(section) {
 
                         } catch (error) {
                             console.error('Error fetching metrics from ADS:', error);
+                            const total_pubs_first = document.getElementById('total-pubs-first');
+                            total_pubs_first.innerHTML = `???`;
+                            const total_cites_first = document.getElementById('total-cites-first');
+                            total_cites_first.innerHTML = `???`;
+                            const total_pubs_all = document.getElementById('total-pubs-all');
+                            total_pubs_all.innerHTML = `???`;
+                            const total_cites_all = document.getElementById('total-cites-all');
+                            total_cites_all.innerHTML = `???`;
                         }
                     };
 

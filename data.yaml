@@ -228,11 +228,28 @@ publications:
           <br>
           </p>
 
-          <h3>Total first-author refereed publications [<a href="https://ui.adsabs.harvard.edu/search/filter_property_fq_property=AND&filter_property_fq_property=property%3A%22refereed%22&fq=%7B!type%3Daqp%20v%3D%24fq_database%7D&fq=%7B!type%3Daqp%20v%3D%24fq_property%7D&fq_database=(database%3Aastronomy%20OR%20database%3Aphysics)&fq_property=(property%3A%22refereed%22)&q=%20%20first_author%3A%22reefe%2C%20michael%22&sort=citation_count%20desc%2C%20bibcode%20desc&p_=0" target="_blank">NASA/ADS</a>]: <small id="total-pubs-first">???</small></h3> 
-          <h3>Total refereed publications [<a href="https://ui.adsabs.harvard.edu/search/filter_property_fq_property=AND&filter_property_fq_property=property%3A%22refereed%22&fq=%7B!type%3Daqp%20v%3D%24fq_database%7D&fq=%7B!type%3Daqp%20v%3D%24fq_property%7D&fq_database=(database%3Aastronomy%20OR%20database%3Aphysics)&fq_property=(property%3A%22refereed%22)&q=%20author%3A%22reefe%2C%20michael%22&sort=date%20desc%2C%20bibcode%20desc&p_=0" target="_blank">NASA/ADS</a>]: <small id="total-pubs-all">???</small></h3> 
-          <h3>First-author paper citations: <small id="total-cites-first">???</small></h3>
-          <h3>Total citations: <small id="total-cites-all">???</small></h3>
-          [<a href="https://orcid.org/0000-0003-4701-8497" target="_blank">ORCID</a>]
+          <table>
+            <tr>
+              <th></th>
+              <th><h3>Refereed publications</h3></th>
+              <th><h3>Citations</h3></th>
+              <th></th>
+            </tr>
+            <tr>
+              <td><h3>First-author</h3></td>
+              <td><h3 id="total-pubs-first">???</h3></td>
+              <td><h3 id="total-cites-first">???</h3></td>
+              <td><h3>[<a href="https://ui.adsabs.harvard.edu/search/filter_property_fq_property=AND&filter_property_fq_property=property%3A%22refereed%22&fq=%7B!type%3Daqp%20v%3D%24fq_database%7D&fq=%7B!type%3Daqp%20v%3D%24fq_property%7D&fq_database=(database%3Aastronomy%20OR%20database%3Aphysics)&fq_property=(property%3A%22refereed%22)&q=%20%20first_author%3A%22reefe%2C%20michael%22&sort=citation_count%20desc%2C%20bibcode%20desc&p_=0" target="_blank">NASA/ADS</a>]</h3></td>
+            </tr>
+            <tr>
+              <td><h3>Nth-author</h3></td>
+              <td><h3 id="total-pubs-all">???</h3></td>
+              <td><h3 id="total-cites-all">???</h3></td>
+              <td><h3>[<a href="https://ui.adsabs.harvard.edu/search/filter_property_fq_property=AND&filter_property_fq_property=property%3A%22refereed%22&fq=%7B!type%3Daqp%20v%3D%24fq_database%7D&fq=%7B!type%3Daqp%20v%3D%24fq_property%7D&fq_database=(database%3Aastronomy%20OR%20database%3Aphysics)&fq_property=(property%3A%22refereed%22)&q=%20author%3A%22reefe%2C%20michael%22&sort=date%20desc%2C%20bibcode%20desc&p_=0" target="_blank">NASA/ADS</a>]</h3></td> 
+            </tr>
+          </table>
+          <br>
+          <h3>[<a href="https://orcid.org/0000-0003-4701-8497" target="_blank">ORCID</a>]</h3>
           <br>
 
           <hr>
@@ -473,39 +490,37 @@ resources:
 
 home:
   text_left: |
-    <h1>Michael Anthony Reefe</h1>
-    <p>PhD candidate and NSF fellow at MIT</p>
+        <h1>Michael Anthony Reefe</h1>
+        <h3 style="width: 60%">PhD candidate and <a href="https://www.nsfgrfp.org/" target="_blank">NSF Graduate Research Fellow</a> at 
+            <a href="https://www.space.mit.edu/" target="_blank">MIT</a></h3>
+        <div class="title-img-container">
+            <img class="title-img" src="images/IMG_2367.png" alt=""/>
+        </div>
 
-    <div class="button-list">
-        <a href="https://github.com/Michael-Reefe" target="_blank">
-            <span>&#x1F408;</span>
-            GitHub
-        </a>
-        <a href="https://linkedin.com/in/michael-reefe/" target="_blank">
-            <span>&#x1F4F1;</span>
-            LinkedIn
-        </a>
-        <a href="https://orcid.org/0000-0003-4701-8497" target="_blank">
-            <span>&#x1F4D6;</span>
-            ORCID
-        </a>
-        <a href="https://ui.adsabs.harvard.edu/search/fq=%7B!type%3Daqp%20v%3D%24fq_database%7D&fq_database=(database%3Aastronomy%20OR%20database%3Aphysics)&q=%20author%3A%22reefe%2C%20michael%22&sort=date%20desc%2C%20bibcode%20desc&p_=0" target="_blank">
-            <span>&#x1F50E;</span>
-            NASA/ADS
-        </a>
-        <a href="https://arxiv.org/search/?query=michael+reefe&searchtype=author&abstracts=show&order=-announced_date_first&size=50" target="_blank">
-            <span>&#x1F517;</span>
-            arXiv
-        </a>
-        <a href="https://scholar.google.com/citations?hl=en&view_op=list_works&gmla=AFix5MbY7SoMDky2pdfs9ZfeY_kWOEcHEsk0tB7buif1zc5dTqOyuTx6Kq1-t-icjx5mw67KgPjQvYPND-qwlA&user=gURoOcQAAAAJ" target="_blank">
-            <span>&#x1F393;</span>
-            Google Scholar
-        </a>
-      </div>
+        <div class="button-list">
+            <a href="https://github.com/Michael-Reefe" target="_blank">
+                <img class="img-tiny" src="icons/github-mark.svg"/>
+            </a>
+            <a href="https://linkedin.com/in/michael-reefe/" target="_blank">
+                <img class="img-tiny" src="icons/InBug-Black.png"/>
+            </a>
+            <a href="https://orcid.org/0000-0003-4701-8497" target="_blank">
+                <img class="img-tiny" src="icons/ORCID-iD_icon_vector.svg"/>
+            </a>
+            <a href="https://ui.adsabs.harvard.edu/search/fq=%7B!type%3Daqp%20v%3D%24fq_database%7D&fq_database=(database%3Aastronomy%20OR%20database%3Aphysics)&q=%20author%3A%22reefe%2C%20michael%22&sort=date%20desc%2C%20bibcode%20desc&p_=0" target="_blank">
+                <img class="img-tiny" src="icons/ads-logo.svg"/>
+            </a>
+            <a href="https://arxiv.org/search/?query=michael+reefe&searchtype=author&abstracts=show&order=-announced_date_first&size=50" target="_blank">
+                <img class="img-tiny" src="icons/arxiv-logo.svg"/>
+            </a>
+            <a href="https://scholar.google.com/citations?hl=en&view_op=list_works&gmla=AFix5MbY7SoMDky2pdfs9ZfeY_kWOEcHEsk0tB7buif1zc5dTqOyuTx6Kq1-t-icjx5mw67KgPjQvYPND-qwlA&user=gURoOcQAAAAJ" target="_blank">
+                <img class="img-tiny" src="icons/Google_Scholar_logo.svg"/>
+            </a>
+        </div>
 
-    <div class="secret">
-      <a href="#secret" onclick="showSection('secret')">hi</a>
-    </div>
+        <div class="secret">
+            <a href="#secret" onclick="showSection('secret')">hi</a>
+        </div>
   text_right: null
   class_left: null
   class_right: null

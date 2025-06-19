@@ -419,17 +419,20 @@ figcaption {
 
 h1 {
     font-size: 65px;
-    margin: 25px;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 h2 {
     font-size: 35px;
-    margin: 18px;
+    margin-top: 18px;
+    margin-bottom: 18px;
 }
 
 h3 {
     font-size: 25px;
-    margin: 12px;
+    margin-top: 12px;
+    margin-bottom: 12px;
 }
 
 a {
@@ -738,15 +741,18 @@ figcaption {
 
     h1 {
         font-size: 40px;
-        margin: 16px;
+        margin-top: 16px;
+        margin-bottom: 16px;
     }
     h2 {
         font-size: 25px;
-        margin: 12px;
+        margin-top: 12px;
+        margin-bottom: 12px;
     }
     h3 {
         font-size: 18px;
-        margin: 8px;
+        margin-top: 8px;
+        margin-bottom: 8px;
     }
 
     /* justify doesnt work so well on small screens */

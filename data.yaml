@@ -231,25 +231,26 @@ publications:
           <table>
             <tr>
               <th></th>
-              <th><h3>Refereed publications</h3></th>
-              <th><h3>Citations</h3></th>
+              <th>Refereed publications</th>
+              <th>Citations</th>
+              <th></th>
               <th></th>
             </tr>
             <tr>
-              <td><h3>First-author</h3></td>
-              <td><h3 id="total-pubs-first">???</h3></td>
-              <td><h3 id="total-cites-first">???</h3></td>
-              <td><h3>[<a href="https://ui.adsabs.harvard.edu/search/filter_property_fq_property=AND&filter_property_fq_property=property%3A%22refereed%22&fq=%7B!type%3Daqp%20v%3D%24fq_database%7D&fq=%7B!type%3Daqp%20v%3D%24fq_property%7D&fq_database=(database%3Aastronomy%20OR%20database%3Aphysics)&fq_property=(property%3A%22refereed%22)&q=%20%20first_author%3A%22reefe%2C%20michael%22&sort=citation_count%20desc%2C%20bibcode%20desc&p_=0" target="_blank">NASA/ADS</a>]</h3></td>
+              <td>First-author</td>
+              <td id="total-pubs-first">???</td>
+              <td id="total-cites-first">???</td>
+              <td>[<a href="https://ui.adsabs.harvard.edu/search/filter_property_fq_property=AND&filter_property_fq_property=property%3A%22refereed%22&fq=%7B!type%3Daqp%20v%3D%24fq_database%7D&fq=%7B!type%3Daqp%20v%3D%24fq_property%7D&fq_database=(database%3Aastronomy%20OR%20database%3Aphysics)&fq_property=(property%3A%22refereed%22)&q=%20%20first_author%3A%22reefe%2C%20michael%22&sort=citation_count%20desc%2C%20bibcode%20desc&p_=0" target="_blank">NASA/ADS</a>]</td>
+              <td></td>
             </tr>
             <tr>
-              <td><h3>Nth-author</h3></td>
-              <td><h3 id="total-pubs-all">???</h3></td>
-              <td><h3 id="total-cites-all">???</h3></td>
-              <td><h3>[<a href="https://ui.adsabs.harvard.edu/search/filter_property_fq_property=AND&filter_property_fq_property=property%3A%22refereed%22&fq=%7B!type%3Daqp%20v%3D%24fq_database%7D&fq=%7B!type%3Daqp%20v%3D%24fq_property%7D&fq_database=(database%3Aastronomy%20OR%20database%3Aphysics)&fq_property=(property%3A%22refereed%22)&q=%20author%3A%22reefe%2C%20michael%22&sort=date%20desc%2C%20bibcode%20desc&p_=0" target="_blank">NASA/ADS</a>]</h3></td> 
+              <td>Nth-author</td>
+              <td id="total-pubs-all">???</td>
+              <td id="total-cites-all">???</td>
+              <td>[<a href="https://ui.adsabs.harvard.edu/search/filter_property_fq_property=AND&filter_property_fq_property=property%3A%22refereed%22&fq=%7B!type%3Daqp%20v%3D%24fq_database%7D&fq=%7B!type%3Daqp%20v%3D%24fq_property%7D&fq_database=(database%3Aastronomy%20OR%20database%3Aphysics)&fq_property=(property%3A%22refereed%22)&q=%20author%3A%22reefe%2C%20michael%22&sort=date%20desc%2C%20bibcode%20desc&p_=0" target="_blank">NASA/ADS</a>]</td> 
+              <td>[<a href="https://orcid.org/0000-0003-4701-8497" target="_blank">ORCID</a>]</td>
             </tr>
           </table>
-          <br>
-          <h3>[<a href="https://orcid.org/0000-0003-4701-8497" target="_blank">ORCID</a>]</h3>
           <br>
 
           <hr>
@@ -490,7 +491,7 @@ resources:
 
 home:
   text_left: |
-        <h1>Michael Anthony Reefe</h1>
+        <h1>Michael Reefe</h1>
         <h3 style="width: 60%">PhD candidate and <a href="https://www.nsfgrfp.org/" target="_blank">NSF Graduate Research Fellow</a> at 
             <a href="https://www.space.mit.edu/" target="_blank">MIT</a></h3>
         <div class="title-img-container">

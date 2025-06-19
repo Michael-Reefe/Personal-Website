@@ -11,10 +11,12 @@ body {
 }
 
 th, td {
-    padding: 10px;
-    padding-top: -10px;
-    padding-bottom: -10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
     text-align: right;
+    font-size: 16px;
 }
 
 
@@ -417,14 +419,17 @@ figcaption {
 
 h1 {
     font-size: 65px;
+    margin: 25px;
 }
 
 h2 {
     font-size: 35px;
+    margin: 18px;
 }
 
 h3 {
     font-size: 25px;
+    margin: 12px;
 }
 
 a {
@@ -574,10 +579,11 @@ figcaption {
 
 .title-img-container {
     display: flex;
-    min-width: 15%;
-    max-width: 20%;
-    min-height: 10%;
-    max-height: 30%;
+    min-width: 20%;
+    max-width: 300px;
+    width: auto;
+    min-height: 100px;
+    max-height: 35%;
     box-sizing: border-box;
     padding: 3px;
     align-self: center;
@@ -723,21 +729,24 @@ figcaption {
 }
 
 @media (max-width: 1024px) {
-    .button-list {
+    /* .button-list {
         grid-template-columns: repeat(3, 33px);
-    }
+    } */
 }
 
 @media (max-width: 768px) {
 
     h1 {
         font-size: 40px;
+        margin: 16px;
     }
     h2 {
         font-size: 25px;
+        margin: 12px;
     }
     h3 {
         font-size: 18px;
+        margin: 8px;
     }
 
     /* justify doesnt work so well on small screens */
@@ -753,7 +762,7 @@ figcaption {
 
     /* smaller button list */
     .button-list {
-        grid-template-columns: repeat(3, 33px);
+        /* grid-template-columns: repeat(3, 33px); */
         margin: 10px 5px;
     }
     .button-list a {
@@ -865,10 +874,6 @@ figcaption {
     }
 
     .scrollarrow-container-right {
-        display: none;
-    }
-
-    .title-img {
         display: none;
     }
 }

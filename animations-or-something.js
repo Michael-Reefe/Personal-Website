@@ -2,7 +2,8 @@
 // NASA/ADS queries
 const adsSearchFirstURL = 'https://api.michaelreefe.space/ads-search-first';
 const adsSearchAllURL = 'https://api.michaelreefe.space/ads-search-all';
-const adsMetricURL = 'https://api.michaelreefe.space/ads-metrics';
+const adsMetricFirstURL = 'https://api.michaelreefe.space/ads-metrics-first';
+const adsMetricAllURL = 'https://api.michaelreefe.space/ads-metrics-all';
 
 const background = document.getElementById('background');
 const content = document.getElementById('content');
@@ -176,7 +177,7 @@ function showSection(section) {
                                 const total_pubs_first = document.getElementById('total-pubs-first');
                                 total_pubs_first.innerHTML = `${firstpubs}`;
                                 // First author citations
-                                fetch(adsMetricURL, {
+                                fetch(adsMetricFirstURL, {
                                     method: 'POST',
                                     headers: {'Content-Type': 'application/json'},
                                     body: JSON.stringify({bibcodes: bibcodes})
@@ -205,7 +206,7 @@ function showSection(section) {
                                 const total_pubs_all = document.getElementById('total-pubs-all');
                                 total_pubs_all.innerHTML = `${allpubs}`;
                                 // First author citations
-                                fetch(adsMetricURL, {
+                                fetch(adsMetricAllURL, {
                                     method: 'POST',
                                     headers: {'Content-Type': 'application/json'},
                                     body: JSON.stringify({bibcodes: bibcodes})

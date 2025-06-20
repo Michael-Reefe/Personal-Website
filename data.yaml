@@ -44,7 +44,7 @@ cv:
   text_left: |
         <div class="spacey-border">
           <embed src="Michael_Reefe_CV.pdf" width="95%" height="95%" type="application/pdf">
-          <p style="color: gray"><em><a href="Michael_Reefe_CV.pdf" target="_blank">Click here to access the PDF on a separate page</a>.</em></p>
+          <p style="color: gray; font-size: 12pt"><em><a href="Michael_Reefe_CV.pdf" target="_blank">Click here to access the PDF on a separate page</a>.</em></p>
         </div>
   text_right: null
   class_left: null
@@ -255,6 +255,36 @@ publications:
 
           <hr>
 
+
+          <h2>Media & Press Appearances</h2>
+
+          <b><a href="https://science.nasa.gov/missions/webb/webb-maps-full-picture-of-how-phoenix-galaxy-cluster-forms-stars/"
+            target="_blank">Webb Maps Full Picture of How Phoenix Galaxy Cluster Forms Stars</a><b>
+          <br>
+          <i>NASA Press Release. February 13, 2025.</i>
+          <br>
+          <br>
+
+          <b><a href="https://news.mit.edu/2025/study-reveals-phoenix-galaxy-cluster-extreme-cooling-0213" 
+            target="_blank">Study reveals the Phoenix galaxy cluster in the act of extreme cooling</a></b>
+          <br>
+          <i>MIT News Press Release. February 13, 2025.</i>
+          <br>
+          <br>
+
+          <b>GMU College of Science Graduation Ceremony</b>
+          <br>
+          <i>May 21, 2022.</i>
+          <br>
+          <iframe width="420" height="315" src="https://www.youtube.com/embed/xsyi9sqYH4o?start=2086" 
+            title="George Mason University | Spring 2022 Graduation | College of Science | May 21, 2022 – 10am ET" 
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <br>
+          <br>
+
+          <hr>
+
           <h2>Conferences & Presentations</h2>
 
           <b>25 Years of Science with Chandra</b>
@@ -317,35 +347,6 @@ publications:
           <br>
           "An Asynchronous Object-Oriented Approach to Automation of the 0.8-meter
           George Mason University Campus Telescope in Python" (Poster), [<a href="https://ui.adsabs.harvard.edu/abs/2021AAS...23734407R/abstract" target="_blank">ADS</a>]
-          <br>
-          <br>
-
-          <hr>
-
-          <h2>Media & Press Appearances</h2>
-
-          <b><a href="https://science.nasa.gov/missions/webb/webb-maps-full-picture-of-how-phoenix-galaxy-cluster-forms-stars/"
-            target="_blank">Webb Maps Full Picture of How Phoenix Galaxy Cluster Forms Stars</a><b>
-          <br>
-          <i>NASA Press Release. February 13, 2025.</i>
-          <br>
-          <br>
-
-          <b><a href="https://news.mit.edu/2025/study-reveals-phoenix-galaxy-cluster-extreme-cooling-0213" 
-            target="_blank">Study reveals the Phoenix galaxy cluster in the act of extreme cooling</a></b>
-          <br>
-          <i>MIT News Press Release. February 13, 2025.</i>
-          <br>
-          <br>
-
-          <b>GMU College of Science Graduation Ceremony</b>
-          <br>
-          <i>May 21, 2022.</i>
-          <br>
-          <iframe width="420" height="315" src="https://www.youtube.com/embed/xsyi9sqYH4o?start=2086" 
-            title="George Mason University | Spring 2022 Graduation | College of Science | May 21, 2022 – 10am ET" 
-            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           <br>
           <br>
         </div>

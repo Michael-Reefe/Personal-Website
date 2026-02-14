@@ -204,5 +204,15 @@
       </div>
     </div>
   </main>
+  <script src="animations-or-something.js"></script>
+  <script>
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        if (typeof getADSmetrics === 'function') getADSmetrics();
+      });
+    } else {
+      if (typeof getADSmetrics === 'function') getADSmetrics();
+    }
+  </script>
 </body>
 </html>

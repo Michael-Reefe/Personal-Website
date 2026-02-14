@@ -1,3 +1,85 @@
+// NASA/ADS queries
+const adsSearchFirstURL = 'https://api.michaelreefe.space/ads-search-first';
+const adsSearchAllURL = 'https://api.michaelreefe.space/ads-search-all';
+const adsMetricFirstURL = 'https://api.michaelreefe.space/ads-metrics-first';
+const adsMetricAllURL = 'https://api.michaelreefe.space/ads-metrics-all';
+
+function getADSmetrics() {
+
+	try {
+
+		// First-author refereed publications
+		data = fetch(adsSearchFirstURL, {})
+		.then(response => {
+			if (!response.ok) throw new Error(`NASA/ADS request failed. Status: ${response.status}`);
+			return response.json();
+		})
+		.then(data => {
+			const firstpubs = data["response"]["numFound"];
+			const bibcodes = data.response.docs.map(doc => doc.bibcode);
+			const total_pubs_first = document.getElementById('total-pubs-first');
+			total_pubs_first.innerHTML = `${firstpubs}`;
+			// First author citations
+			fetch(adsMetricFirstURL, {
+				method: 'POST',
+				headers: {'Content-Type': 'application/json'},
+				body: JSON.stringify({bibcodes: bibcodes})
+			})
+			.then(response => {
+				if (!response.ok) throw new Error(`NASA/ADS request failed. Status: ${response.status}`);
+				return response.json();
+			})
+			.then(data => {
+				const firstcites = data["citation stats"]["total number of citations"];
+				const total_cites_first = document.getElementById('total-cites-first');
+				total_cites_first.innerHTML = `${firstcites}`
+			})
+			return;
+		})
+
+		// Nth-author refereed publications
+		data = fetch(adsSearchAllURL, {})
+		.then(response => {
+			if (!response.ok) throw new Error(`NASA/ADS request failed. Status: ${response.status}`);
+			return response.json();
+		})
+		.then(data => {
+			const allpubs = data["response"]["numFound"];
+			const bibcodes = data.response.docs.map(doc => doc.bibcode);
+			const total_pubs_all = document.getElementById('total-pubs-all');
+			total_pubs_all.innerHTML = `${allpubs}`;
+			// First author citations
+			fetch(adsMetricAllURL, {
+				method: 'POST',
+				headers: {'Content-Type': 'application/json'},
+				body: JSON.stringify({bibcodes: bibcodes})
+			})
+			.then(response => {
+				if (!response.ok) throw new Error(`NASA/ADS request failed. Status: ${response.status}`);
+				return response.json();
+			})
+			.then(data => {
+				const allcites = data["citation stats"]["total number of citations"];
+				const total_cites_all = document.getElementById('total-cites-all');
+				total_cites_all.innerHTML = `${allcites}`
+			})
+			return;
+		})
+
+	} catch (error) {
+		console.error('Error fetching metrics from ADS:', error);
+		const total_pubs_first = document.getElementById('total-pubs-first');
+		total_pubs_first.innerHTML = `???`;
+		const total_cites_first = document.getElementById('total-cites-first');
+		total_cites_first.innerHTML = `???`;
+		const total_pubs_all = document.getElementById('total-pubs-all');
+		total_pubs_all.innerHTML = `???`;
+		const total_cites_all = document.getElementById('total-cites-all');
+		total_cites_all.innerHTML = `???`;
+	}
+
+};
+
 // animation / helper script
 // Position overlay regions so they stay locked to the same parts of the
 // source image when the image is displayed with `object-fit: cover`.

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michael Reefe</title>
+    <link rel="stylesheet" type="text/css" href="wow-so-cool.css?v=1.2">
+    <style>
+        body.mobile-home {
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .mobile-wrapper {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        
+        .mobile-title {
+            padding: 20px;
+            text-align: center;
+            font-family: PixelOperator, sans-serif;
+            font-size: 32pt;
+            color: #ffffff;
+            margin: 0;
+        }
+        
+        .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        
+        .mobile-nav-btn {
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-start;
+            position: relative;
+            height: 64px;
+            width: 100%;
+            background: #000000;
+            border: none;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            padding: 0;
+            text-decoration: none;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        
+        .mobile-nav-btn-img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            filter: grayscale(100%) brightness(0.6);
+            transition: filter 200ms ease;
+        }
+        
+        .mobile-nav-btn:hover .mobile-nav-btn-img,
+        .mobile-nav-btn:focus .mobile-nav-btn-img {
+            filter: none;
+        }
+        
+        .mobile-nav-btn::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            box-shadow: inset 0 0 0 2px rgba(255,255,255,0.28);
+            z-index: 6;
+        }
+        
+        .mobile-nav-btn-label {
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 12px);
+            padding: 4px 6px;
+            font-size: 17pt;
+            color: #ffffff;
+            font-family: PixelOperator, sans-serif;
+            text-align: center;
+            border-radius: 4px;
+            pointer-events: none;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.7);
+            -webkit-text-stroke: 0.6px rgba(0,0,0,0.6);
+            z-index: 12;
+        }
+        
+        .mobile-credit {
+            padding: 16px;
+            font-size: 12pt;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.04);
+            color: #ffffff;
+            font-family: PixelOperator, sans-serif;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body class="mobile-home">
+    <div class="mobile-wrapper">
+        <h1 class="mobile-title">Michael Reefe</h1>
+        
+        <div class="mobile-nav">
+            <a href="about.html" class="mobile-nav-btn">
+                <img src="images/cygnus_a/iyl_cyga_xray_nav.png" alt="" class="mobile-nav-btn-img">
+                <span class="mobile-nav-btn-label">About</span>
+            </a>
+            
+            <a href="cv.html" class="mobile-nav-btn">
+                <img src="images/cygnus_a/iyl_cyga_radio_L_nav.png" alt="" class="mobile-nav-btn-img">
+                <span class="mobile-nav-btn-label">CV</span>
+            </a>
+            
+            <a href="resources.html" class="mobile-nav-btn">
+                <img src="images/cygnus_a/iyl_cyga_optical_outskirts_nav.png" alt="" class="mobile-nav-btn-img">
+                <span class="mobile-nav-btn-label">Resources</span>
+            </a>
+            
+            <a href="publications.html" class="mobile-nav-btn">
+                <img src="images/cygnus_a/iyl_cyga_optical_BCG_nav.png" alt="" class="mobile-nav-btn-img">
+                <span class="mobile-nav-btn-label">Publications</span>
+            </a>
+            
+            <a href="research.html" class="mobile-nav-btn">
+                <img src="images/cygnus_a/iyl_cyga_radio_R_nav.png" alt="" class="mobile-nav-btn-img">
+                <span class="mobile-nav-btn-label">Research</span>
+            </a>
+        </div>
+        
+        <div class="mobile-credit">Image: Cygnus A | Credit: X-ray (blue): NASA/CXC/SAO; Optical (yellow): NASA/STScI; Radio (red): NSF/NRAO/AUI/VLA</div>
+    </div>
+</body>
+</html>

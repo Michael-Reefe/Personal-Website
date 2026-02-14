@@ -1,249 +1,195 @@
+// animation / helper script
+// Position overlay regions so they stay locked to the same parts of the
+// source image when the image is displayed with `object-fit: cover`.
+(function(){
+	function initBgOverlayMapping(){
+		const wrapper = document.querySelector('.bg-wrapper');
+		if(!wrapper) return;
+		const img = wrapper.querySelector('.bg-img');
+		const links = wrapper.querySelectorAll('.bg-link');
 
-// NASA/ADS queries
-const adsSearchFirstURL = 'https://api.michaelreefe.space/ads-search-first';
-const adsSearchAllURL = 'https://api.michaelreefe.space/ads-search-all';
-const adsMetricFirstURL = 'https://api.michaelreefe.space/ads-metrics-first';
-const adsMetricAllURL = 'https://api.michaelreefe.space/ads-metrics-all';
+		function updatePositions(){
+			const containerW = wrapper.clientWidth, containerH = wrapper.clientHeight;
+			let naturalW = img.naturalWidth, naturalH = img.naturalHeight;
+			let useImageMapping = !!(naturalW && naturalH);
+			let dispW, dispH, offsetX, offsetY;
+			if(useImageMapping){
+				// use `contain` so the full image is visible; letterbox (black bars)
+				const scale = Math.min(containerW / naturalW, containerH / naturalH); // contain
+				dispW = naturalW * scale; dispH = naturalH * scale;
+				// when contained, the image is smaller than the container and is centered
+				offsetX = (containerW - dispW) / 2;
+				offsetY = (containerH - dispH) / 2;
+				// expose displayed image rectangle to CSS via variables
+				wrapper.style.setProperty('--img-left', offsetX + 'px');
+				wrapper.style.setProperty('--img-top', offsetY + 'px');
+				wrapper.style.setProperty('--img-w', dispW + 'px');
+				wrapper.style.setProperty('--img-h', dispH + 'px');
+				// reveal frame/scanline after positioning is calculated
+				wrapper.style.setProperty('--img-frame-opacity', '1');
+				wrapper.style.setProperty('--img-scan-opacity', '0.95');
 
-const background = document.getElementById('background');
-const content = document.getElementById('content');
-const cursor = document.getElementById('cursor');
-const audioplayer = document.getElementById('audioplayer');
-let currentZoomClass = 'zoom-out';
-let sectionData = {};
+			} else {
+				// fallback: image fills wrapper
+				offsetX = 0; offsetY = 0;
+				wrapper.style.setProperty('--img-left', '0px');
+				wrapper.style.setProperty('--img-top', '0px');
+				wrapper.style.setProperty('--img-w', containerW + 'px');
+				wrapper.style.setProperty('--img-h', containerH + 'px');
+				// reveal frame/scanline for fallback mapping
+				wrapper.style.setProperty('--img-frame-opacity', '1');
+				wrapper.style.setProperty('--img-scan-opacity', '0.95');
+				// fallback: treat the displayed image as occupying the full wrapper
+				dispW = containerW; dispH = containerH; offsetX = 0; offsetY = 0;
+			}
 
-$.get('data.yaml')
-.done(function (data) {
-    console.log('File load complete');
-    sectionData = jsyaml.load(data);
-    console.log(sectionData);
-});
+			links.forEach(link => {
+				const x = parseFloat(link.dataset.x) || 0;
+				const y = parseFloat(link.dataset.y) || 0;
+				const w = parseFloat(link.dataset.w) || 0.18;
+				const h = parseFloat(link.dataset.h) || 0.22;
 
-// Mouse trail animation
-document.addEventListener('mousemove', (e) => {
-    const { clientX, clientY } = e;
+				const displayedX = x * dispW; // image-relative coords -> displayed image coords
+				const displayedY = y * dispH;
+				const displayedW = w * dispW;
+				const displayedH = h * dispH;
 
-    // Move main cursor
-    cursor.style.left = `${clientX - 10}px`;
-    cursor.style.top = `${clientY - 10}px`;
+				// displayedX/Y are coords inside the displayed image; convert to container coords
+				let left = (offsetX + displayedX) / containerW * 100;
+				let top = (offsetY + displayedY) / containerH * 100;
+				let widthPct = displayedW / containerW * 100;
+				let heightPct = displayedH / containerH * 100;
 
-    // Create trail
-    const trail = document.createElement('div');
-    trail.className = 'trail';
-    trail.style.left = `${clientX - 3}px`;
-    trail.style.top = `${clientY - 3}px`;
-    document.body.appendChild(trail);
+				// fallback / sanitize in case of bad math or zero container size
+				if(!isFinite(left)) left = x * 100;
+				if(!isFinite(top)) top = y * 100;
+				if(!isFinite(widthPct)) widthPct = w * 100;
+				if(!isFinite(heightPct)) heightPct = h * 100;
 
-    // Remove trail after animation
-    setTimeout(() => {
-        document.body.removeChild(trail);
-    }, 1000);
-});
+				// clamp values to reasonable ranges so elements stay visible
+				left = Math.max(-100, Math.min(200, left));
+				top = Math.max(-100, Math.min(200, top));
+				widthPct = Math.max(0.5, Math.min(200, widthPct));
+				heightPct = Math.max(0.5, Math.min(200, heightPct));
 
-// Automatically close the nav conatiner menu when a link in it is clicked
-const menuToggle = document.getElementById('menu-toggle');
-document.querySelectorAll('.nav-container nav a').forEach(link => {
-    link.addEventListener('click', () => {
-        menuToggle.checked = false; // Uncheck the menu toggle
-    });
-});
+				link.style.left = left + '%';
+				link.style.top = top + '%';
+				link.style.width = widthPct + '%';
+				link.style.height = heightPct + '%';
 
+				// prepare hover preview data for this link
+				const srcImg = link.dataset.img ? link.dataset.img : (img && img.src ? img.src : null);
+				link._hp = {
+					image: srcImg ? ('url("' + srcImg + '")') : null,
+					size: dispW + 'px ' + dispH + 'px',
+					pos: offsetX + 'px ' + offsetY + 'px'
+				};
+			});
 
-// Add a spinning animation to links on hover
-function addLinkHoverAnimation() {
+			// create hover-preview if not present
+			let hoverPreview = wrapper.querySelector('.hover-preview');
+			if(!hoverPreview){
+				hoverPreview = document.createElement('div');
+				hoverPreview.className = 'hover-preview';
+				wrapper.appendChild(hoverPreview);
+			}
 
-    // Select all links on the page
-    const links = document.querySelectorAll('a');
+			// position any anchored elements (e.g. .site-title with data-x/data-y)
+			const anchored = wrapper.querySelectorAll('.anchored');
+			anchored.forEach(el => {
+				const ax = parseFloat(el.dataset.x);
+				const ay = parseFloat(el.dataset.y);
+				const x = isFinite(ax) ? ax : 0.5;
+				const y = isFinite(ay) ? ay : 0.05;
+				const displayedX = x * dispW;
+				const displayedY = y * dispH;
+				let left = (offsetX + displayedX) / containerW * 100;
+				let top = (offsetY + displayedY) / containerH * 100;
+				if(!isFinite(left)) left = x * 100;
+				if(!isFinite(top)) top = y * 100;
+				left = Math.max(-200, Math.min(300, left));
+				top = Math.max(-200, Math.min(300, top));
+				el.style.left = left + '%';
+				el.style.top = top + '%';
+				el.style.transform = 'translate(-50%, -50%)';
+			});
 
-    // Define the spinning animation CSS class
-    const spinAnimationClass = 'spinning-thing';
+			// attach hover handlers to show the full-image preview
+			links.forEach(link => {
+				if(link._hp_listenersAdded) return;
+				function enter(){
+					if(link._hp && link._hp.image) hoverPreview.style.setProperty('--hp-bg-image', link._hp.image);
+					if(link._hp && link._hp.size) hoverPreview.style.setProperty('--hp-bg-size', link._hp.size);
+					if(link._hp && link._hp.pos) hoverPreview.style.setProperty('--hp-bg-pos', link._hp.pos);
+					// dim / desaturate the original background while hovering
+					wrapper.classList.add('link-hovered');
+					// mark which section is hovered so other labels can be grayscaled
+					const sectionClass = Array.from(link.classList).find(c => c.indexOf('link-') === 0);
+					if(sectionClass){
+						wrapper.setAttribute('data-hover', sectionClass.replace('link-',''));
+					}
+					hoverPreview.classList.add('visible');
+				}
+				function leave(){
+					hoverPreview.classList.remove('visible');
+					wrapper.classList.remove('link-hovered');
+					wrapper.removeAttribute('data-hover');
+				}
+				link.addEventListener('mouseenter', enter);
+				link.addEventListener('focus', enter);
+				link.addEventListener('mouseleave', leave);
+				link.addEventListener('blur', leave);
+				// secret link click: toggle audioplayer
+				if(link.classList.contains('link-secret')){
+					link.addEventListener('click', function(ev){
+						ev.preventDefault();
+						// create or toggle audioplayer
+						let player = document.getElementById('audioplayer');
+						if(player){
+							const nowVisible = player.classList.toggle('visible');
+							const aud = player.querySelector('audio');
+							if(nowVisible){ aud.play().catch(()=>{}); } else { aud.pause(); }
+							return;
+						}
+						player = document.createElement('div');
+						player.id = 'audioplayer';
+						player.className = 'audioplayer visible';
+						// audio element
+						const audio = document.createElement('audio');
+						audio.controls = true;
+						audio.preload = 'auto';
+						if(link.dataset.audio && link.dataset.audio.trim()) audio.src = link.dataset.audio;
+						audio.autoplay = true;
+						// close button
+						const close = document.createElement('button');
+						close.className = 'close';
+						close.textContent = '✕';
+						close.addEventListener('click', function(){ player.remove(); });
+						player.appendChild(audio);
+						player.appendChild(close);
+						document.body.appendChild(player);
+						// attempt to play (user click should allow autoplay)
+						audio.play().catch(()=>{});
+					});
+				}
+				link._hp_listenersAdded = true;
+			});
+		}
 
-    const eventListeners = []; // Track listeners for cleanup
+		window.addEventListener('resize', updatePositions);
+		if(img.complete && img.naturalWidth){
+			updatePositions();
+		} else {
+			img.addEventListener('load', updatePositions);
+		}
+		const ro = new ResizeObserver(updatePositions);
+		ro.observe(wrapper);
+	}
 
-    // Add event listeners to each link
-    const mouseEnterHandler = () => {
-        cursor.classList.add(spinAnimationClass)
-    };
-    const mouseLeaveHandler = () => {
-        cursor.classList.remove(spinAnimationClass)
-    };
-    links.forEach(link => {
-        link.addEventListener('mouseenter', mouseEnterHandler);
-        link.addEventListener('mouseleave', mouseLeaveHandler);
-        eventListeners.push({ link, mouseEnterHandler, mouseLeaveHandler });
-    });
+	if(document.readyState === 'loading'){
+		document.addEventListener('DOMContentLoaded', initBgOverlayMapping);
+	} else {
+		initBgOverlayMapping();
+	}
+})();
 
-    // Return a cleanup function
-    return function cleanup() {
-        eventListeners.forEach(({ link, mouseEnterHandler, mouseLeaveHandler }) => {
-            link.removeEventListener('mouseenter', mouseEnterHandler);
-            link.removeEventListener('mouseleave', mouseLeaveHandler);
-        });
-    }
-}
-
-// Call the function to add the hover animation
-linkhovercleanup = addLinkHoverAnimation();
-
-function showSection(section) {
-
-    const zoomClassMap = {
-        about: 'zoom-about',
-        research: 'zoom-research',
-        cv: 'zoom-cv',
-        publications: 'zoom-publications',
-        affiliations: 'zoom-affils',
-        resources: 'zoom-resources',
-        home: 'zoom-out',
-        secret: 'zoom-secret',
-    };
-
-    const newZoomClass = zoomClassMap[section];
-    const { text_left, text_right, class_left, class_right } = sectionData[section] || {};
-
-    // If the new page is the same as the old page, immediately return
-    if (newZoomClass == currentZoomClass) {
-        return 
-    };
-
-    // Step 1: Fade out current content
-    content.classList.add('hidden');
-
-    // Wait for the fade-out animation to complete
-    setTimeout(() => {
-        // Step 2: Increase brightness to 100%
-        background.classList.remove('dim-background');
-
-        // Wait for the brightness transition to complete
-        setTimeout(() => {
-            // Step 3: Handle zoom/pan separately
-            // Remove the current zoom class
-            background.classList.remove(currentZoomClass);
-            // Add the new zoom class
-            background.classList.add(newZoomClass);
-            currentZoomClass = newZoomClass;
-
-            // Wait for the zoom/pan animation to complete
-            setTimeout(() => {
-                // Step 4: Reduce brightness to 50% - but only if we're not zooming out to the home screen
-                if (newZoomClass !== 'zoom-out') {
-                    background.classList.add('dim-background')
-                };
-
-                // Wait for brightness reduction to complete
-                setTimeout(() => {
-
-                    // Step 5: Fade in new content
-                    if (class_left) {
-                        content.innerHTML = `
-                            <div class="${class_left}">
-                                ${text_left}
-                            </div>
-                            <div class="${class_right}">
-                                ${text_right}
-                            </div>
-                        `;
-                    } else {
-                        content.innerHTML = `
-                            ${text_left}
-                        `;
-                    }
-
-                    // If they found the secret, permanently load in the audio file (at least until the page is refreshed)
-                    if (newZoomClass == 'zoom-secret') {
-                        audioplayer.innerHTML = `
-                            <audio id="player" controls autoplay>
-                                <source src="super-secret-folder-wow-what-could-it-be/IMSLP323008-PMLP126430-vivaldi_rv63_Gardner.mp3">
-                            </audio>
-                        `;
-                    };
-
-                    if (newZoomClass == 'zoom-publications') {
-
-
-                        // make an API request to NASA/ADS for up-to-date publication information :)
-                        // this uses a backend that I'm hosting on an AWS Lightsail server
-                        try {
-
-                            // First-author refereed publications
-                            data = fetch(adsSearchFirstURL, {})
-                            .then(response => {
-                                if (!response.ok) throw new Error(`NASA/ADS request failed. Status: ${response.status}`);
-                                return response.json();
-                            })
-                            .then(data => {
-                                const firstpubs = data["response"]["numFound"];
-                                const bibcodes = data.response.docs.map(doc => doc.bibcode);
-                                const total_pubs_first = document.getElementById('total-pubs-first');
-                                total_pubs_first.innerHTML = `${firstpubs}`;
-                                // First author citations
-                                fetch(adsMetricFirstURL, {
-                                    method: 'POST',
-                                    headers: {'Content-Type': 'application/json'},
-                                    body: JSON.stringify({bibcodes: bibcodes})
-                                })
-                                .then(response => {
-                                    if (!response.ok) throw new Error(`NASA/ADS request failed. Status: ${response.status}`);
-                                    return response.json();
-                                })
-                                .then(data => {
-                                    const firstcites = data["citation stats"]["total number of citations"];
-                                    const total_cites_first = document.getElementById('total-cites-first');
-                                    total_cites_first.innerHTML = `${firstcites}`
-                                })
-                                return;
-                            })
-
-                            // Nth-author refereed publications
-                            data = fetch(adsSearchAllURL, {})
-                            .then(response => {
-                                if (!response.ok) throw new Error(`NASA/ADS request failed. Status: ${response.status}`);
-                                return response.json();
-                            })
-                            .then(data => {
-                                const allpubs = data["response"]["numFound"];
-                                const bibcodes = data.response.docs.map(doc => doc.bibcode);
-                                const total_pubs_all = document.getElementById('total-pubs-all');
-                                total_pubs_all.innerHTML = `${allpubs}`;
-                                // First author citations
-                                fetch(adsMetricAllURL, {
-                                    method: 'POST',
-                                    headers: {'Content-Type': 'application/json'},
-                                    body: JSON.stringify({bibcodes: bibcodes})
-                                })
-                                .then(response => {
-                                    if (!response.ok) throw new Error(`NASA/ADS request failed. Status: ${response.status}`);
-                                    return response.json();
-                                })
-                                .then(data => {
-                                    const allcites = data["citation stats"]["total number of citations"];
-                                    const total_cites_all = document.getElementById('total-cites-all');
-                                    total_cites_all.innerHTML = `${allcites}`
-                                })
-                                return;
-                            })
-
-                        } catch (error) {
-                            console.error('Error fetching metrics from ADS:', error);
-                            const total_pubs_first = document.getElementById('total-pubs-first');
-                            total_pubs_first.innerHTML = `???`;
-                            const total_cites_first = document.getElementById('total-cites-first');
-                            total_cites_first.innerHTML = `???`;
-                            const total_pubs_all = document.getElementById('total-pubs-all');
-                            total_pubs_all.innerHTML = `???`;
-                            const total_cites_all = document.getElementById('total-cites-all');
-                            total_cites_all.innerHTML = `???`;
-                        }
-                    };
-
-                    content.classList.remove('hidden');
-
-                    // Reset the mouse event handlers
-                    linkhovercleanup();
-                    linkhovercleanup = addLinkHoverAnimation();
-
-                }, 500); // Wait for brightness reduction
-            }, 1500); // Wait for zoom/pan animation
-        }, 500); // Wait for brightness increase
-    }, 500); // Wait for fade-out animation
-}

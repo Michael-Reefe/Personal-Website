@@ -6,78 +6,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Researcher Personal Website</title>
 	<link rel="stylesheet" type="text/css" href="wow-so-cool.css?v=1.2">
+    <script>
+        // Redirect mobile users to mobile homepage
+        function checkMobileAndRedirect() {
+            const isMobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            if (isMobile && !window.location.pathname.includes('index-mobile')) {
+                window.location.href = 'index-mobile.html';
+            }
+        }
+        // Run check when page loads and on resize
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', checkMobileAndRedirect);
+        } else {
+            checkMobileAndRedirect();
+        }
+    </script>
 </head>
 <body>
-    <div class="background" id="background"></div>
 
-    <div class="nav-container" id="nav-container">
-        <!-- <div class="scrollarrow-container-left noback" id="scrollarrow-container-left"></div> -->
-        <input type="checkbox" id="menu-toggle" class="menu-toggle">
-        <label for="menu-toggle" class="menu-icon"><a style="color: white">
-            <span></span>  <!-- each span is one horizontal line in the hamburger menu button -->
-            <span></span>
-            <span></span>
-        </a></label>
-        <nav id="nav-container-nav">
-            <a href="#home" onclick="showSection('home')">Home</a>
-            <a href="#about" onclick="showSection('about')">About</a>
-            <a href="#cv" onclick="showSection('cv')">CV</a>
-            <a href="#research" onclick="showSection('research')">Research</a>
-            <a href="#publications" onclick="showSection('publications')">Publications</a>
-            <a href="#groups" onclick="showSection('affiliations')">Affiliations</a>
-            <a href="#resources" onclick="showSection('resources')"> Resources</a>
-            <!-- <a href="#links" onclick="showSection('links')">Links</a> -->
-        </nav>
-        <!-- <div class="scrollarrow-container-right" id="scrollarrow-container-right">&#8250</div> -->
-    </div>
+    <!-- Responsive background wrapper so overlays track the image consistently -->
+    <div class="bg-wrapper">
+        <h1 class="site-title anchored" data-x="0.5" data-y="0.06">Michael Reefe</h1>
+        <img src="images/cygnus_a/iyl_cyga.jpg" alt="Background" class="bg-img">
 
-    <div class="content" id="content">
-        <h1>Michael Reefe</h1>
-        <h3 style="width: 60%">PhD candidate and <a href="https://www.nsfgrfp.org/" target="_blank">NSF Graduate Research Fellow</a> at 
-            <a href="https://www.space.mit.edu/" target="_blank">MIT</a></h3>
-        <div class="title-img-container">
-            <img class="title-img" src="images/IMG_2367.png" alt=""/>
-        </div>
-
-        <div class="button-list">
-            <a href="https://github.com/Michael-Reefe" target="_blank">
-                <img class="img-tiny" src="icons/github-mark.svg"/>
+        <!-- Hover-activated background link overlays -->
+        <div class="bg-overlay" aria-hidden="false">
+            <a class="bg-link link-about" href="about.html" 
+                data-x="0.25" data-y="0.25" data-w="0.50" data-h="0.50" data-img="images/cygnus_a/iyl_cyga_xray.png">
+                <span class="label">About</span>
             </a>
-            <a href="https://linkedin.com/in/michael-reefe/" target="_blank">
-                <img class="img-tiny" src="icons/InBug-Black.png"/>
+            <a class="bg-link link-cv" href="cv.html" 
+                data-x="0.10" data-y="0.44" data-w="0.27" data-h="0.22" data-img="images/cygnus_a/iyl_cyga_radio_L.png">
+                <span class="label">CV</span>
             </a>
-            <a href="https://orcid.org/0000-0003-4701-8497" target="_blank">
-                <img class="img-tiny" src="icons/ORCID-iD_icon_vector.svg"/>
+            <a class="bg-link link-affiliations" href="resources.html" 
+                data-x="0.57" data-y="0.60" data-w="0.18" data-h="0.10" data-img="images/cygnus_a/iyl_cyga_optical_outskirts.png">
+                <span class="label">Resources</span>
             </a>
-            <a href="https://ui.adsabs.harvard.edu/search/fq=%7B!type%3Daqp%20v%3D%24fq_database%7D&fq_database=(database%3Aastronomy%20OR%20database%3Aphysics)&q=%20author%3A%22reefe%2C%20michael%22&sort=date%20desc%2C%20bibcode%20desc&p_=0" target="_blank">
-                <img class="img-tiny" src="icons/ads-logo.svg"/>
+            <a class="bg-link link-publications" href="publications.html" 
+                data-x="0.45" data-y="0.45" data-w="0.07" data-h="0.10" data-img="images/cygnus_a/iyl_cyga_optical_BCG.png">
+                <span class="label">Publications</span>
             </a>
-            <a href="https://arxiv.org/search/?query=michael+reefe&searchtype=author&abstracts=show&order=-announced_date_first&size=50" target="_blank">
-                <img class="img-tiny" src="icons/arxiv-logo.svg"/>
+            <a class="bg-link link-research" href="research.html" 
+                data-x="0.55" data-y="0.35" data-w="0.37" data-h="0.24" data-img="images/cygnus_a/iyl_cyga_radio_R.png">
+                <span class="label">Research</span>
             </a>
-            <a href="https://scholar.google.com/citations?hl=en&view_op=list_works&gmla=AFix5MbY7SoMDky2pdfs9ZfeY_kWOEcHEsk0tB7buif1zc5dTqOyuTx6Kq1-t-icjx5mw67KgPjQvYPND-qwlA&user=gURoOcQAAAAJ" target="_blank">
-                <img class="img-tiny" src="icons/Google_Scholar_logo.svg"/>
+            <!-- secret area: clicking shows the audio player (no navigation) -->
+            <a class="bg-link link-secret" href="#" 
+                data-x="0.07" data-y="0.07" data-w="0.05" data-h="0.05" data-img="images/cygnus_a/iyl_cyga_optical_secret.png" data-audio="super-secret-folder-wow-what-could-it-be/IMSLP323008-PMLP126430-vivaldi_rv63_Gardner.mp3">
             </a>
         </div>
-
-        <div class="secret">
-            <a href="#secret" onclick="showSection('secret')">hi</a>
-        </div>
+        <!-- Anchored credit footnote (positioned relative to the displayed image) -->
+        <div class="credit anchored" data-x="0.5" data-y="0.96">Image: Cygnus A | Credit: X-ray (blue): NASA/CXC/SAO; Optical (yellow): NASA/STScI; Radio (red): NSF/NRAO/AUI/VLA</div>
     </div>
-
-    <div id="cursor" class="cursor">
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <polygon points="50,0 61,35 98,35 68,57 79,91 50,70 21,91 32,57 2,35 39,35" />
-        </svg>
-    </div>
-
-	<div class="footer" id="footer">
-        <p style="margin-right: 10px;">
-            Background Image: The Bullet Cluster (1E 0657-56) in visible light (RGB), X-rays (pink), and dark matter (purple). Credit: NASA/CXC/M. Weiss
-        </p>
-    </div>
-
-	<div class="audioplayer" id="audioplayer"></div>
 
 	<script src="https://code.jquery.com/jquery-2.1.0.js"></script>
 	<script src="node_modules/js-yaml/dist/js-yaml.min.js"></script>

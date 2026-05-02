@@ -1,0 +1,897 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Gas Cooling Demo — Michael Reefe</title>
+  <link rel="stylesheet" href="wow-so-cool.css">
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <style>
+    /* ── Page layout ─────────────────────────────────────────────── */
+    .demo-wrap {
+      max-width: 1180px;
+      width: 96vw;
+      margin: 0 auto;
+      padding: 18px 0 40px;
+    }
+    .demo-wrap h1 { margin-bottom: 4px; }
+    .demo-subtitle {
+      color: rgba(255,255,255,0.55);
+      font-size: 13pt;
+      margin: 0 0 18px;
+    }
+
+    /* ── Panel cards ─────────────────────────────────────────────── */
+    .panel-card {
+      background: rgba(0,0,0,0.72);
+      border: 1px solid rgba(255,255,255,0.13);
+      border-radius: 10px;
+      padding: 14px 16px 10px;
+      position: relative;
+    }
+    .panel-title {
+      font-size: 11pt;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      margin: 0 0 6px;
+    }
+
+    /* ── Top row: curve + image ──────────────────────────────────── */
+    .top-row {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 14px;
+      align-items: stretch;
+    }
+    .panel-curve  { flex: 1 1 0; min-width: 0; }
+    .panel-image  { flex: 0 0 300px; width: 300px; }
+
+    /* ── Bottom row: continuum ───────────────────────────────────── */
+    .panel-contin { width: 100%; margin-bottom: 14px; }
+
+    /* ── SVG axes ────────────────────────────────────────────────── */
+    .axis text       { fill: rgba(255,255,255,0.65); font-family: PixelOperator, sans-serif; font-size: 13px; }
+    .axis line,
+    .axis path       { stroke: rgba(255,255,255,0.25); }
+    .grid line       { stroke: rgba(255,255,255,0.07); }
+    .axis-label      { fill: rgba(255,255,255,0.6); font-family: PixelOperator, sans-serif; font-size: 14px; }
+
+    /* ── Canvas wrapper ──────────────────────────────────────────── */
+    .canvas-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 260px;
+    }
+    #sersic-canvas {
+      image-rendering: pixelated;
+      border-radius: 4px;
+      filter: blur(0.6px);
+    }
+
+    /* ── Temperature readout ─────────────────────────────────────── */
+    .temp-readout {
+      text-align: center;
+      font-size: 13pt;
+      color: rgba(255,255,255,0.85);
+      margin-top: 6px;
+      letter-spacing: .04em;
+    }
+    .time-readout {
+      text-align: center;
+      font-size: 10pt;
+      color: rgba(255,255,255,0.4);
+      margin-top: 2px;
+    }
+
+    /* ── Controls card ───────────────────────────────────────────── */
+    .controls-card {
+      background: rgba(0,0,0,0.72);
+      border: 1px solid rgba(255,255,255,0.13);
+      border-radius: 10px;
+      padding: 14px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px 32px;
+      align-items: center;
+    }
+    .ctrl-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .ctrl-label {
+      font-size: 11pt;
+      color: rgba(255,255,255,0.45);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .ctrl-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ── Play/pause button ───────────────────────────────────────── */
+    #play-btn {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fff;
+      font-family: PixelOperator, sans-serif;
+      font-size: 14pt;
+      width: 42px; height: 34px;
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .15s;
+    }
+    #play-btn:hover { background: rgba(255,255,255,0.2); }
+
+    /* ── Toggle buttons ──────────────────────────────────────────── */
+    .toggle-group { display: flex; gap: 0; }
+    .toggle-btn {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.55);
+      font-family: PixelOperator, sans-serif;
+      font-size: 12pt;
+      padding: 4px 12px;
+      transition: background .15s, color .15s;
+    }
+    .toggle-btn:first-child { border-radius: 5px 0 0 5px; }
+    .toggle-btn:last-child  { border-radius: 0 5px 5px 0; border-left: none; }
+    .toggle-btn.active {
+      background: rgba(126,200,227,0.22);
+      color: #7ec8e3;
+      border-color: rgba(126,200,227,0.5);
+    }
+    .toggle-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+    .toggle-btn:not(:disabled):hover { background: rgba(255,255,255,0.12); color: #fff; }
+
+    /* ── Sliders ─────────────────────────────────────────────────── */
+    input[type=range] {
+      -webkit-appearance: none;
+      background: rgba(255,255,255,0.15);
+      border-radius: 3px;
+      height: 4px;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: #7ec8e3;
+    }
+    input[type=range]:disabled::-webkit-slider-thumb { background: rgba(255,255,255,0.25); }
+    input[type=range]:disabled { opacity: 0.35; }
+    .slider-val {
+      font-size: 12pt;
+      color: rgba(255,255,255,0.7);
+      min-width: 38px;
+    }
+
+    /* ── Select ──────────────────────────────────────────────────── */
+    select {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      font-family: PixelOperator, sans-serif;
+      font-size: 12pt;
+      padding: 4px 8px;
+      border-radius: 5px;
+    }
+    select option { background: #111; }
+
+    /* ── Suppress site-wide border frame (too narrow for this page) ─ */
+    body.content-page::before { display: none; }
+
+    /* ── Continuum placeholder note ──────────────────────────────── */
+    .approx-note {
+      position: absolute;
+      top: 10px; right: 14px;
+      font-size: 8pt;
+      color: rgba(255,255,255,0.3);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body class="content-page">
+
+  <!-- ── Site nav ─────────────────────────────────────────────────── -->
+  <div class="top-nav">
+    <button class="hamburger-btn" style="display:none;"
+      onclick="document.querySelector('.site-nav').classList.toggle('active')">
+      <span>☰</span><span>Menu</span>
+    </button>
+    <nav class="site-nav">
+      <a class="nav-btn nav-home" href="index.html">
+        <div class="nav-thumb"><img src="images/cygnus_a/iyl_cyga.jpg" alt="Home"></div>
+        <span class="nav-label">Home</span>
+      </a>
+      <a class="nav-btn nav-about" href="about.html">
+        <div class="nav-thumb"><img src="images/cygnus_a/iyl_cyga_xray_nav.png" alt="About"></div>
+        <span class="nav-label">About</span>
+      </a>
+      <a class="nav-btn nav-research" href="research.html">
+        <div class="nav-thumb"><img src="images/cygnus_a/iyl_cyga_radio_R_nav.png" alt="Research"></div>
+        <span class="nav-label">Research</span>
+      </a>
+      <a class="nav-btn nav-cv" href="cv.html">
+        <div class="nav-thumb"><img src="images/cygnus_a/iyl_cyga_radio_L_nav.png" alt="CV"></div>
+        <span class="nav-label">CV</span>
+      </a>
+      <a class="nav-btn nav-publications" href="publications.html">
+        <div class="nav-thumb"><img src="images/cygnus_a/iyl_cyga_optical_BCG_nav.png" alt="Publications"></div>
+        <span class="nav-label">Publications</span>
+      </a>
+      <a class="nav-btn nav-affiliations" href="resources.html">
+        <div class="nav-thumb"><img src="images/cygnus_a/iyl_cyga_optical_outskirts_nav.png" alt="Resources"></div>
+        <span class="nav-label">Resources</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- ── Main content ──────────────────────────────────────────────── -->
+  <main style="padding: 12px 20px 40px;">
+    <div class="demo-wrap">
+      <h1>Gas Cooling Demo</h1>
+      <p class="demo-subtitle">
+        Interactive CLOUDY simulation of a cooling gas parcel (Z&nbsp;=&nbsp;0.3 Z<sub>☉</sub>).
+        Watch the cooling function, emitted spectrum, and emission-line image evolve in real time.
+      </p>
+
+      <!-- Top row: cooling curve + 2D image -->
+      <div class="top-row">
+
+        <!-- Panel 1: cooling curve -->
+        <div class="panel-card panel-curve">
+          <div class="panel-title">Cooling Function</div>
+          <svg id="cooling-svg"></svg>
+        </div>
+
+        <!-- Panel 2: 2D Sersic image -->
+        <div class="panel-card panel-image">
+          <div class="panel-title">Mock 2D Image</div>
+          <div class="canvas-wrap">
+            <canvas id="sersic-canvas" width="512" height="512"
+              style="width:256px;height:256px;"></canvas>
+          </div>
+          <div class="temp-readout" id="temp-readout">T = —</div>
+          <div class="time-readout" id="time-readout">t = —</div>
+        </div>
+
+      </div><!-- .top-row -->
+
+      <!-- Bottom row: continuum -->
+      <div class="panel-card panel-contin">
+        <div class="panel-title">Observed Continuum</div>
+        <div class="approx-note" id="approx-note"></div>
+        <svg id="contin-svg"></svg>
+      </div>
+
+      <!-- Loading overlay -->
+      <div id="loading-overlay" style="
+        position:fixed;top:0;left:0;right:0;bottom:0;
+        background:rgba(0,0,0,0.75);
+        display:flex;align-items:center;justify-content:center;
+        z-index:999;font-size:14pt;color:rgba(255,255,255,0.7);
+        letter-spacing:.08em;pointer-events:none;">
+        Loading simulation data…
+      </div>
+
+      <!-- Controls -->
+      <div class="controls-card">
+
+        <!-- Play / speed -->
+        <div class="ctrl-group">
+          <div class="ctrl-label">Playback</div>
+          <div class="ctrl-row">
+            <button id="play-btn" title="Play / Pause">&#9646;&#9646;</button>
+            <input type="range" id="speed-slider" min="-2" max="2" step="0.25" value="0"
+              style="width:90px;" title="Speed">
+            <span class="slider-val" id="speed-val">1×</span>
+          </div>
+        </div>
+
+        <!-- Model type -->
+        <div class="ctrl-group">
+          <div class="ctrl-label">Model</div>
+          <div class="toggle-group">
+            <button class="toggle-btn active" id="btn-cp"
+              onclick="setModel('cp')">Isobaric (cp)</button>
+            <button class="toggle-btn" id="btn-cd"
+              onclick="setModel('cd')">Isochoric (cd)</button>
+          </div>
+        </div>
+
+        <!-- Equilibrium -->
+        <div class="ctrl-group">
+          <div class="ctrl-label">Ionization</div>
+          <div class="toggle-group">
+            <button class="toggle-btn active" id="btn-cie"
+              onclick="setEquil('cie')">CIE</button>
+            <button class="toggle-btn" id="btn-nei"
+              onclick="setEquil('nei')">NEI</button>
+          </div>
+        </div>
+
+        <!-- Metallicity -->
+        <div class="ctrl-group">
+          <div class="ctrl-label">Metallicity</div>
+          <div class="ctrl-row">
+            <span style="font-size:9pt;color:rgba(255,255,255,0.4);">0</span>
+            <input type="range" id="z-slider" min="0" max="1" step="0.01" value="0.3"
+              disabled style="width:80px;"
+              title="More metallicities coming soon">
+            <span style="font-size:9pt;color:rgba(255,255,255,0.4);">1</span>
+            <span class="slider-val" id="z-val">0.3 Z<sub>☉</sub></span>
+          </div>
+        </div>
+
+        <!-- Line selector -->
+        <div class="ctrl-group">
+          <div class="ctrl-label">Image line</div>
+          <select id="line-select" onchange="setLine(this.value)"></select>
+        </div>
+
+      </div><!-- .controls-card -->
+    </div><!-- .demo-wrap -->
+  </main>
+
+<script>
+// ─────────────────────────────────────────────────────────────────────────────
+// Constants & state
+// ─────────────────────────────────────────────────────────────────────────────
+const DURATION = 25;   // seconds per full animation loop at 1×
+
+let allData   = null;  // full JSON
+let modelData = null;  // current model array data
+let modelKey  = 'cp-cie-0.3';
+
+let tPhase     = 0;
+let lastStamp  = null;
+let playing    = true;
+let speedExp   = 0;    // speed = 10^speedExp; slider goes -2..2
+let lineKey    = 'OVI_1032';
+let modelPart  = 'cp';   // 'cp' or 'cd'
+let equilPart  = 'cie';  // 'cie' or 'nei'
+
+let sersicKernel = null;  // Float32Array, 256×256
+const CANVAS_SIZE = 512;  // rendered at 2× for HiDPI, displayed at 256px CSS
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Sersic profile
+// ─────────────────────────────────────────────────────────────────────────────
+function buildSersicKernel() {
+  const n  = 4;
+  const re = CANVAS_SIZE * 0.125;  // effective radius = 12.5% of canvas (64px at 512)
+  const bn = 2*n - 1/3 + 4/(405*n);  // ≈ 7.669
+  const sz = CANVAS_SIZE;
+  const cx = (sz - 1) / 2, cy = (sz - 1) / 2;
+  const k  = new Float32Array(sz * sz);
+  // Compute raw profile; center value = exp(bn) ≈ 2150 by the Sersic formula
+  for (let y = 0; y < sz; y++) {
+    for (let x = 0; x < sz; x++) {
+      const r = Math.sqrt((x - cx) ** 2 + (y - cy) ** 2);
+      // Clamp r to 0.5 to avoid near-zero numerical issues at exact center pixel
+      const rc = Math.max(r, 0.5);
+      const v  = Math.exp(-bn * (Math.pow(rc / re, 1 / n) - 1));
+      k[y * sz + x] = v;
+    }
+  }
+  // Normalize by actual max in the discrete grid (not the r→0 formula limit,
+  // which no pixel center can reach, making all values tiny)
+  let peak = 0;
+  for (let i = 0; i < k.length; i++) if (k[i] > peak) peak = k[i];
+  for (let i = 0; i < k.length; i++) k[i] /= peak;
+  return k;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Temperature → colour (purple → cyan → blue → orange-red)
+// ─────────────────────────────────────────────────────────────────────────────
+const TEMP_COLORS = [
+  { logT: 4.0, r: 255, g: 102, b:  51 },   // orange-red  (optical)
+  { logT: 5.0, r:  68, g: 136, b: 255 },   // blue        (EUV)
+  { logT: 6.0, r:  68, g: 221, b: 255 },   // cyan        (soft X-ray)
+  { logT: 7.0, r: 204, g: 102, b: 255 },   // purple      (hard X-ray)
+  { logT: 8.3, r: 230, g: 200, b: 255 },   // pale purple (very hot)
+];
+
+function tempToRGB(logT) {
+  const anchors = TEMP_COLORS;
+  if (logT <= anchors[0].logT) return [anchors[0].r, anchors[0].g, anchors[0].b];
+  if (logT >= anchors[anchors.length-1].logT) {
+    const a = anchors[anchors.length-1];
+    return [a.r, a.g, a.b];
+  }
+  for (let i = 0; i < anchors.length - 1; i++) {
+    if (logT >= anchors[i].logT && logT <= anchors[i+1].logT) {
+      const t = (logT - anchors[i].logT) / (anchors[i+1].logT - anchors[i].logT);
+      return [
+        Math.round(anchors[i].r + t * (anchors[i+1].r - anchors[i].r)),
+        Math.round(anchors[i].g + t * (anchors[i+1].g - anchors[i].g)),
+        Math.round(anchors[i].b + t * (anchors[i+1].b - anchors[i].b)),
+      ];
+    }
+  }
+  return [255, 255, 255];
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Bremsstrahlung fallback for continuum panel
+// Returns ν·f(ν) in arbitrary units (shape only)
+// ─────────────────────────────────────────────────────────────────────────────
+function bremsFlux(lam_ang, T, ne, nH) {
+  const h = 6.626e-27, c_cgs = 2.998e10, k = 1.381e-16;
+  const lam_cm = lam_ang * 1e-8;
+  const exponent = (h * c_cgs) / (lam_cm * k * T);
+  if (exponent > 600) return 0;
+  // ν·f(ν) shape: nu * nu * T^-0.5 * exp(-h*nu/kT)
+  // = (c/lam)^2 * T^-0.5 * exp(-hc/lam/kT)  (absorb constants into norm)
+  const nu = c_cgs / lam_cm;
+  return 6.8e-38 * ne * nH * Math.pow(T, -0.5) * nu * Math.exp(-exponent);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// D3 setup: cooling curve
+// ─────────────────────────────────────────────────────────────────────────────
+const CC = { margin: { top: 16, right: 20, bottom: 50, left: 70 } };
+
+function initCoolingPlot(data) {
+  const container = document.getElementById('cooling-svg').parentElement;
+  const W = container.clientWidth - 32;
+  const H = 300;
+  CC.w = W - CC.margin.left - CC.margin.right;
+  CC.h = H - CC.margin.top  - CC.margin.bottom;
+
+  CC.xScale = d3.scaleLog().base(10)
+    .domain([10**3.85, 10**8.25])
+    .range([0, CC.w]);
+  CC.yScale = d3.scaleLog().base(10)
+    .domain([1e-24, 1e-21])
+    .range([CC.h, 0]);
+
+  const svg = d3.select('#cooling-svg')
+    .attr('width', W).attr('height', H);
+
+  const g = svg.append('g')
+    .attr('class', 'cc-root')
+    .attr('transform', `translate(${CC.margin.left},${CC.margin.top})`);
+
+  // Grid
+  g.append('g').attr('class', 'grid')
+    .attr('transform', `translate(0,${CC.h})`)
+    .call(d3.axisBottom(CC.xScale).tickSize(-CC.h).tickFormat(''));
+  g.append('g').attr('class', 'grid')
+    .call(d3.axisLeft(CC.yScale).tickSize(-CC.w).tickFormat(''));
+
+  // Axes
+  g.append('g').attr('class', 'axis')
+    .attr('transform', `translate(0,${CC.h})`)
+    .call(d3.axisBottom(CC.xScale)
+      .tickValues([1e4,1e5,1e6,1e7,1e8])
+      .tickFormat(d => `10${superscript(Math.round(Math.log10(d)))}`));
+  g.append('g').attr('class', 'axis')
+    .call(d3.axisLeft(CC.yScale)
+      .tickValues([1e-24,1e-23,1e-22,1e-21])
+      .tickFormat(d => `10${superscript(Math.round(Math.log10(d)))}`));
+
+  // Axis labels
+  g.append('text').attr('class','axis-label')
+    .attr('x', CC.w/2).attr('y', CC.h + 42)
+    .attr('text-anchor','middle').text('Temperature  (K)');
+  g.append('text').attr('class','axis-label')
+    .attr('transform','rotate(-90)')
+    .attr('x', -CC.h/2).attr('y', -56)
+    .attr('text-anchor','middle').text('Λ / nₑnH  (erg cm³ s⁻¹)');
+
+  // Line generator
+  CC.lineGen = d3.line()
+    .x(d => CC.xScale(d.T))
+    .y(d => CC.yScale(d.lambda))
+    .defined(d => d.lambda > 0 && d.T > 0);
+
+  // Cache all (T, lambda) points once per model
+  CC.pts = data.T.map((T, i) => ({ T, lambda: data.lambda[i] }));
+
+  // Ghost path (full data, drawn once)
+  g.append('path').attr('class','cc-ghost')
+    .attr('fill','none')
+    .attr('stroke','rgba(255,255,255,0.12)')
+    .attr('stroke-width', 1.5)
+    .attr('d', CC.lineGen(CC.pts));
+
+  // Animated trace
+  g.append('path').attr('class','cc-trace')
+    .attr('fill','none')
+    .attr('stroke','#7ec8e3')
+    .attr('stroke-width', 2)
+    .attr('stroke-linecap','round');
+
+  // Current-position dot with glow filter
+  const defs = svg.append('defs');
+  const filt = defs.append('filter').attr('id','glow');
+  filt.append('feGaussianBlur').attr('stdDeviation','3').attr('result','blur');
+  filt.append('feMerge').selectAll('feMergeNode').data(['blur','SourceGraphic']).enter()
+    .append('feMergeNode').attr('in', d => d);
+
+  g.append('circle').attr('class','cc-dot')
+    .attr('r', 6)
+    .attr('fill', '#7ec8e3')
+    .attr('filter', 'url(#glow)');
+
+  CC.g = g;
+  // Label "current" marker
+  CC.dotLabel = g.append('text').attr('class','axis-label')
+    .attr('font-size','9px').attr('fill','rgba(255,255,255,0.5)')
+    .attr('text-anchor','middle');
+}
+
+function updateCoolingPlot(data, step0, step1, alpha) {
+  CC.g.select('.cc-trace').attr('d', CC.lineGen(CC.pts.slice(0, step0 + 1)));
+  const T_interp   = lerp(data.T[step0],      data.T[step1],      alpha);
+  const lam_interp = lerp(data.lambda[step0],  data.lambda[step1], alpha);
+  CC.g.select('.cc-dot')
+    .attr('cx', CC.xScale(T_interp))
+    .attr('cy', CC.yScale(lam_interp));
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// D3 setup: continuum
+// ─────────────────────────────────────────────────────────────────────────────
+const CON = { margin: { top: 14, right: 20, bottom: 50, left: 76 } };
+// Line wavelengths for reference markers (Å)
+const LINE_REFS = [
+  { lam: 1031.91,  key: 'OVI_1032',    label: 'O VI 1032Å' },
+  { lam: 1037.61,  key: 'OVI_1038',    label: 'O VI 1038Å' },
+  { lam: 6374.53,  key: 'FeX_6375',    label: 'Fe X 6375Å' },
+  { lam: 54451.4,  key: 'FeVIII_5445', label: 'Fe VIII 5.45μm' },
+  { lam: 76501.9,  key: 'NeVI_76502',  label: 'Ne VI 7.65μm' },
+  { lam: 90309.4,  key: 'MgVII_9031',  label: 'Mg VII 9.03μm' },
+  { lam: 95076.3,  key: 'FeVII_9508',  label: 'Fe VII 9.51μm' },
+  { lam: 105076.0, key: 'SIV_10508',   label: 'S IV 10.5μm' },
+  { lam: 128101.0, key: 'NeII_12810',  label: 'Ne II 12.8μm' },
+  { lam: 143178.0, key: 'NeV_14318',   label: 'Ne V 14.3μm' },
+  { lam: 155509.0, key: 'NeIII_15551', label: 'Ne III 15.6μm' },
+];
+
+function initContinuumPlot(data) {
+  const container = document.getElementById('contin-svg').parentElement;
+  const W = container.clientWidth - 32;
+  const H = 240;
+  CON.w = W - CON.margin.left - CON.margin.right;
+  CON.h = H - CON.margin.top  - CON.margin.bottom;
+
+  CON.xScale = d3.scaleLog().base(10)
+    .domain([10**0, 10**5.5])
+    .range([0, CON.w]);
+  // y: fixed range covering full evolution; max flux ~4.6e-16 so top at 1e-13
+  CON.yScale = d3.scaleLog().base(10)
+    .domain([10**-35, 10**-13])
+    .range([CON.h, 0]);
+
+  const svg = d3.select('#contin-svg')
+    .attr('width', W).attr('height', H);
+
+  const g = svg.append('g')
+    .attr('class', 'con-root')
+    .attr('transform', `translate(${CON.margin.left},${CON.margin.top})`);
+
+  // Grid
+  g.append('g').attr('class','grid')
+    .attr('transform',`translate(0,${CON.h})`)
+    .call(d3.axisBottom(CON.xScale).tickSize(-CON.h).tickFormat(''));
+  g.append('g').attr('class','grid')
+    .call(d3.axisLeft(CON.yScale).tickSize(-CON.w).tickFormat(''));
+
+  // Axes
+  g.append('g').attr('class','axis')
+    .attr('transform',`translate(0,${CON.h})`)
+    .call(d3.axisBottom(CON.xScale)
+      .tickValues([1e0,1e1,1e2,1e3,1e4,1e5])
+      .tickFormat(d => `10${superscript(Math.round(Math.log10(d)))}`));
+  g.append('g').attr('class','axis')
+    .call(d3.axisLeft(CON.yScale)
+      .tickValues([1e-34,1e-31,1e-28,1e-25,1e-22,1e-19,1e-16,1e-13])
+      .tickFormat(d => `10${superscript(Math.round(Math.log10(d)))}`));
+
+  // Axis labels
+  g.append('text').attr('class','axis-label')
+    .attr('x', CON.w/2).attr('y', CON.h + 42)
+    .attr('text-anchor','middle').text('Wavelength  (Å)');
+  g.append('text').attr('class','axis-label')
+    .attr('transform','rotate(-90)')
+    .attr('x', -CON.h/2).attr('y', -62)
+    .attr('text-anchor','middle').text('ν·f(ν)  (erg cm⁻² s⁻¹)');
+
+  // Clip path
+  const clipId = 'con-clip';
+  svg.append('defs').append('clipPath').attr('id', clipId)
+    .append('rect').attr('width', CON.w).attr('height', CON.h);
+
+  // Reference line markers — dashes for all lines; active label via updateContinuumLineLabel
+  const refG = g.append('g').attr('clip-path', `url(#${clipId})`);
+  LINE_REFS.forEach(lr => {
+    const logL = Math.log10(lr.lam);
+    if (logL < 0 || logL > 5.5) return;
+    refG.append('line')
+      .attr('class', 'con-ref-line')
+      .attr('data-key', lr.key)
+      .attr('x1', CON.xScale(lr.lam)).attr('x2', CON.xScale(lr.lam))
+      .attr('y1', 0).attr('y2', CON.h)
+      .attr('stroke', 'rgba(255,255,255,0.10)')
+      .attr('stroke-dasharray', '3,3');
+  });
+  // Single label element repositioned whenever the selected line changes
+  refG.append('text')
+    .attr('class', 'con-line-label')
+    .attr('y', 16)
+    .attr('fill', 'rgba(255,255,255,0.92)')
+    .attr('font-size', '11px')
+    .attr('font-family', 'PixelOperator, sans-serif');
+  CON.refG = refG;
+
+  // Spectrum path
+  g.append('path').attr('class','con-line')
+    .attr('fill','none')
+    .attr('stroke','#e5eb71')
+    .attr('stroke-width', 1.5)
+    .attr('clip-path', `url(#${clipId})`);
+
+  CON.lineGen = d3.line()
+    .x(d => CON.xScale(d.lam))
+    .y(d => CON.yScale(d.flux))
+    .defined(d => d.flux > 0 && isFinite(Math.log10(d.flux)));
+
+  CON.g = g;
+  CON.hasCloudy = !!(data.contin);
+  updateContinuumLineLabel();
+}
+
+function updateContinuumPlot(data, step0, step1, alpha) {
+  let pts;
+  if (CON.hasCloudy) {
+    const lams  = data.contin.lam_ang;
+    const flux0 = data.contin.flux[step0];
+    const flux1 = data.contin.flux[step1];
+    pts = lams.map((lam, i) => ({ lam, flux: lerp(flux0[i], flux1[i], alpha) }));
+    document.getElementById('approx-note').textContent = '';
+  } else {
+    const ne = lerp(data.ne[step0], data.ne[step1], alpha);
+    const nH = lerp(data.nH[step0], data.nH[step1], alpha);
+    const T  = lerp(data.T[step0],  data.T[step1],  alpha);
+    const lams = d3.range(0, 5.51, 0.02).map(l => Math.pow(10, l));
+    pts = lams.map(lam => ({ lam, flux: bremsFlux(lam, T, ne, nH) }));
+    document.getElementById('approx-note').textContent = 'bremsstrahlung approximation';
+  }
+  CON.g.select('.con-line').attr('d', CON.lineGen(pts));
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Canvas: 2D Sersic image
+// ─────────────────────────────────────────────────────────────────────────────
+function updateSersicImage(data, step0, step1, alpha) {
+  const canvas = document.getElementById('sersic-canvas');
+  const ctx    = canvas.getContext('2d');
+  const sz     = CANVAS_SIZE;
+
+  const emiss = data[lineKey];
+  if (!(lineKey in lineMaxCache)) {
+    lineMaxCache[lineKey] = Math.max(0, ...emiss) || 1;
+  }
+  const emiss_interp = lerp(emiss[step0], emiss[step1], alpha);
+  const brightness   = Math.max(0, emiss_interp) / lineMaxCache[lineKey];
+
+  const T_interp = lerp(data.T[step0], data.T[step1], alpha);
+  const logT = Math.log10(T_interp);
+  const [rr, gg, bb] = tempToRGB(logT);
+
+  const imgData = ctx.createImageData(sz, sz);
+  const px = imgData.data;
+  const k  = sersicKernel;
+
+  // Always show at least 10% brightness so galaxy shape is visible even when
+  // the selected line isn't the dominant coolant (e.g. O VI at T=10^8 K)
+  const displayed = Math.max(0.10, brightness);
+  for (let i = 0; i < sz * sz; i++) {
+    const v = Math.pow(k[i], 0.4) * displayed;
+    px[i*4  ] = Math.round(rr * v);
+    px[i*4+1] = Math.round(gg * v);
+    px[i*4+2] = Math.round(bb * v);
+    px[i*4+3] = Math.round(255 * v);
+  }
+  ctx.putImageData(imgData, 0, 0);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Readouts
+// ─────────────────────────────────────────────────────────────────────────────
+function fmtTemp(T) {
+  if (T >= 1e7) return `${(T/1e7).toFixed(2)} × 10⁷ K`;
+  if (T >= 1e6) return `${(T/1e6).toFixed(2)} × 10⁶ K`;
+  if (T >= 1e5) return `${(T/1e5).toFixed(2)} × 10⁵ K`;
+  return `${T.toFixed(0)} K`;
+}
+
+function fmtTime(t_s) {
+  const yr = t_s / 3.156e7;
+  if (yr < 1e3)  return `t = ${yr.toFixed(0)} yr`;
+  if (yr < 1e6)  return `t = ${(yr/1e3).toFixed(1)} kyr`;
+  if (yr < 1e9)  return `t = ${(yr/1e6).toFixed(2)} Myr`;
+  return `t = ${(yr/1e9).toFixed(2)} Gyr`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Animation loop
+// ─────────────────────────────────────────────────────────────────────────────
+let lastStepF = -1;
+let lineMaxCache = {};
+
+function lerp(a, b, t) { return a + t * (b - a); }
+
+function tick(stamp) {
+  if (lastStamp !== null) {
+    const dt = (stamp - lastStamp) / 1000;
+    if (playing) {
+      const speed = Math.pow(10, speedExp);
+      tPhase += dt * speed / DURATION;
+      if (tPhase >= 1) tPhase -= 1;
+    }
+  }
+  lastStamp = stamp;
+
+  if (modelData) {
+    const n     = modelData.n_steps;
+    const stepF = tPhase * (n - 1);
+
+    // Update every frame when playing; when paused, only on forced redraw
+    if (playing || stepF !== lastStepF) {
+      const step0 = Math.min(Math.floor(stepF), n - 1);
+      const step1 = Math.min(step0 + 1, n - 1);
+      const alpha = stepF - step0;
+
+      updateCoolingPlot(modelData, step0, step1, alpha);
+      updateContinuumPlot(modelData, step0, step1, alpha);
+      updateSersicImage(modelData, step0, step1, alpha);
+
+      const T_interp    = lerp(modelData.T[step0],    modelData.T[step1],    alpha);
+      const time_interp = lerp(modelData.time[step0], modelData.time[step1], alpha);
+      document.getElementById('temp-readout').textContent = 'T = ' + fmtTemp(T_interp);
+      document.getElementById('time-readout').textContent = fmtTime(time_interp);
+      lastStepF = stepF;
+    }
+  }
+  requestAnimationFrame(tick);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Control handlers
+// ─────────────────────────────────────────────────────────────────────────────
+function setModel(part) {
+  modelPart = part;
+  document.getElementById('btn-cp').classList.toggle('active', part === 'cp');
+  document.getElementById('btn-cd').classList.toggle('active', part === 'cd');
+  switchModel();
+}
+
+function setEquil(part) {
+  equilPart = part;
+  document.getElementById('btn-cie').classList.toggle('active', part === 'cie');
+  document.getElementById('btn-nei').classList.toggle('active', part === 'nei');
+  switchModel();
+}
+
+function updateContinuumLineLabel() {
+  if (!CON.refG) return;
+  const ref = LINE_REFS.find(r => r.key === lineKey);
+
+  // Highlight selected reference line, dim the rest
+  CON.refG.selectAll('.con-ref-line')
+    .attr('stroke', function() {
+      return this.getAttribute('data-key') === lineKey
+        ? 'rgba(229,235,113,0.75)'
+        : 'rgba(255,255,255,0.10)';
+    });
+
+  // Position label at selected line
+  if (ref) {
+    CON.refG.select('.con-line-label')
+      .attr('x', CON.xScale(ref.lam) + 4)
+      .text(ref.label);
+  }
+}
+
+function setLine(key) {
+  lineKey   = key;
+  lastStepF = -1;
+  updateContinuumLineLabel();
+}
+
+function switchModel() {
+  const key = `${modelPart}-${equilPart}-0.3`;
+  if (allData.models[key]) {
+    modelKey  = key;
+    modelData = allData.models[key];
+    lineMaxCache = {};
+    d3.select('#cooling-svg').selectAll('*').remove();
+    d3.select('#contin-svg').selectAll('*').remove();
+    initCoolingPlot(modelData);
+    initContinuumPlot(modelData);
+    lastStepF = -1;
+  } else {
+    console.warn('Model not available:', key);
+  }
+}
+
+document.getElementById('play-btn').addEventListener('click', () => {
+  playing = !playing;
+  document.getElementById('play-btn').innerHTML = playing ? '&#9646;&#9646;' : '&#9654;';
+});
+
+document.getElementById('speed-slider').addEventListener('input', function() {
+  speedExp = +this.value;
+  const speed = Math.pow(10, speedExp);
+  document.getElementById('speed-val').textContent =
+    speed < 1 ? speed.toFixed(2) + '×' : speed.toFixed(1) + '×';
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Superscript helper for axis labels
+// ─────────────────────────────────────────────────────────────────────────────
+function superscript(n) {
+  const map = { '0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵',
+                '6':'⁶','7':'⁷','8':'⁸','9':'⁹','-':'⁻' };
+  return String(n).split('').map(c => map[c] || c).join('');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Populate line selector
+// ─────────────────────────────────────────────────────────────────────────────
+function populateLineSelect(metadata) {
+  const sel = document.getElementById('line-select');
+  metadata.line_keys.forEach((key, i) => {
+    const opt = document.createElement('option');
+    opt.value = key;
+    opt.textContent = metadata.line_labels[i];
+    if (key === lineKey) opt.selected = true;
+    sel.appendChild(opt);
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Bootstrap
+// ─────────────────────────────────────────────────────────────────────────────
+async function init() {
+  sersicKernel = buildSersicKernel();
+
+  const resp = await fetch('demo_data/cooling_data.json');
+  allData = await resp.json();
+
+  modelData = allData.models[modelKey];
+  populateLineSelect(allData.metadata);
+
+  // Disable NEI if not available
+  if (!allData.metadata.models_available['cp-nei']) {
+    document.getElementById('btn-nei').disabled = true;
+    document.getElementById('btn-nei').title = 'NEI data not available';
+  }
+
+  initCoolingPlot(modelData);
+  initContinuumPlot(modelData);
+
+  document.getElementById('loading-overlay').style.display = 'none';
+  requestAnimationFrame(tick);
+}
+
+init().catch(err => {
+  console.error('Demo failed to load:', err);
+  document.querySelector('.demo-wrap').insertAdjacentHTML('afterbegin',
+    '<p style="color:#f66;border:1px solid #f66;padding:10px;border-radius:6px;">' +
+    'Could not load demo data. Serve this page over HTTP (e.g. <code>python3 -m http.server</code>).</p>');
+});
+</script>
+</body>
+</html>

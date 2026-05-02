@@ -754,7 +754,7 @@ function fmtTemp(T) {
   if (T >= 1e7) return `${(T/1e7).toFixed(2)} × 10⁷ K`;
   if (T >= 1e6) return `${(T/1e6).toFixed(2)} × 10⁶ K`;
   if (T >= 1e5) return `${(T/1e5).toFixed(2)} × 10⁵ K`;
-  return `${T.toFixed(0)} K`;
+  return `${(T/1e4).toFixed(2)} × 10⁴ K`;
 }
 
 function fmtTime(t_s) {

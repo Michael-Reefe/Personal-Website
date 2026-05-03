@@ -22,10 +22,13 @@
       color: rgba(255,255,255,0.85);
       list-style: none;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 10px;
       user-select: none;
     }
+    details.section-block > summary .summary-text { display: flex; flex-direction: column; gap: 4px; }
+    details.section-block > summary .summary-text h2 { margin: 0; }
+    details.section-block > summary .summary-text p { margin: 0; font-size: 16pt; color: rgba(255,255,255,0.85); }
     details.section-block > summary::-webkit-details-marker { display: none; }
     details.section-block > summary::before {
       content: '▶';
@@ -33,6 +36,7 @@
       color: rgba(255,255,255,0.4);
       transition: transform 0.2s;
       flex-shrink: 0;
+      margin-top: 10px;
     }
     details.section-block[open] > summary::before { transform: rotate(90deg); }
     details.section-block > summary:hover { background: rgba(255,255,255,0.06); }
@@ -85,7 +89,12 @@
       <br>
 
       <details class="section-block">
-        <summary>Background: Galaxy Clusters and the Cooling Flow Problem</summary>
+        <summary>
+          <div class="summary-text">
+            <h2 style="color:#ffd24d">Background</h2>
+            <p>A short overview on what I study. What are galaxy clusters? What is the cooling flow problem?</p>
+          </div>
+        </summary>
         <div class="section-body">
 
           <p>Galaxy clusters are collections of 100s-1000s of galaxies and are the largest gravitationally bound structures in the universe.
@@ -151,7 +160,12 @@
       </details>
 
       <details class="section-block">
-        <summary>My Research: The Cooling Rainbow</summary>
+        <summary>
+          <div class="summary-text">
+            <h2 style="color:#ffd24d">My Research: The Cooling Rainbow</h2>
+            <p>An overview of the techniques I use in my own research to study galaxy clusters and cooling.</p>
+          </div>
+        </summary>
         <div class="section-body">
 
           <p>My current research focuses on multiwavelength studies of the intracluster medium to try to better understand the properties of the ICM, the cooling
@@ -203,7 +217,12 @@
       </details>
 
       <details class="section-block" id="demo-details">
-        <summary>Interactive Cooling Demo</summary>
+        <summary>
+          <div class="summary-text">
+            <h2 style="color:aquamarine">Interactive Cooling Demo</h2>
+            <p>See a simulated parcel of gas cool in real time and watch how the cooling function, observed surface brightness, and observed spectrum change.</p>
+          </div>
+        </summary>
         <iframe class="demo-iframe" id="demo-iframe"
           data-src="cooling-demo.html?embed=1" src="about:blank"></iframe>
       </details>

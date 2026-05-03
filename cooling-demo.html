@@ -258,7 +258,7 @@
     <div class="demo-wrap">
       <h1>Gas Cooling Demo</h1>
       <p class="demo-subtitle">
-        Interactive CLOUDY simulation of a cooling gas parcel (Z&nbsp;=&nbsp;0.3 Z<sub>☉</sub>).
+        Interactive CLOUDY simulation of a cooling gas parcel.
         Watch the cooling function, emitted spectrum, and emission-line image evolve in real time.
       </p>
 
@@ -339,13 +339,13 @@
         <!-- Metallicity -->
         <div class="ctrl-group">
           <div class="ctrl-label">Metallicity</div>
-          <div class="ctrl-row">
-            <span style="font-size:9pt;color:rgba(255,255,255,0.4);">0</span>
-            <input type="range" id="z-slider" min="0" max="1" step="0.01" value="0.3"
-              disabled style="width:80px;"
-              title="More metallicities coming soon">
-            <span style="font-size:9pt;color:rgba(255,255,255,0.4);">1</span>
-            <span class="slider-val" id="z-val">0.3 Z<sub>☉</sub></span>
+          <div class="toggle-group">
+            <button class="toggle-btn" id="btn-z00"
+              onclick="setMetallicity(0.0)">0.0 Z<sub>☉</sub></button>
+            <button class="toggle-btn active" id="btn-z03"
+              onclick="setMetallicity(0.3)">0.3 Z<sub>☉</sub></button>
+            <button class="toggle-btn" id="btn-z10"
+              onclick="setMetallicity(1.0)">1.0 Z<sub>☉</sub></button>
           </div>
         </div>
 
@@ -445,6 +445,7 @@ const DURATION = 8;    // seconds per full animation loop
 
 let allData   = null;  // full JSON
 let modelData = null;  // current model array data
+let metallicity = 0.3;
 let modelKey  = 'cp-cie-0.3';
 
 let tPhase     = 0;
@@ -888,6 +889,27 @@ function setEquil(part) {
   switchModel();
 }
 
+function setMetallicity(z) {
+  metallicity = z;
+  document.getElementById('btn-z00').classList.toggle('active', z === 0.0);
+  document.getElementById('btn-z03').classList.toggle('active', z === 0.3);
+  document.getElementById('btn-z10').classList.toggle('active', z === 1.0);
+  updateAvailability();
+  switchModel();
+}
+
+function updateAvailability() {
+  const av = allData.metadata.models_available;
+  const neiAvail = !!(av[`cp-nei-${metallicity.toFixed(1)}`] || av[`cd-nei-${metallicity.toFixed(1)}`]);
+  document.getElementById('btn-nei').disabled = !neiAvail;
+  document.getElementById('btn-nei').title = neiAvail ? '' : 'NEI data not available';
+  if (!neiAvail && equilPart === 'nei') {
+    equilPart = 'cie';
+    document.getElementById('btn-cie').classList.add('active');
+    document.getElementById('btn-nei').classList.remove('active');
+  }
+}
+
 function updateContinuumDomain() {
   if (!CON.xAxisG) return;
   const ref = LINE_REFS.find(r => r.key === lineKey);
@@ -961,7 +983,7 @@ function setLine(key) {
 }
 
 function switchModel() {
-  const key = `${modelPart}-${equilPart}-0.3`;
+  const key = `${modelPart}-${equilPart}-${metallicity.toFixed(1)}`;
   if (allData.models[key]) {
     modelKey  = key;
     modelData = allData.models[key];
@@ -1050,11 +1072,7 @@ async function init() {
   modelData.continF32 = null;
   populateLineSelect(allData.metadata);
 
-  // Disable NEI if not available
-  if (!allData.metadata.models_available['cp-nei']) {
-    document.getElementById('btn-nei').disabled = true;
-    document.getElementById('btn-nei').title = 'NEI data not available';
-  }
+  updateAvailability();
 
   // Load initial model's binary before starting so spectrum is ready immediately
   if (modelData.contin?.bin) {

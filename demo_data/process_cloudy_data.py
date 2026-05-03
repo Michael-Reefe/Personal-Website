@@ -57,15 +57,17 @@ LINES_COL = {
     "FeX_6375":     11,
 }
 
-# Models to look for: (key, directory_name, stem)
+# Models: (key, directory prefix, stem)
+# Directory name = "{dir_prefix}-{Z_SUFFIX[z]}"
 MODELS = [
-    ("cp-cie", "cp-cie-z03", "cp-cool-cie"),
-    ("cp-nei", "cp-nei-z03", "cp-cool-nei"),
-    ("cd-cie", "cd-cie-z03", "cd-cool-cie"),
-    ("cd-nei", "cd-nei-z03", "cd-cool-nei"),
+    ("cp-cie", "cp-cie", "cp-cool-cie"),
+    ("cp-nei", "cp-nei", "cp-cool-nei"),
+    ("cd-cie", "cd-cie", "cd-cool-cie"),
+    ("cd-nei", "cd-nei", "cd-cool-nei"),
 ]
 
-METALLICITIES = [0.3]   # will grow as more models are added
+METALLICITIES = [0.0, 0.3, 1.0]
+Z_SUFFIX = {0.0: "z00", 0.3: "z03", 1.0: "z10"}
 
 
 # ---------------------------------------------------------------------------
@@ -98,12 +100,61 @@ def process_model(model_dir, stem, metallicity):
     print(f"  Loading small files …")
     # .lambda has text cooling-fraction labels after col 4; use tab delimiter + usecols
     lam_data   = load_small(lam_path,   usecols=(0,1,2,3,4), delimiter='\t')
-    ovr_data   = load_small(ovr_path)    # (N, cols): col3=hden, col4=eden
-    lines_data = load_small(lines_path)  # (N, cols): col1..11 = line emissivities
-    tim_data   = load_small(tim_path)    # (N, cols): col0=elapsed time
+    ovr_data   = load_small(ovr_path)
+    lines_data = load_small(lines_path)
+    tim_data   = load_small(tim_path)
 
-    n = lam_data.shape[0]
+    # Truncate all arrays to the minimum row count across files (guards against
+    # a crashed run leaving one file with a partial extra row)
+    n_lam, n_ovr = lam_data.shape[0], ovr_data.shape[0]
+    n_lines, n_tim = lines_data.shape[0], tim_data.shape[0]
+    n_small = min(n_lam, n_ovr, n_lines, n_tim)
+    if n_small < max(n_lam, n_ovr, n_lines, n_tim):
+        print(f"  WARNING: row mismatch "
+              f"(lambda={n_lam}, ovr={n_ovr}, lines={n_lines}, tim={n_tim})"
+              f" → truncating to {n_small}")
+
+    # ------------------------------------------------------------------
+    # Peek at .contin to detect its step count BEFORE building result,
+    # so n_steps in the JSON always matches the binary row count.
+    # CLOUDY writes each step as a monotonically decreasing wavelength
+    # sequence; the first upward jump marks the step boundary.
+    # ------------------------------------------------------------------
+    rows_per_step = None
+    n_contin      = None
+    if os.path.exists(contin_path) and HAS_PANDAS:
+        lam_peek = pd.read_csv(
+            contin_path,
+            sep="\t",
+            comment="#",
+            header=None,
+            usecols=[0],
+            dtype=float,
+            engine="c",
+            nrows=200_000,   # enough to find the boundary in any reasonable grid
+        ).iloc[:, 0].values
+        for i in range(1, len(lam_peek)):
+            if lam_peek[i] > lam_peek[i - 1]:
+                rows_per_step = i
+                break
+        if rows_per_step is None:
+            print(f"  WARNING: could not detect contin step boundary in first "
+                  f"{len(lam_peek)} rows; falling back to division by n_small")
+        else:
+            contin_total = sum(1 for _ in open(contin_path)
+                               if not _.startswith('#'))
+            n_contin = contin_total // rows_per_step
+            print(f"  Contin: {rows_per_step} pts/step, {n_contin} complete steps")
+
+    n = n_small if n_contin is None else min(n_small, n_contin)
+    if n < n_small:
+        print(f"  NOTE: contin limits steps to {n} (small files had {n_small})")
     print(f"  {n} timesteps")
+
+    lam_data   = lam_data[:n]
+    ovr_data   = ovr_data[:n]
+    lines_data = lines_data[:n]
+    tim_data   = tim_data[:n]
 
     T     = lam_data[:, 1].tolist()          # temperature K
     Ctot  = lam_data[:, 3]                   # cooling rate erg/cm³/s
@@ -115,7 +166,7 @@ def process_model(model_dir, stem, metallicity):
     with np.errstate(divide="ignore", invalid="ignore"):
         lam_func = np.where(ne * nH > 0, Ctot / (ne * nH), 0.0)
 
-    # Emission lines (erg/cm³/s), indices are 1-based in .lines columns
+    # Emission lines (erg/cm³/s)
     line_arrays = {}
     for key, col in LINES_COL.items():
         line_arrays[key] = lines_data[:, col].tolist()
@@ -133,6 +184,7 @@ def process_model(model_dir, stem, metallicity):
 
     # ------------------------------------------------------------------
     # Optional: process .contin file → write Float32 binary
+    # rows_per_step already detected above; n already reflects min(n_small, n_contin)
     # ------------------------------------------------------------------
     if os.path.exists(contin_path):
         print(f"  Loading .contin ({os.path.getsize(contin_path) // 1_000_000} MB) …")
@@ -150,12 +202,18 @@ def process_model(model_dir, stem, metallicity):
                 low_memory=False,
             )
             total_rows = len(df)
-            rows_per_step = total_rows // n
-            print(f"  {total_rows} contin rows → {rows_per_step} pts/step")
+
+            # Use rows_per_step detected during the peek above; fall back to
+            # division by n if the peek somehow missed (shouldn't happen).
+            if rows_per_step is None:
+                rows_per_step = total_rows // n
+                print(f"  WARNING: using fallback rows_per_step={rows_per_step}")
+
+            print(f"  {total_rows} contin rows → {rows_per_step} pts/step × {n} steps used")
 
             # Native wavelength grid (Å), same for all steps, decreasing (radio→X-ray)
             native_lam  = df.iloc[:rows_per_step, 0].values
-            flux_matrix = df.iloc[:, 1].values.reshape(n, rows_per_step)
+            flux_matrix = df.iloc[:n * rows_per_step, 1].values.reshape(n, rows_per_step)
 
             # Flip to increasing wavelength order for the browser
             native_lam_inc  = native_lam[::-1].copy()
@@ -197,35 +255,31 @@ def main():
         "models": {},
     }
 
-    for model_key, dir_name, stem in MODELS:
-        model_dir = os.path.join(BASE_DIR, dir_name)
-        if not os.path.isdir(model_dir):
-            print(f"[SKIP] {model_key}: directory not found ({model_dir})")
-            output["metadata"]["models_available"][model_key] = False
-            continue
-
-        # Check if the directory has data files
-        required = os.path.join(model_dir, stem + ".lambda")
-        if not os.path.exists(required):
-            print(f"[SKIP] {model_key}: no data files yet")
-            output["metadata"]["models_available"][model_key] = False
-            continue
-
+    for model_key, dir_prefix, stem in MODELS:
         for z in METALLICITIES:
+            dir_name  = f"{dir_prefix}-{Z_SUFFIX[z]}"
+            model_dir = os.path.join(BASE_DIR, dir_name)
             model_full_key = f"{model_key}-{z}"
+
+            if not os.path.isdir(model_dir):
+                print(f"[SKIP] {model_full_key}: directory not found ({model_dir})")
+                output["metadata"]["models_available"][model_full_key] = False
+                continue
+
+            required = os.path.join(model_dir, stem + ".lambda")
+            if not os.path.exists(required):
+                print(f"[SKIP] {model_full_key}: no data files yet")
+                output["metadata"]["models_available"][model_full_key] = False
+                continue
+
             print(f"[{model_full_key}]")
             data = process_model(model_dir, stem, z)
             if data is not None:
                 output["models"][model_full_key] = data
-                output["metadata"]["models_available"][model_key] = True
+                output["metadata"]["models_available"][model_full_key] = True
                 print(f"  OK → {model_full_key}")
             else:
-                output["metadata"]["models_available"][model_key] = False
-
-    # Fill in any missing model keys
-    for model_key, _, _ in MODELS:
-        if model_key not in output["metadata"]["models_available"]:
-            output["metadata"]["models_available"][model_key] = False
+                output["metadata"]["models_available"][model_full_key] = False
 
     print(f"\nWriting {OUT_FILE} …")
     with open(OUT_FILE, "w") as f:

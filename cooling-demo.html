@@ -64,7 +64,7 @@
       align-items: center;
       height: 260px;
     }
-    #sersic-canvas {
+    #beta-canvas {
       image-rendering: pixelated;
       border-radius: 4px;
       filter: blur(0.6px);
@@ -203,6 +203,9 @@
       .controls-card { grid-template-columns: repeat(2, max-content); }
     }
 
+    /* ── Description block below controls ───────────────────────── */
+    .demo-description { margin-top: 18px; }
+
     /* ── Continuum placeholder note ──────────────────────────────── */
     .approx-note {
       position: absolute;
@@ -267,11 +270,11 @@
           <svg id="cooling-svg"></svg>
         </div>
 
-        <!-- Panel 2: 2D Sersic image -->
+        <!-- Panel 2: 2D beta-model image -->
         <div class="panel-card panel-image">
           <div class="panel-title">Mock 2D Image</div>
           <div class="canvas-wrap">
-            <canvas id="sersic-canvas" width="512" height="512"
+            <canvas id="beta-canvas" width="512" height="512"
               style="width:256px;height:256px;"></canvas>
           </div>
           <div class="temp-readout" id="temp-readout">T = —</div>
@@ -364,6 +367,66 @@
         </div>
 
       </div><!-- .controls-card -->
+
+      <div class="demo-description">
+        <p>
+          This demo shows what happens to a theoretical parcel of gas that starts out with a density of 
+          0.1 particles cm<sup>-3</sup> and a temperature of 10<sup>8</sup> Kelvin, and then cools down over time.  
+          The models shown have been computed with the state-of-the-art CLOUDY code.
+        </p>
+
+        <p>
+          The top-left plot shows the <b>cooling function</b>, which tells us how quickly the gas is able to 
+          cool at a given temperature.  So you can see that as time evolves, the highlighted point moves to the 
+          left (lower temperatures) as the gas cools down.  You'll notice a general trend that the gas can cool 
+          more quickly at lower temperatures (since the cooling function is higher).  This is because the primary
+          cooling mechanism transitions from bremsstrahlung emission to line emission.
+        </p>
+          
+        <p>
+          In actuality, what is plotted is the cooling rate divided by the density squared.  And if we assume an ideal 
+          gas law where density is proportional to the inverse of temperature, then the trend of the cooling rate getting 
+          faster at lower temperatures is exaggerated even further.  You'll notice this if you look at how quickly the time 
+          value changes in the top-right plot.  Initially, when we are at very hot temperatures, the time value changes very
+          quickly, indicating that it takes a <b>very long time</b> for the gas to cool.  Whereas, once we get below about
+          1 million Kelvin, the time value starts changing much more slowly, indicating that the gas is cooling very rapidly!
+        </p>
+
+        <p>
+          The top-right plot, in addition to showing the current temperature and time in the simulation, shows a mock 2D 
+          image of what cooling line emission in a diffuse gas cloud might look like.  Since we are focusing on one cooling 
+          emission line, and these lines tend to operate at a relatively narrow temperature range, this image will be blank 
+          most of the time, and then it will suddenly flash brightly once the gas reaches the temperature that is ideal for 
+          the cooling line we are looking at.  You can change which cooling line this is in the control panel.  The 2D 
+          surface brightness distribution uses a simple physically motivated beta model.
+        </p>
+
+        <p>
+          Finally, the bottom plot shows the real-time observed spectrum of the gas cloud, with continuum emission and 
+          emission lines.  This is an idealized model where there are no stars and no dust, so it shows just the emission 
+          that would be expected from a cooling region of gas.  Some strong cooling lines are highlighted, and you will see 
+          as time evolves that these lines will become bright when the conditions of the gas are favorable for their 
+          existence (right density and temperature).  For most of the lines considered here, this will be somewhere in the 
+          10<sup>5</sup>-10<sup>6</sup> Kelvin range.
+        </p>
+
+        <p>
+          Below the plots, there are some options that you can play with to explore different physical conditions!
+        </p>
+
+        <ul style="font-size: 16pt;">
+          <li>You can swap between <b>isobaric</b> (constant pressure) and <b>isochoric</b> (constant density) cooling. 
+            Note that this wont affect the shape of the cooling function, because it is normalized by the density squared!</li>
+          <li>You can swap between <b>collisional ionization equilibrium</b> (CIE) and <b>non-equilibrium ionization</b> (NEI). 
+            The difference here is based on whether the ionization state of the gas is forced to reach equilibrium at each timestep.</li>
+          <li>You can change the metallicity, which affects how many metals are present in the gas (where "metals" means 
+            any element other than hydrogen or helium).</li>
+          <li>You can choose between a set of cooling emission lines to focus on in the spectrum. This also affects which brightness
+            is shown in the mock 2D image.</li>
+        </ul>
+
+      </div>
+
     </div><!-- .demo-wrap -->
   </main>
 
@@ -393,31 +456,26 @@ let modelPart  = 'cp';   // 'cp' or 'cd'
 let equilPart  = 'cie';  // 'cie' or 'nei'
 let continView = 'full'; // 'full' or 'zoom'
 
-let sersicKernel = null;  // Float32Array, 256×256
+let betaKernel = null;  // Float32Array, 256×256
 const CANVAS_SIZE = 512;  // rendered at 2× for HiDPI, displayed at 256px CSS
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Sersic profile
+// Beta model surface brightness profile  I(r) ∝ (1 + (r/r_c)²)^(−3β+½)
+// β=0.6, r_c=20% of canvas — standard parameterization for ICM X-ray emission
 // ─────────────────────────────────────────────────────────────────────────────
-function buildSersicKernel() {
-  const n  = 4;
-  const re = CANVAS_SIZE * 1.0;   // effective radius = 100% of canvas — fills the whole FOV
-  const bn = 2*n - 1/3 + 4/(405*n);  // ≈ 7.669
-  const sz = CANVAS_SIZE;
-  const cx = (sz - 1) / 2, cy = (sz - 1) / 2;
-  const k  = new Float32Array(sz * sz);
-  // Compute raw profile; center value = exp(bn) ≈ 2150 by the Sersic formula
+function buildBetaKernel() {
+  const beta = 0.6;
+  const rc   = CANVAS_SIZE * 0.20;  // core radius
+  const expo = -3 * beta + 0.5;     // = −1.3
+  const sz   = CANVAS_SIZE;
+  const cx   = (sz - 1) / 2, cy = (sz - 1) / 2;
+  const k    = new Float32Array(sz * sz);
   for (let y = 0; y < sz; y++) {
     for (let x = 0; x < sz; x++) {
       const r = Math.sqrt((x - cx) ** 2 + (y - cy) ** 2);
-      // Clamp r to 0.5 to avoid near-zero numerical issues at exact center pixel
-      const rc = Math.max(r, 0.5);
-      const v  = Math.exp(-bn * (Math.pow(rc / re, 1 / n) - 1));
-      k[y * sz + x] = v;
+      k[y * sz + x] = Math.pow(1 + (r / rc) ** 2, expo);
     }
   }
-  // Normalize by actual max in the discrete grid (not the r→0 formula limit,
-  // which no pixel center can reach, making all values tiny)
   let peak = 0;
   for (let i = 0; i < k.length; i++) if (k[i] > peak) peak = k[i];
   for (let i = 0; i < k.length; i++) k[i] /= peak;
@@ -674,7 +732,11 @@ function initContinuumPlot(data) {
   CON.lineGen = d3.line()
     .x(d => CON.xScale(d.lam))
     .y(d => CON.yScale(d.flux))
-    .defined(d => d.flux > 0 && isFinite(Math.log10(d.flux)));
+    .defined(d => {
+      if (!(d.flux > 0 && isFinite(Math.log10(d.flux)))) return false;
+      const [x0, x1] = CON.xScale.domain();
+      return d.lam >= x0 && d.lam <= x1;
+    });
 
   CON.g = g;
   CON.hasCloudy = !!(data.contin && data.contin.bin);
@@ -712,10 +774,10 @@ function updateContinuumPlot(data, step0, step1, alpha) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Canvas: 2D Sersic image
+// Canvas: 2D beta-model image
 // ─────────────────────────────────────────────────────────────────────────────
-function updateSersicImage(data, step0, step1, alpha) {
-  const canvas = document.getElementById('sersic-canvas');
+function updateBetaImage(data, step0, step1, alpha) {
+  const canvas = document.getElementById('beta-canvas');
   const ctx    = canvas.getContext('2d');
   const sz     = CANVAS_SIZE;
 
@@ -732,7 +794,7 @@ function updateSersicImage(data, step0, step1, alpha) {
 
   const imgData = ctx.createImageData(sz, sz);
   const px = imgData.data;
-  const k  = sersicKernel;
+  const k  = betaKernel;
 
   // Always show at least 10% brightness so galaxy shape is visible even when
   // the selected line isn't the dominant coolant (e.g. O VI at T=10^8 K)
@@ -796,7 +858,7 @@ function tick(stamp) {
 
       updateCoolingPlot(modelData, step0, step1, alpha);
       updateContinuumPlot(modelData, step0, step1, alpha);
-      updateSersicImage(modelData, step0, step1, alpha);
+      updateBetaImage(modelData, step0, step1, alpha);
 
       const T_interp    = lerp(modelData.T[step0],    modelData.T[step1],    alpha);
       const time_interp = lerp(modelData.time[step0], modelData.time[step1], alpha);
@@ -971,7 +1033,7 @@ function resizePlots() {
 }
 
 async function init() {
-  sersicKernel = buildSersicKernel();
+  betaKernel = buildBetaKernel();
 
   const resp = await fetch('demo_data/cooling_data.json');
   allData = await resp.json();

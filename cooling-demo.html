@@ -200,7 +200,8 @@
     @media (max-width: 640px) {
       .top-row { flex-direction: column; }
       .panel-image { flex: 1 1 auto; width: 100%; }
-      .controls-card { grid-template-columns: repeat(2, max-content); }
+      .controls-card { grid-template-columns: 1fr; }
+      .ctrl-row { flex-wrap: wrap; }
     }
 
     /* ── Description block below controls ───────────────────────── */
@@ -303,14 +304,13 @@
       <!-- Controls -->
       <div class="controls-card">
 
-        <!-- Play / speed -->
+        <!-- Play / scrub -->
         <div class="ctrl-group">
           <div class="ctrl-label">Playback</div>
           <div class="ctrl-row">
             <button id="play-btn" title="Play / Pause">&#9646;&#9646;</button>
-            <input type="range" id="speed-slider" min="-2" max="2" step="0.25" value="0"
-              style="width:90px;" title="Speed">
-            <span class="slider-val" id="speed-val">1×</span>
+            <input type="range" id="scrub-slider" min="0" max="1000" step="1" value="0"
+              style="width:120px;" title="Scrub">
           </div>
         </div>
 
@@ -441,7 +441,7 @@ if (new URLSearchParams(location.search).has('embed')) {
 // ─────────────────────────────────────────────────────────────────────────────
 // Constants & state
 // ─────────────────────────────────────────────────────────────────────────────
-const DURATION = 25;   // seconds per full animation loop at 1×
+const DURATION = 8;    // seconds per full animation loop
 
 let allData   = null;  // full JSON
 let modelData = null;  // current model array data
@@ -450,7 +450,6 @@ let modelKey  = 'cp-cie-0.3';
 let tPhase     = 0;
 let lastStamp  = null;
 let playing    = true;
-let speedExp   = 0;    // speed = 10^speedExp; slider goes -2..2
 let lineKey    = 'OVI_1038';
 let modelPart  = 'cp';   // 'cp' or 'cd'
 let equilPart  = 'cie';  // 'cie' or 'nei'
@@ -839,8 +838,7 @@ function tick(stamp) {
   if (lastStamp !== null) {
     const dt = (stamp - lastStamp) / 1000;
     if (playing) {
-      const speed = Math.pow(10, speedExp);
-      tPhase += dt * speed / DURATION;
+      tPhase += dt / DURATION;
       if (tPhase >= 1) tPhase -= 1;
     }
   }
@@ -865,6 +863,9 @@ function tick(stamp) {
       document.getElementById('temp-readout').textContent = 'T = ' + fmtTemp(T_interp);
       document.getElementById('time-readout').textContent = fmtTime(time_interp);
       lastStepF = stepF;
+      if (playing) {
+        document.getElementById('scrub-slider').value = Math.round(tPhase * 1000);
+      }
     }
   }
   requestAnimationFrame(tick);
@@ -990,11 +991,18 @@ document.getElementById('play-btn').addEventListener('click', () => {
   document.getElementById('play-btn').innerHTML = playing ? '&#9646;&#9646;' : '&#9654;';
 });
 
-document.getElementById('speed-slider').addEventListener('input', function() {
-  speedExp = +this.value;
-  const speed = Math.pow(10, speedExp);
-  document.getElementById('speed-val').textContent =
-    speed < 1 ? speed.toFixed(2) + '×' : speed.toFixed(1) + '×';
+const scrubEl = document.getElementById('scrub-slider');
+function pauseForScrub() {
+  if (playing) {
+    playing = false;
+    document.getElementById('play-btn').innerHTML = '&#9654;';
+  }
+}
+scrubEl.addEventListener('mousedown',  pauseForScrub);
+scrubEl.addEventListener('touchstart', pauseForScrub, { passive: true });
+scrubEl.addEventListener('input', function() {
+  tPhase    = this.value / 1000;
+  lastStepF = -1;
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

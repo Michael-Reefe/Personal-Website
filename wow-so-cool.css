@@ -646,6 +646,12 @@ body.content-page .nav-btn + .nav-btn { margin-left: -0.5px; }
     text-align: center;
 }
 
+.footer-email {
+    margin: 10px 0 0;
+    font-size: 16pt;
+    color: rgba(255,255,255,0.9);
+}
+
 .footer-links {
     display: flex;
     justify-content: center;

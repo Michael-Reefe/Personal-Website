@@ -47,7 +47,7 @@ body {
    pages add `class="content-page"` to the body. */
 body.content-page { overflow: auto; }
 .content-page .content-box { max-height: none; overflow-y: visible; }
-body.content-page .top-nav { background: #000; }
+body.content-page .top-nav { background: #000; box-shadow: 0 1px 0 0 #000; }
 
 /* Add border frame to content pages */
 body.content-page::before {
